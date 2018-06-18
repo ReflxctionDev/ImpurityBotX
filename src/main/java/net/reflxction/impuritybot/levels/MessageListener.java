@@ -28,7 +28,6 @@ import net.reflxction.impuritybot.utils.data.level.LevelManager;
 public class MessageListener extends ListenerAdapter {
 
     private LevelManager lu = new LevelManager();
-
     private ExpManager eu = new ExpManager();
 
     @Override

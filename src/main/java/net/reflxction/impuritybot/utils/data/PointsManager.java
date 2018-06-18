@@ -60,4 +60,8 @@ public class PointsManager {
         setUserPoints(u, getUserPoints(u) - points);
     }
 
+    public boolean deservesRank(User u, PointsRank rank) {
+        return getUserPoints(u) >= rank.getRange().getMinimum();
+    }
+
 }
