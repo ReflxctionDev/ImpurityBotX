@@ -26,7 +26,7 @@ import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /**
- * Command class which manages the "-points" command..
+ * Command class which manages the "-points" command
  *
  * @author Reflxction
  */
