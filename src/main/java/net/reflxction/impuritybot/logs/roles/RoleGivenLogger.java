@@ -27,9 +27,6 @@ public class RoleGivenLogger extends Logger {
                 .setThumbnail(u.getAvatarUrl())
                 .build();
         getLogs().sendMessage(builder.build()).queue();
-        if (r.getName().equals("-----------------------------")) {
-            event.getGuild().getController().ban(event.getGuild().getMember(u), 7).queue();
-        }
         if(r.getId().equals("413362035334840324")) {
             u.openPrivateChannel().complete().sendMessage("<#452333985419493376>\n" +
                     "\n" +
@@ -49,7 +46,7 @@ public class RoleGivenLogger extends Logger {
                     "\n" +
                     "If teams aren’t really your thing, consider joining one of our events! Our events team hosts a number of events weekly. Past examples include Murder Mystery, a duels tournament, and skribbl.io. Events are announced regularly and you can usually find more information there.\n" +
                     "\n" +
-                    "If you have any more questions, contact **Loki#0532**. Once again, welcome to our guild. Hope you enjoy your stay!");
+                    "If you have any more questions, contact **Loki#0532**. Once again, welcome to our guild. Hope you enjoy your stay!").queue();
         }
     }
 
