@@ -15,7 +15,10 @@
  */
 package net.reflxction.impuritybot.utils.data;
 
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.points.PointsRank;
 
@@ -68,4 +71,15 @@ public class PointsManager {
         return PointsRank.getByLevel(getLevel(u) + 1);
     }
 
+    public void upgrade(User u, MessageChannel channel) {
+        if (getRank(u) != PointsRank.SSS_RATE) {
+            EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
+                    .setRandomColor()
+                    .addField("Rank upgrade!", u.getName() + " has reached **" + getNextRank(u) + "**!")
+                    .setThumbnail(u.getAvatarUrl())
+                    .build();
+            channel.sendMessage(embed.build()).queue();
+            bot.getPointsFile().set("Points." + u.getId() + ".Level", getRank(u).getLevel() + 1);
+        }
+    }
 }
