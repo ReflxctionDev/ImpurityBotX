@@ -8,6 +8,11 @@ import net.reflxction.impuritybot.points.mechanics.AssignRanking;
 import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
+/**
+ * Class which manages the "-mpoints" command.
+ *
+ * @author BrokenEarth
+ */
 public class ManagePoints extends AbstractCommand {
 
     private static PointsManager pointsManager = new PointsManager();
