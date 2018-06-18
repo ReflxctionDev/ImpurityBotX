@@ -24,6 +24,7 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.GuildUtils;
 import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.data.exp.ExpManager;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class LevelManager {
     private DataManager du = new DataManager(bot);
 
     private ExpManager exp = new ExpManager();
+    private PointsManager points = new PointsManager();
 
     public void addUserForFirstTime(User u) {
         setUserLevel(u, 1);
@@ -65,6 +67,7 @@ public class LevelManager {
         du.saveFile(bot.getExpFile(), "exp");
         exp.setUserNextExp(u);
         du.saveFile(bot.getExpFile(), "exp");
+        points.givePoints(u, 5);
     }
 
     private LevelAdapter revertLevel(User u) {
