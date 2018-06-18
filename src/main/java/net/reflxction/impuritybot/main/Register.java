@@ -31,6 +31,7 @@ import net.reflxction.impuritybot.commands.level.RankCmd;
 import net.reflxction.impuritybot.commands.level.SetLevel;
 import net.reflxction.impuritybot.commands.level.TopLevels;
 import net.reflxction.impuritybot.commands.miscs.*;
+import net.reflxction.impuritybot.commands.points.ManagePoints;
 import net.reflxction.impuritybot.commands.points.PointsBalance;
 import net.reflxction.impuritybot.commands.points.ManagePoints;
 import net.reflxction.impuritybot.commands.user.*;
