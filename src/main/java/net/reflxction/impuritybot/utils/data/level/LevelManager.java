@@ -101,7 +101,6 @@ public class LevelManager {
             Collections.sort(lvls);
             Collections.reverse(lvls);
         }
-
         topusers.add(getUserByExp(lvls.get(0)).get(0));
         topusers.add(getUserByExp(lvls.get(1)).get(0));
         topusers.add(getUserByExp(lvls.get(2)).get(0));
