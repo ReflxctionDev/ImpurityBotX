@@ -27,5 +27,6 @@ public class Roles {
     public static final Role BOT_UPDATES = GuildUtils.roleById("433947293360586753");
     public static final Role HELPER = GuildUtils.roleById("415187616774881282");
     public static final Role EVENTS_TEAM = GuildUtils.roleById("445237461912911883");
+    public static final Role STAFF = GuildUtils.roleById("454636856387043329");
 
 }

@@ -12,6 +12,7 @@ import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class SetPoints extends AbstractCommand {
+
     @Override
     public String getCommand() {
         return "setpoints";
