@@ -21,6 +21,8 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.points.PointsRank;
+import net.reflxction.impuritybot.points.mechanics.AssignRanking;
+import net.reflxction.impuritybot.utils.GuildUtils;
 
 public class PointsManager {
 
@@ -79,7 +81,9 @@ public class PointsManager {
                     .setThumbnail(u.getAvatarUrl())
                     .build();
             channel.sendMessage(embed.build()).queue();
-            bot.getPointsFile().set("Points." + u.getId() + ".Level", getRank(u).getLevel() + 1);
+            bot.getPointsFile().set("Points." + u.getId() + ".Level", getLevel(u    ) + 1);
+            AssignRanking ranking = new AssignRanking(GuildUtils.guild().getMember(u), getLevel(u));
+            ranking.assignRating();
         }
     }
 }

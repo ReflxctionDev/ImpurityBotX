@@ -27,6 +27,8 @@ import net.reflxction.impuritybot.utils.data.level.LevelManager;
 
 /**
  * Listener which listens to user messages
+ *
+ * @author Reflxction
  */
 public class MessageListener extends ListenerAdapter {
 

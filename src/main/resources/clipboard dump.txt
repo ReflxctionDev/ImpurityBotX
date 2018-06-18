@@ -43,3 +43,29 @@
                     ps.setString(5, ign == null ? "NO IGN" : ign);
                     ps.setInt(6, warnings);
                     ps.executeUpdate();*/
+
+
+    @Override
+    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+        if (args.length != 2) {
+            c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**.").queue();
+            return;
+        }
+        int parsed;
+        try {
+            parsed = Integer.parseInt(args[1]);
+        } catch (Exception e) {
+            c.sendMessage("**Please enter a number at field 'amount'").queue();
+            return;
+        }
+        try {
+            String id = StringUtils.mentionToId(args[0]);
+            User target = j.getUserById(id);
+            manager.setUserPoints(target, parsed);
+            AssignRanking assignRanking = new AssignRanking(g.getMember(target), manager.getLevel(u));
+            assignRanking.assignRating();
+            c.sendMessage("**Set " + target.getName() + "'s points to " + manager.getUserPoints(u) + "**.").queue();
+        } catch (NumberFormatException ex) {
+            c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**!**").queue();
+        }
+    }
