@@ -8,7 +8,7 @@ import net.reflxction.impuritybot.points.mechanics.AssignRanking;
 import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
-public class MPoints extends AbstractCommand {
+public class ManagePointsCommand extends AbstractCommand {
 
     private static PointsManager pointsManager = new PointsManager();
 
@@ -26,9 +26,13 @@ public class MPoints extends AbstractCommand {
             c.sendMessage("**You do not have permission to execute this command**").queue();
             return;
         }
+        if (args.length == 1) {
+            c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**.").queue();
+            return;
+        }
         if (args[0].equalsIgnoreCase("add")) {
             int amount;
-            if (args.length == 4) {
+            if (args.length == 3) {
                 String name;
                 User target;
                 try {
@@ -43,7 +47,7 @@ public class MPoints extends AbstractCommand {
                     return;
                 }
                 try {
-                    amount = Integer.parseInt(args[3]);
+                    amount = Integer.parseInt(args[2]);
                 } catch (Exception e) {
                     c.sendMessage("**Invalid usage at field amount**").queue();
                     return;
@@ -56,12 +60,12 @@ public class MPoints extends AbstractCommand {
             }
             return;
         } else if (args[0].equalsIgnoreCase("remove")) {
-            if (args.length == 4) {
+            if (args.length == 3) {
                 int amount;
                 User targetuser;
                 String name;
                 try {
-                    amount = Integer.parseInt(args[3]);
+                    amount = Integer.parseInt(args[2]);
                 } catch (Exception e3) {
                     c.sendMessage("**Invalid usage at field amount**").queue();
                     return;
@@ -85,12 +89,12 @@ public class MPoints extends AbstractCommand {
             }
             return;
         } else if (args[0].equalsIgnoreCase("set")) {
-            if (args.length == 4) {
+            if (args.length == 3) {
                 int amount;
                 User targetuser;
                 String name;
                 try {
-                    amount = Integer.parseInt(args[3]);
+                    amount = Integer.parseInt(args[2]);
                 } catch (Exception e5) {
                     c.sendMessage("**Invalid usage at field amount**").queue();
                     return;
@@ -115,7 +119,7 @@ public class MPoints extends AbstractCommand {
             }
             return;
         } else if (args[0].equalsIgnoreCase("reset")) {
-            if (args.length == 3) {
+            if (args.length == 2) {
                 User target;
                 String name;
                 try {
