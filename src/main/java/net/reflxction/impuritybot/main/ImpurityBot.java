@@ -183,7 +183,7 @@ public class ImpurityBot extends JavaPlugin {
     }
 
     private void registerListeners() throws LoginException {
-        String token = "MzkzNzkxNTc2NzAwMDkyNDE2.Dgg_hg.0kM5nBiFedaOSgsbzeCvy5-DKrw";
+        String token = "lol no thanks";
         japi = new JDABuilder(AccountType.BOT)
                 .setToken(token)
                 .addEventListener(new MessageListener(), new SkyWarsC(), new Welcome(), new Engine(), new Rate(),
