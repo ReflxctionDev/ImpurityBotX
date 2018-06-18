@@ -28,6 +28,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.listeners.*;
 import net.reflxction.impuritybot.core.loggers.Logger;
+import net.reflxction.impuritybot.core.others.BotConfig;
 import net.reflxction.impuritybot.levels.MessageListener;
 import net.reflxction.impuritybot.logs.user.UserWarnLoggers;
 import net.reflxction.impuritybot.utils.data.DataManager;
@@ -183,9 +184,8 @@ public class ImpurityBot extends JavaPlugin {
     }
 
     private void registerListeners() throws LoginException {
-        String token = "lol no thanks";
         japi = new JDABuilder(AccountType.BOT)
-                .setToken(token)
+                .setToken(BotConfig.TOKEN)
                 .addEventListener(new MessageListener(), new SkyWarsC(), new Welcome(), new Engine(), new Rate(),
                         new TableFlip(), new PollReactions(bot)).buildAsync();
         //.addEventListener(new AntiSwear())

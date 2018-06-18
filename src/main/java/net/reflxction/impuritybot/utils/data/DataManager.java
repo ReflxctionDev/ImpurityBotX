@@ -1,13 +1,3 @@
-package net.reflxction.impuritybot.utils.data;
-
-import net.reflxction.impuritybot.main.ImpurityBot;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
-import java.io.File;
-import java.io.IOException;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -23,6 +13,16 @@ import java.io.IOException;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.utils.data;
+
+import net.reflxction.impuritybot.main.ImpurityBot;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
+import java.io.IOException;
+
 public class DataManager {
 
     private ImpurityBot m;
@@ -51,8 +51,7 @@ public class DataManager {
             fileConfig.save(file);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (NullPointerException e) {
-
+        } catch (NullPointerException ignored) {
         }
     }
 
@@ -85,7 +84,8 @@ public class DataManager {
         createFile("exp");
         createFile("warnings");
         createFile("polls");
-        createFile("points.yml");
+        createFile("points");
+        createFile("config");
         addFile("rules.png");
         addFile("punishments.png");
         addFile("ranks.png");
@@ -94,7 +94,7 @@ public class DataManager {
         loadFile("exp");
         loadFile("warnings");
         loadFile("polls");
-        loadFile("points.yml");
+        loadFile("points");
+        loadFile("config");
     }
-
 }
