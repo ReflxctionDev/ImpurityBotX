@@ -26,7 +26,7 @@ public class ManagePointCmd extends AbstractCommand {
             c.sendMessage("**You do not have permission to execute this command**").queue();
             return;
         }
-        if (args.length == 1) {
+        if (args.length == 0) {
             c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**.").queue();
             return;
         }
