@@ -38,19 +38,15 @@ public class MessageListener extends ListenerAdapter {
         Guild g = event.getGuild();
         if (!u.isBot()) {
             if (c instanceof TextChannel) {
-                if (event.getGuild().getName().equalsIgnoreCase("Impurity")) {
-                    if (!event.getChannel().getId().equals("397992804296687626")) {
-                        if (!g.getMember(u).getRoles().contains(g.getRoleById("404036346794213377"))) {
-                            if (eu.getUserExp(u) == 0) {
-                                eu.addUserForFirstTime(u);
-                                lu.addUserForFirstTime(u);
-                            } else {
-                                eu.addNormalExp(u);
-                            }
-                            if (eu.canLevelUp(u)) {
-                                lu.levelUp(u, c);
-                            }
-                        }
+                if (g.getId().equals("363721897743089668")) {
+                    if (eu.getUserExp(u) == 0) {
+                        eu.addUserForFirstTime(u);
+                        lu.addUserForFirstTime(u);
+                    } else {
+                        eu.addNormalExp(u);
+                    }
+                    if (eu.canLevelUp(u)) {
+                        lu.levelUp(u, c);
                     }
                 }
             }
