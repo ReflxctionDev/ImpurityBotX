@@ -23,7 +23,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 import net.reflxction.impuritybot.utils.data.level.LevelManager;
 
 public class SetLevel extends AbstractCommand {
@@ -46,7 +46,7 @@ public class SetLevel extends AbstractCommand {
                 int i = 0;
                 User target = null;
                 try {
-                    String id = StringUtils.mentionToId(args[0]);
+                    String id = StringUtilsL.mentionToId(args[0]);
                     target = j.getUserById(id);
                 } catch (NumberFormatException ex) {
                     c.sendMessage("**Expected a user mention (or id), but found `" + args[0] + "`**").queue();

@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
 
 /*
@@ -51,7 +51,7 @@ public class RemoveWarn extends AbstractCommand {
             if (args.length == 1) {
                 User target;
                 try {
-                    target = j.getUserById(StringUtils.mentionToId(args[0]));
+                    target = j.getUserById(StringUtilsL.mentionToId(args[0]));
                     if (wu.getWarnings(target) > 0) {
                         wu.removeWarning(target, u);
                         wu.removeWarning(target, u);
@@ -70,7 +70,7 @@ public class RemoveWarn extends AbstractCommand {
             if (args.length == 2) {
                 User target;
                 try {
-                    target = j.getUserById(StringUtils.mentionToId(args[0]));
+                    target = j.getUserById(StringUtilsL.mentionToId(args[0]));
                     if (wu.getWarnings(target) > 0) {
                         wu.removeWarnings(target, u, Integer.parseInt(args[1]));
                         PrivateChannel pm = target.openPrivateChannel().complete();

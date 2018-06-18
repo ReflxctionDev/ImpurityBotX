@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 import net.reflxction.impuritybot.utils.data.exp.ExpManager;
 import net.reflxction.impuritybot.utils.data.level.LevelManager;
 
@@ -47,21 +47,21 @@ public class RankCmd extends AbstractCommand {
                     .setThumbnail(u.getAvatarUrl())
                     .setTitle(u.getName() + "'s level")
                     .setDescription("\n")
-                    .addField("Exp", StringUtils.s(eu.getUserExp(u)) + "/1000", true)
-                    .addField("Level", StringUtils.s(lu.getUserLevel(u)), true)
+                    .addField("Exp", StringUtilsL.s(eu.getUserExp(u)) + "/1000", true)
+                    .addField("Level", StringUtilsL.s(lu.getUserLevel(u)), true)
                     .setRandomColor()
                     .setFooter("Requested by " + u.getName(), null).build();
             c.sendMessage(builder.build()).queue();
         }
         if (args.length == 1) {
             try {
-                User user = j.getUserById(StringUtils.mentionToId(args[0]));
+                User user = j.getUserById(StringUtilsL.mentionToId(args[0]));
                 EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                         .setThumbnail(user.getAvatarUrl())
                         .setTitle(user.getName() + "'s level")
                         .setDescription("\n")
-                        .addField("Exp", StringUtils.s(eu.getUserExp(user)) + "/1000", true)
-                        .addField("Level", StringUtils.s(lu.getUserLevel(user)), true)
+                        .addField("Exp", StringUtilsL.s(eu.getUserExp(user)) + "/1000", true)
+                        .addField("Level", StringUtilsL.s(lu.getUserLevel(user)), true)
                         .setRandomColor()
                         .setFooter("Requested by " + u.getName(), null).build();
                 c.sendMessage(builder.build()).queue();

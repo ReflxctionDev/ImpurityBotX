@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.guild.GuildBanEvent;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.loggers.Logger;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 
 import java.awt.*;
 
@@ -23,7 +23,7 @@ public class UserBanLogger extends Logger {
                 .setColor(Color.RED)
                 .setDescription("User " + u.getName() + " has been banned")
                 .setThumbnail(u.getAvatarUrl())
-                .setFooter("User ID: " + u.getId() + " • " + StringUtils.getTimeEST(), null)
+                .setFooter("User ID: " + u.getId() + " • " + StringUtilsL.getTimeEST(), null)
                 .build();
         getLogs().sendMessage(builder.build()).queue();
     }

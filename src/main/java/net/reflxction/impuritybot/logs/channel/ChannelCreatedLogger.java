@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.channel.text.TextChannelCreateEvent;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.loggers.Logger;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 
 /**
  * Created by Reflxction, on 01/28/18.
@@ -19,7 +19,7 @@ public class ChannelCreatedLogger extends Logger {
                 .setColor(L_BLUE)
                 .setAuthor(event.getGuild().getName(), null, event.getGuild().getIconUrl())
                 .setDescription("**Channel created: #" + channel.getName() + "**")
-                    .setFooter("ID: " + channel.getId() + " • " + StringUtils.getTimeEST(), null)
+                    .setFooter("ID: " + channel.getId() + " • " + StringUtilsL.getTimeEST(), null)
                 .build();
         getLogs().sendMessage(builder.build()).queue();
     }

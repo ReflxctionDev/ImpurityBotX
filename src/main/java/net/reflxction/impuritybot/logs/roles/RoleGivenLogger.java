@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberRoleAddEvent;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.loggers.Logger;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 
 import java.awt.*;
 
@@ -23,7 +23,7 @@ public class RoleGivenLogger extends Logger {
                 .setColor(Color.YELLOW)
                 .setAuthor(u.getName(), null, u.getAvatarUrl())
                 .setDescription("**<@" + u.getId() + "> was given the ** `" + r.getName() + "` role")
-                .setFooter("User ID: " + u.getId() + " • " + StringUtils.getTimeEST(), null)
+                .setFooter("User ID: " + u.getId() + " • " + StringUtilsL.getTimeEST(), null)
                 .setThumbnail(u.getAvatarUrl())
                 .build();
         getLogs().sendMessage(builder.build()).queue();

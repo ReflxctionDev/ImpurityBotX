@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberNickChangeEvent;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.loggers.Logger;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 
 import java.awt.*;
 
@@ -21,7 +21,7 @@ public class UserNickLogger extends Logger {
                     .setColor(Color.pink)
                     .addField("Before", event.getPrevNick())
                     .addField("After", event.getNewNick())
-                    .setFooter("User ID: " + event.getUser().getId() + " • " + StringUtils.getTimeEST(), null)
+                    .setFooter("User ID: " + event.getUser().getId() + " • " + StringUtilsL.getTimeEST(), null)
                     .build();
             getLogs().sendMessage(builder.build()).queue();
         } catch (IllegalArgumentException ex) {

@@ -1,5 +1,8 @@
 package net.reflxction.impuritybot.utils.lang;
 
+import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.main.ImpurityBot;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -22,33 +25,10 @@ import java.util.regex.Pattern;
  * limitations under the License.
  */
 
-public class StringUtils {
-
-    public static String replaceWithSpaces(String arg0) {
-        return arg0.replace("_", " ");
-    }
-
-    public static void repl(String arg0) {
-        arg0.replace("_", " ");
-    }
+public class StringUtilsL {
 
     public static String capitalize(String arg0) {
         return arg0.substring(0, 1).toUpperCase() + arg0.substring(1);
-    }
-
-    public static void capital(String arg0) {
-        arg0 = arg0.substring(0, 1).toUpperCase() + arg0.substring(1).toLowerCase();
-    }
-
-    public static String capitalizeAll(String args) {
-        int i;
-        String[] arg0 = args.split(" ");
-        for (i = 0; i < arg0.length; i++) {
-
-        }
-        capital(arg0[i]);
-        repl(arg0[i]);
-        return arg0[i];
     }
 
     public static String getTimeEST() {
@@ -115,10 +95,8 @@ public class StringUtils {
         return m.find();
     }
 
-    public static boolean containsEnd(String source, String subItem) {
-        String pattern = subItem + "\\b";
-        Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(source);
-        return m.find();
+    public static User getUser(String mention) {
+        return ImpurityBot.getJDA().getUserById(mentionToId(mention));
     }
+
 }

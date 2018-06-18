@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 
 import java.awt.*;
 import java.time.OffsetDateTime;
@@ -19,7 +19,7 @@ import java.time.OffsetDateTime;
  */
 public class UserInfo extends AbstractCommand {
 
-    final StringUtils StringUtils = new StringUtils();
+    final StringUtilsL StringUtilsL = new StringUtilsL();
 
     @Override
     public String getCommand() {
@@ -39,7 +39,7 @@ public class UserInfo extends AbstractCommand {
             c.sendMessage(builder.build()).queue();
         }
         if (args.length == 1) {
-            final User x = j.getUserById(StringUtils.mentionToId(args[0]));
+            final User x = j.getUserById(StringUtilsL.mentionToId(args[0]));
             final Color color = g.getMember(x).getColor();
             final OffsetDateTime date = g.getMember(u).getJoinDate();
             EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())

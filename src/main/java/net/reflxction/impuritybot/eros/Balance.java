@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 
 /**
@@ -30,7 +30,7 @@ public class Balance extends AbstractCommand {
         }
         if (args.length == 1) {
             try {
-                User target = j.getUserById(StringUtils.mentionToId(args[0]));
+                User target = j.getUserById(StringUtilsL.mentionToId(args[0]));
                 int balance = cc.getUserCredits(target);
                 c.sendMessage("Current balance for **" + target.getName() + "**: **" + balance + "**").queue();
             } catch (NumberFormatException ex) {

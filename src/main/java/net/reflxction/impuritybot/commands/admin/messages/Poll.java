@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.StringUtilsL;
 import net.reflxction.impuritybot.utils.data.PollsManager;
 
 /**
@@ -37,7 +37,7 @@ public class Poll extends AbstractCommand {
                 if (!args[0].equalsIgnoreCase("add") && !args[0].equalsIgnoreCase("remove")) {
                     c.sendMessage("**Invalid arguments. Try " + getUsage() + "**").queue();
                 } else if (args[0].equalsIgnoreCase("add")) {
-                    String id = StringUtils.channelToId(args[1]);
+                    String id = StringUtilsL.channelToId(args[1]);
                     if (g.getTextChannelById(id) == null) {
                         c.sendMessage("**Invalid channel. Make sure to use the #channel format (or id)**").queue();
                     } else {
@@ -45,7 +45,7 @@ public class Poll extends AbstractCommand {
                         c.sendMessage("<#" + id + "> has been added to poll channels.").queue();
                     }
                 } else if (args[0].equalsIgnoreCase("remove")) {
-                    String id = StringUtils.channelToId(args[1]);
+                    String id = StringUtilsL.channelToId(args[1]);
                     if (g.getTextChannelById(id) == null) {
                         c.sendMessage("**Invalid channel. Make sure to use the #channel format (or id)**").queue();
                     } else {
