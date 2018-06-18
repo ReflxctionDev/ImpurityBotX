@@ -1,14 +1,3 @@
-package net.reflxction.impuritybot.levels;
-
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.reflxction.impuritybot.utils.data.exp.ExpManager;
-import net.reflxction.impuritybot.utils.data.level.LevelManager;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -24,12 +13,26 @@ import net.reflxction.impuritybot.utils.data.level.LevelManager;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.levels;
 
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.reflxction.impuritybot.utils.data.PointsManager;
+import net.reflxction.impuritybot.utils.data.exp.ExpManager;
+import net.reflxction.impuritybot.utils.data.level.LevelManager;
+
+/**
+ * Listener which listens to user messages
+ */
 public class MessageListener extends ListenerAdapter {
 
     private LevelManager lu = new LevelManager();
     private ExpManager eu = new ExpManager();
-
+    private PointsManager points = new PointsManager();
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -44,6 +47,9 @@ public class MessageListener extends ListenerAdapter {
                         lu.addUserForFirstTime(u);
                     } else {
                         eu.addNormalExp(u);
+                        if (points.deservesRank(u, points.getNextRank(u))) {
+                            points.upgrade(u, c);
+                        }
                     }
                     if (eu.canLevelUp(u)) {
                         lu.levelUp(u, c);
