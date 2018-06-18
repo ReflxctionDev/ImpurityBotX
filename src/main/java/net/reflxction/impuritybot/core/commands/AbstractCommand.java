@@ -8,11 +8,8 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
-import net.reflxction.impuritybot.main.ImpurityBot;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+@SuppressWarnings("all")
 public abstract class AbstractCommand extends ListenerAdapter {
 
     private String content;

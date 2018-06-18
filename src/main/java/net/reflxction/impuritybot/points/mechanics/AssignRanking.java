@@ -13,14 +13,13 @@ governing permissions and limitations under the License.
 package net.reflxction.impuritybot.points.mechanics;
 
 import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.points.NumberRange;
 import net.reflxction.impuritybot.points.PointsRank;
 import net.reflxction.impuritybot.utils.GuildUtils;
 import net.reflxction.impuritybot.utils.data.IgnManager;
 
 /**
  * Assigns the ranking to a player - Just make an instance of this class and use method assignRating()
+ *
  * @author BrokenEarth
  */
 public class AssignRanking {
@@ -42,7 +41,7 @@ public class AssignRanking {
 
     /**
      * @param member the desired member
-     * @param level the member's level according to PointsRank
+     * @param level  the member's level according to PointsRank
      * @see PointsRank
      */
     public AssignRanking(Member member, int level) {
@@ -55,21 +54,8 @@ public class AssignRanking {
      * Format: [rating] IGN
      */
     public void assignRating() {
-        String nickname;
         PointsRank pointsRank = PointsRank.getByLevel(level);
-        if (pointsRank == PointsRank.A_RATE) nickname = "[A] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.B_RATE) nickname = "[B] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.C_RATE) nickname = "[C] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.D_RATE) nickname = "[D] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.E_RATE) nickname = "[E] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.F_RATE) nickname = "[F] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.S_RATE) nickname = "[S] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.SS_RATE) nickname = "[SS] " + ignManager.getIGN(member.getUser());
-        else if (pointsRank == PointsRank.SSS_RATE) nickname = "[SSS] " + ignManager.getIGN(member.getUser());
-        else {
-            throw new IllegalArgumentException("Cannot set ranting according to level");
-        }
-        GuildUtils.controller().setNickname(member, nickname).queue();
+        GuildUtils.controller().setNickname(member, "[" + pointsRank.getChar() + "] " + ignManager.getIGN(member.getUser())).queue();
     }
 }
 

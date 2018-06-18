@@ -21,10 +21,9 @@ import net.dv8tion.jda.core.hooks.EventListener;
 
 public class CommandHandler implements EventListener {
 
-
     @Override
     public void onEvent(Event e) {
-        if(e instanceof MessageReceivedEvent) {
+        if (e instanceof MessageReceivedEvent) {
             MessageReceivedEvent event = ((MessageReceivedEvent) e);
 
         }

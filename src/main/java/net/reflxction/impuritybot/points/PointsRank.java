@@ -52,6 +52,10 @@ public enum PointsRank {
         this.level = level;
     }
 
+    public String getChar() {
+        return getRankName().split(" ")[0];
+    }
+
     public String getRankName() {
         return rankName;
     }
@@ -72,5 +76,7 @@ public enum PointsRank {
         }
         return PointsRank.F_RATE;
     }
+
+
 
 }
