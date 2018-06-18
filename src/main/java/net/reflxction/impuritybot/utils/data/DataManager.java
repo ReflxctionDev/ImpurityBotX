@@ -85,6 +85,7 @@ public class DataManager {
         createFile("exp");
         createFile("warnings");
         createFile("polls");
+        createFile("points.yml");
         addFile("rules.png");
         addFile("punishments.png");
         addFile("ranks.png");
@@ -93,6 +94,7 @@ public class DataManager {
         loadFile("exp");
         loadFile("warnings");
         loadFile("polls");
+        loadFile("points.yml");
     }
 
 }

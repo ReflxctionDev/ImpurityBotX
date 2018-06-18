@@ -18,7 +18,7 @@ package net.reflxction.impuritybot.points;
 /**
  * Enum for ranks that you achieve from points
  *
- * @author ReflxctionDev
+ * @author Reflxction
  */
 public enum PointsRank {
 

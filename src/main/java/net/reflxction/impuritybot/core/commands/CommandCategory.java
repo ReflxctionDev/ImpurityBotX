@@ -26,7 +26,8 @@ public enum CommandCategory {
     HELP("Help"),
     EROS("Eros"),
     CALENDAR("Calendar"),
-    OTHERS("Others");
+    OTHERS("Others"),
+    POINTS("Points");
 
     private String name;
 

@@ -18,7 +18,7 @@ package net.reflxction.impuritybot.points;
 /**
  * Numbers range
  *
- * @author ReflxctionDev
+ * @author Reflxction
  */
 public class NumberRange {
 
