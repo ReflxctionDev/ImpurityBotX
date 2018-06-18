@@ -56,6 +56,11 @@ public enum PointsRank {
         return getRankName().split(" ")[0];
     }
 
+    @Override
+    public String toString() {
+        return rankName;
+    }
+
     public String getRankName() {
         return rankName;
     }
@@ -76,7 +81,6 @@ public enum PointsRank {
         }
         return level <= 8 ? F_RATE : SSS_RATE;
     }
-
 
 
 }
