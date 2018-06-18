@@ -1,0 +1,45 @@
+
+            /*for (Member m : GuildUtils.members()) {
+                final User u = m.getUser();
+                int pexp = exp.getUserExp(u);
+                int level = pexp / 1000;
+                int remaining = pexp % 1000;
+                while (remaining > 1000) {
+                    lvl.setUserLevel(u, level + 1);
+                    exp.setUserExp(u, exp.getUserRemExp(u) - 1000);
+                    exp.setUserNextExp(u, 1000);
+                }
+                lvl.setUserLevel(u, level);
+                exp.setUserExp(u, pexp);
+            }
+            for (Member m : GuildUtils.members()) {
+                if (igns.hasAssignedIgn(m.getUser())) {
+                    if (!m.getUser().isBot()) {
+                        GuildUtils.controller().removeSingleRoleFromMember(m, Roles.UNREGISTERED).queue();
+                    } else {
+                        if (!m.getUser().isBot()) {
+                            GuildUtils.controller().addSingleRoleToMember(m, Roles.UNREGISTERED).queue();
+                        }
+                    }
+                }
+                if(m.getUser().isBot()) {
+                    GuildUtils.controller().removeSingleRoleFromMember(m, Roles.UNREGISTERED).queue();
+                }
+            }
+        */
+
+
+        /*User u = m.getUser();
+                    PreparedStatement ps = getConnection().prepareStatement("INSERT INTO ImpuritySSH (id, name, exp, level, ign, warnings) VALUES (?, ?, ?, ?, ?, ?);");
+                    int exp, level, warnings;
+                    exp = getExp(u);
+                    level = getLevel(u);
+                    warnings = getWarnings(u);
+                    String ign = getIGN(u);
+                    ps.setLong(1, u.getIdLong());
+                    ps.setString(2, u.getName());
+                    ps.setLong(3, exp);
+                    ps.setInt(4, level);
+                    ps.setString(5, ign == null ? "NO IGN" : ign);
+                    ps.setInt(6, warnings);
+                    ps.executeUpdate();*/

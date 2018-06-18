@@ -1,0 +1,69 @@
+/*
+ * * Copyright 2017-2018 github.com/ReflxctionDev
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package net.reflxction.impuritybot.core.commands;
+
+import net.dv8tion.jda.core.JDA;
+import net.reflxction.impuritybot.commands.miscs.CommandInfo;
+import net.reflxction.impuritybot.core.loggers.Logger;
+
+public class RegistryBuilder {
+
+    private JDA j;
+
+    public RegistryBuilder(JDA jda) {
+        this.j = jda;
+    }
+
+    public RegistryBuilder registerCommand(final AbstractCommand command) {
+        j.addEventListener(command);
+        final String name = command.getCommand();
+        final CommandCategory category = command.getCategory() == null ? CommandCategory.OTHERS : command.getCategory();
+        final String description = command.getDescription() == null ? "None set" : command.getDescription();
+        final String usage = command.getUsage() == null ? "None set" : command.getUsage();
+
+        CommandInfo.names.add(name);
+        CommandInfo.categories.add(category.toString());
+        CommandInfo.desc.add(description);
+        CommandInfo.usage.add(usage);
+        return this;
+    }
+
+    public RegistryBuilder disableCommand(AbstractCommand command) {
+        j.removeEventListener(command);
+        final String name = command.getCommand();
+        final CommandCategory category = command.getCategory() == null ? CommandCategory.OTHERS : command.getCategory();
+        final String description = command.getDescription() == null ? "None set" : command.getDescription();
+        final String usage = command.getUsage() == null ? "None set" : command.getUsage();
+
+        CommandInfo.names.remove(name);
+        CommandInfo.categories.remove(category.toString());
+        CommandInfo.desc.remove(description);
+        CommandInfo.usage.remove(usage);
+        return this;
+    }
+
+    public RegistryBuilder registerLogger(Logger logger) {
+        j.addEventListener(logger);
+        return this;
+    }
+
+    public RegistryBuilder disableLogger(Logger logger) {
+        j.removeEventListener(logger);
+        return this;
+    }
+
+}

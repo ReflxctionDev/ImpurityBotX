@@ -1,0 +1,4 @@
+name: ImpurityBot
+main: net.reflxction.impuritybot.main.ImpurityBot
+author: Reflxction
+version: 1.0
