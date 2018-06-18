@@ -31,7 +31,7 @@ import net.reflxction.impuritybot.commands.level.RankCmd;
 import net.reflxction.impuritybot.commands.level.SetLevel;
 import net.reflxction.impuritybot.commands.level.TopLevels;
 import net.reflxction.impuritybot.commands.miscs.*;
-import net.reflxction.impuritybot.commands.points.MMPoints;
+import net.reflxction.impuritybot.commands.points.MPoints;
 import net.reflxction.impuritybot.commands.points.PointsBalance;
 import net.reflxction.impuritybot.commands.user.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
@@ -66,14 +66,14 @@ public class Register {
             new RankCmd(), new LevelCmd(), new Pin(), new PlayerRank(), new CommandInfo(), new EightBall(), new TopLevels(), new Daily(),
             new PunishmentRules(), new Unpin(), new Warn(bot), new UserWarnings(bot), new RemoveWarn(bot), new ClearWarns(bot), new WarnInfo(bot),
             new UpdateRoles(), new net.reflxction.impuritybot.commands.user.Invite(), new Ping(), new UserInfo(), new DiscordInfo(), new Notify(), new NotifyUpdate(), new Poll(bot),
-            new ToDo(), new ReleasedCommand(), new Balance(), new WelcomeManager(bot), new PlayerIGN(), new Menu(), new Buy(), new Credits(), new MMPoints(),
+            new ToDo(), new ReleasedCommand(), new Balance(), new WelcomeManager(bot), new PlayerIGN(), new Menu(), new Buy(), new Credits(),
             new Transfer(), new Open(), new Agree(), new Accept(), new Slots(), new SetLevel(), new Calendar(), new MakeCalendar(), new PointsBalance(), new MPoints()};
 
     private static Logger[] loggers = {new UserJoinLogger(), new UserLeaveLogger(), new ChannelCreatedLogger(), new ChannelDeletedLogger(),
             new MessageEditedLogger(), new UserBanLogger(), new UserNickLogger(), new ServerChangeNameLogger(), new RoleGivenLogger(), new RoleRemovedLogger(),
             new RoleRemovedLogger(), new RoleCreatedLogger(), new RoleDeletedLogger()};
 
-    static AbstractCommand[] getAbstractCommands() {
+    public static AbstractCommand[] getAbstractCommands() {
         return abstractCommands;
     }
 
