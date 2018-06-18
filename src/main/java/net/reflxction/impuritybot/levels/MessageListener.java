@@ -30,6 +30,7 @@ public class MessageListener extends ListenerAdapter {
     private LevelManager lu = new LevelManager();
     private ExpManager eu = new ExpManager();
 
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         User u = event.getAuthor();

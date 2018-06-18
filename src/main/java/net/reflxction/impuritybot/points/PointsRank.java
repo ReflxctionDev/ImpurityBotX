@@ -74,7 +74,7 @@ public enum PointsRank {
                 return rank;
             }
         }
-        return PointsRank.F_RATE;
+        return level <= 8 ? F_RATE : SSS_RATE;
     }
 
 

@@ -64,4 +64,8 @@ public class PointsManager {
         return getUserPoints(u) >= rank.getRange().getMinimum();
     }
 
+    public PointsRank getNextRank(User u) {
+        return PointsRank.getByLevel(getLevel(u) + 1);
+    }
+
 }
