@@ -18,16 +18,30 @@ public class Notify extends AbstractCommand {
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+        Role updates = g.getRolesByName("Bot updates", true).get(0);
         if (args.length == 0) {
-            g.getController().addSingleRoleToMember(g.getMember(u), Roles.BOT_UPDATES).queue();
-            m.addReaction("\uD83D\uDC4C").queue();
+            addRole(u, g, m, c);
         }
-        if (args.length == 1) {
+        else if (args.length == 1) {
             if (args[0].equalsIgnoreCase("remove")) {
-                g.getController().removeSingleRoleFromMember(g.getMember(u), Roles.BOT_UPDATES).queue();
+                g.getController().removeSingleRoleFromMember(g.getMember(u), updates).queue();
+                c.sendMessage("**You will not be notified on bot updates**").queue();
                 m.addReaction("\uD83D\uDC4C").queue();
+            } else if (args[0].equalsIgnoreCase("add")) {
+                addRole(u, g, m, c);
+            } else {
+                c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**.").queue();
             }
+        } else {
+            c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**.").queue();
         }
+    }
+
+    private void addRole(User user, Guild g, Message m, MessageChannel c) {
+        Role updates = g.getRolesByName("Bot updates", true).get(0);
+        g.getController().addSingleRoleToMember(g.getMember(user), updates).queue();
+        m.addReaction("\uD83D\uDC4C").queue();
+        c.sendMessage("**You will now be notified on bot updates**").queue();
     }
 
     @Override
