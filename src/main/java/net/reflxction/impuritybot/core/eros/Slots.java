@@ -25,8 +25,8 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.utils.lang.NumberUtils;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
+import net.reflxction.impuritybot.utils.lang.NumberUtils;
 
 public class Slots extends AbstractCommand {
 
@@ -71,16 +71,21 @@ public class Slots extends AbstractCommand {
                         c.sendMessage("**You can't bet less than 10 credits!**").queue();
                     } else {
                         String first, second, third, fourth, fifth, sixth, seventh, eighth, ninth;
-                        first = emotes[nu.random(9)];
-                        second = emotes[nu.random(9)];
-                        third = emotes[nu.random(9)];
-                        fourth = emotes[nu.random(9)];
-                        fifth = emotes[nu.random(9)];
-                        sixth = emotes[nu.random(9)];
-                        seventh = emotes[nu.random(9)];
-                        eighth = emotes[nu.random(9)];
-                        ninth = emotes[nu.random(9)];
-
+                        first = randomEmote();
+                        second = randomEmote();
+                        third = randomEmote();
+                        fourth = randomEmote();
+                        fifth = randomEmote();
+                        sixth = randomEmote();
+                        seventh = randomEmote();
+                        eighth = randomEmote();
+                        ninth = randomEmote();
+                        c.sendMessage("" +
+                                "╔════[SLOTS]════╗\n" +
+                                "║  " + first + "  ║  " + second + "  ║  " + third + "  ║\n" +
+                                ">  " + fourth + "  ║  " + fifth + "  ║  " + sixth + "  <\n" +
+                                "║  " + seventh + "  ║  " + eighth + "  ║  " + ninth + "  ║\n" +
+                                "╚════[SLOTS]════╝").queue();
                     }
                 } else {
                     c.sendMessage("**You don't have enough credits to bet this amount!").queue();
@@ -116,12 +121,22 @@ public class Slots extends AbstractCommand {
         return "-slots <amount of credits to bet>";
     }
 
-    private String msg(String first, String second, String third, String fourth, String fifth, String sixth, String seventh, String eighth, String ninth) {
-        return "╔════[SLOTS]════╗\n" +
-                "║  " + first + "   ║  " + second + "  ║  " + third + "    ║\n" +
-                ">   " + fourth + "   ║  " + fifth + "  ║  " + sixth + "   <\n" +
-                "║  " + seventh + "   ║  " + eighth + "  ║  " + ninth + "    ║\n" +
-                "╚════[SLOTS]════╝";
+    private String randomEmote() {
+        return emotes[nu.random(emotes.length - 1)];
+    }
+
+    private String[] queueEmotes() {
+        String first, second, third, fourth, fifth, sixth, seventh, eighth, ninth;
+        first = randomEmote();
+        second = randomEmote();
+        third = randomEmote();
+        fourth = randomEmote();
+        fifth = randomEmote();
+        sixth = randomEmote();
+        seventh = randomEmote();
+        eighth = randomEmote();
+        ninth = randomEmote();
+        return new String[] {first, second, third, fourth, fifth, sixth, seventh, eighth, ninth};
     }
 
 }
