@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.guild.update.GuildUpdateNameEvent;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.loggers.Logger;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 import java.awt.*;
 
@@ -22,7 +22,7 @@ public class ServerChangeNameLogger extends Logger {
                 .setAuthor(event.getGuild().getName(), null, event.getGuild().getIconUrl())
                 .addField("Before", old)
                 .addField("New", newname)
-                .setFooter("Guild ID: " + event.getGuild().getId() + " • " + StringUtilsL.getTimeEST(), null)
+                .setFooter("Guild ID: " + event.getGuild().getId() + " • " + StringUtils.getTimeEST(), null)
                 .build();
         getLogs().sendMessage(builder.build()).queue();
     }

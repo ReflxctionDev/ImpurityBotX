@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.IgnManager;
 
 /*
@@ -48,7 +48,7 @@ public class IGNOf extends AbstractCommand {
         }
         if (args.length == 1) {
             try {
-                User target = j.getUserById(StringUtilsL.mentionToId(args[0]));
+                User target = j.getUserById(StringUtils.mentionToId(args[0]));
                 if (!igns.hasAssignedIGN(target)) {
                     c.sendMessage("**I couldn't find an IGN for this user. Are you sure they have assigned it yet?**").queue();
                 } else {

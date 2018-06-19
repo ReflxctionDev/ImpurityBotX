@@ -24,7 +24,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 
 public class Transfer extends AbstractCommand {
@@ -50,7 +50,7 @@ public class Transfer extends AbstractCommand {
                 c.sendMessage("**Expected a number, but found `" + args[1] + "`!**").queue();
             }
             try {
-                target = j.getUserById(StringUtilsL.mentionToId(args[0]));
+                target = j.getUserById(StringUtils.mentionToId(args[0]));
                 if (nu.isNegative(cr)) {
                     c.sendMessage("**You may not transfer negative amounts!**").queue();
                 } else {

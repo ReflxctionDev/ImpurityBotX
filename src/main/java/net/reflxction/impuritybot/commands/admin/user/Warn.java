@@ -7,7 +7,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 import net.reflxction.impuritybot.utils.data.WarningsManager;
 
@@ -59,7 +59,7 @@ public class Warn extends AbstractCommand {
                         String arg = args[i] + " ";
                         reason.append(arg);
                     }
-                    User warned = j.getUserById(StringUtilsL.mentionToId(args[0]));
+                    User warned = j.getUserById(StringUtils.mentionToId(args[0]));
                     if (member.getRoles().get(0).getPosition() >= g.getMember(warned).getRoles().get(0).getPosition()) {
                         wu.giveWarning(u, warned, reason.toString());
                         c.sendMessage("**" + warned.getName() + "** has been warned.").queue();

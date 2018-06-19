@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -63,7 +63,7 @@ public class AntiSwear extends ListenerAdapter {
         Member member = event.getMember();
         if (!u.isBot()) {
             for (String swear : swears) {
-                if (StringUtilsL.containsWhole(content, swear.toLowerCase()) &&
+                if (StringUtils.containsWhole(content, swear.toLowerCase()) &&
                         !c.getId().equalsIgnoreCase("378892621424361472") && !member.getRoles().contains(event.getGuild().getRoleById("395928472473698304"))) {
                     c.deleteMessageById(m.getId()).queue();
                     u.openPrivateChannel().complete().sendMessage("Sorry, but the message you've just sent contains unfriendly words. Please change your sentence or be nice!").queue();

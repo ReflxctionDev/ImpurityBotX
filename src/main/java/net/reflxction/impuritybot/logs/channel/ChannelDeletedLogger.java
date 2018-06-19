@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.events.channel.text.TextChannelDeleteEvent;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.loggers.Logger;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 import java.awt.*;
 
@@ -21,7 +21,7 @@ public class ChannelDeletedLogger extends Logger {
                 .setColor(Color.RED)
                 .setAuthor(event.getGuild().getName(), null, event.getGuild().getIconUrl())
                 .setDescription("**Channel Deleted: #**" + c.getName())
-                .setFooter("ID: " + c.getId() + " • " + StringUtilsL.getTimeEST(), null)
+                .setFooter("ID: " + c.getId() + " • " + StringUtils.getTimeEST(), null)
                 .build();
         getLogs().sendMessage(builder.build()).queue();
     }

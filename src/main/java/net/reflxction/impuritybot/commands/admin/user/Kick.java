@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -65,20 +65,20 @@ public class Kick extends AbstractCommand {
         if (args.length > 1) {
             if (g.getMember(u).hasPermission(Permission.KICK_MEMBERS) || g.getMember(u).hasPermission(Permission.ADMINISTRATOR)) {
                 try {
-                    User tr = j.getUserById(StringUtilsL.mentionToId(args[0]));
+                    User tr = j.getUserById(StringUtils.mentionToId(args[0]));
                     if (member.getRoles().get(0).getPosition() > g.getMember(tr).getRoles().get(0).getPosition()) {
 
                         if (tr.getId().equals("211459080860991488")) {
                             channel.sendMessage("**wHo dO yOu tHiNk yOu aRe tO kIcK dAdDy?!?!**").queue();
                         } else {
-                            g.getController().kick(g.getMember(ImpurityBot.getJDA().getUserById(StringUtilsL.mentionToId(args[0])))).queue();
+                            g.getController().kick(g.getMember(ImpurityBot.getJDA().getUserById(StringUtils.mentionToId(args[0])))).queue();
                             channel.sendMessage(args[0] + " has been kicked.").queue();
                             String reason = "";
                             for (int i = 1; i < args.length; i++) {
                                 String arg = args[i] + " ";
                                 reason = reason + arg;
                             }
-                            j.getUserById(StringUtilsL.mentionToId(args[0])).openPrivateChannel().complete()
+                            j.getUserById(StringUtils.mentionToId(args[0])).openPrivateChannel().complete()
                                     .sendMessage("You've been kicked from the Impurity guild. Reason: **" + reason + "**").queue();
 
                         }

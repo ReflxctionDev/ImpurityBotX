@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 import java.awt.*;
 import java.util.Random;
@@ -98,11 +98,11 @@ public class Introduce extends AbstractCommand {
             Color color = new Color(r, g, b);
             builder.setColor(color);
             builder.setAuthor(u.getName(), null, null);
-            builder.addField("About me", StringUtilsL.capitalize(StringUtilsL.fixGrammar(desc)), true);
+            builder.addField("About me", StringUtils.capitalize(StringUtils.fixGrammar(desc)), true);
             builder.addField("IGN", ign, true);
             String gammes = "";
             for (int x = 0; x < games.length; x++) {
-                String gms = StringUtilsL.capitalize(games[x]) + "\n";
+                String gms = StringUtils.capitalize(games[x]) + "\n";
                 gammes = gammes + gms;
             }
             builder.addField("Games I play", gammes, true);

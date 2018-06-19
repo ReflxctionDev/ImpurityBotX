@@ -10,7 +10,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
 
 import java.awt.*;
@@ -59,7 +59,7 @@ public class UserWarnings extends AbstractCommand {
         }
         if (args.length == 1) {
             try {
-                User target = j.getUserById(StringUtilsL.mentionToId(args[0]));
+                User target = j.getUserById(StringUtils.mentionToId(args[0]));
                 EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                         .setColor(Color.RED)
                         .setDescription(target.getName() + " has " + wu.getWarnings(target) + " warnings")

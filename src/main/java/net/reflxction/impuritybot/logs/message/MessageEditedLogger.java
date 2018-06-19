@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageUpdateEvent;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.loggers.Logger;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 import java.awt.*;
 
@@ -24,7 +24,7 @@ public class MessageEditedLogger extends Logger {
                 .setAuthor(u.getName(), null, u.getAvatarUrl())
                 .setColor(orange)
                 .setDescription("**Message edited in #" + event.getChannel().getName() + "**")
-                .setFooter("ID: " + m.getId() + " • " + StringUtilsL.getTimeEST(), null)
+                .setFooter("ID: " + m.getId() + " • " + StringUtils.getTimeEST(), null)
                 .addField("New content", m.getContentRaw()).build();
 
         getLogs().sendMessage(builder.build()).queue();

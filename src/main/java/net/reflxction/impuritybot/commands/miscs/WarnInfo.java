@@ -10,7 +10,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
 
 /**
@@ -57,7 +57,7 @@ public class WarnInfo extends AbstractCommand {
         }
         if (args.length == 2) {
             try {
-                User warned = j.getUserById(StringUtilsL.mentionToId(args[0]));
+                User warned = j.getUserById(StringUtils.mentionToId(args[0]));
                 int i = Integer.parseInt(args[1]);
                 EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                         .setDescription("Warning " + i + " for user " + warned.getName())

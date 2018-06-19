@@ -21,7 +21,7 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 
 public class Credits extends AbstractCommand {
@@ -45,7 +45,7 @@ public class Credits extends AbstractCommand {
                     User target = null;
                     int cr;
                     try {
-                        target = j.getUserById(StringUtilsL.mentionToId(args[1]));
+                        target = j.getUserById(StringUtils.mentionToId(args[1]));
                     } catch (NumberFormatException ex) {
                         c.sendMessage("**Expected a user mention (or id), but found **`" + args[0] + "`**.**    ").queue();
                     }
@@ -62,7 +62,7 @@ public class Credits extends AbstractCommand {
                     User target = null;
                     int cr;
                     try {
-                        target = j.getUserById(StringUtilsL.mentionToId(args[1]));
+                        target = j.getUserById(StringUtils.mentionToId(args[1]));
                     } catch (NumberFormatException ex) {
                         c.sendMessage("**Expected a user mention (or id), but found **`" + args[0] + "`**.**    ").queue();
                     }
@@ -79,7 +79,7 @@ public class Credits extends AbstractCommand {
                     User target = null;
                     int cr;
                     try {
-                        target = j.getUserById(StringUtilsL.mentionToId(args[1]));
+                        target = j.getUserById(StringUtils.mentionToId(args[1]));
                     } catch (NumberFormatException ex) {
                         c.sendMessage("**Expected a user mention (or id), but found **`" + args[0] + "`**.**").queue();
                     }
@@ -95,7 +95,7 @@ public class Credits extends AbstractCommand {
                 if (args[0].equalsIgnoreCase("reset")) {
                     User target = null;
                     try {
-                        target = j.getUserById(StringUtilsL.mentionToId(args[1]));
+                        target = j.getUserById(StringUtils.mentionToId(args[1]));
                     } catch (NumberFormatException ex) {
                         c.sendMessage("**Expected a user mention (or id), but found **`" + args[0] + "`**.**").queue();
                     }

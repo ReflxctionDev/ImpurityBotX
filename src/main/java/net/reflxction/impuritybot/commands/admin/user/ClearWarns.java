@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
 
 /*
@@ -48,7 +48,7 @@ public class ClearWarns extends AbstractCommand {
             }
             if (args.length == 1) {
                 try {
-                    User target = j.getUserById(StringUtilsL.mentionToId(args[0]));
+                    User target = j.getUserById(StringUtils.mentionToId(args[0]));
                     wu.clearWarnings(target, u);
                     PrivateChannel pm = target.openPrivateChannel().complete();
                     pm.sendMessage("<@" + u.getId() + "> has cleared all your warnings.").queue();

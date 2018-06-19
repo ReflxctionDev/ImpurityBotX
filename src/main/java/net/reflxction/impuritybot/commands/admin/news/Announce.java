@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -41,9 +41,9 @@ public class Announce extends AbstractCommand {
             if (channel.getId().equals("374104070945767424")) {
                 EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
                         .setRandomColor()
-                        .setFooter("By " + u.getName() + ", at " + StringUtilsL.getTimeEST(), null)
+                        .setFooter("By " + u.getName() + ", at " + StringUtils.getTimeEST(), null)
                         .setAuthor("\uD83D\uDCE2 Guild announcement", null, g.getIconUrl())
-                        .setDescription(StringUtilsL.capitalize(StringUtilsL.fixGrammar(getMessageContent().substring(10))))
+                        .setDescription(StringUtils.capitalize(StringUtils.fixGrammar(getMessageContent().substring(10))))
                         .build();
                 channel.sendMessage(embed.build()).queue();
                 channel.deleteMessageById(m.getId()).queue();

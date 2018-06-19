@@ -24,7 +24,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.utils.data.PointsManager;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class MMPoints extends AbstractCommand {
 
@@ -44,7 +44,7 @@ public class MMPoints extends AbstractCommand {
             if (args.length == 2) {
                 if (args[0].equals("reset")) {
                     try {
-                        String id = StringUtilsL.mentionToId(args[1]);
+                        String id = StringUtils.mentionToId(args[1]);
                         User target = j.getUserById(id);
                         manager.setUserPoints(target, 0);
                         c.sendMessage("**" + target.getName() + "**'s points have been reset.").queue();
@@ -59,7 +59,7 @@ public class MMPoints extends AbstractCommand {
                     int p;
                     User target = null;
                     try {
-                        String id = StringUtilsL.mentionToId(args[1]);
+                        String id = StringUtils.mentionToId(args[1]);
                         target = j.getUserById(id);
                     } catch (NumberFormatException e) {
                         c.sendMessage("**Expected a user mention (or id), but found** `" + args[1] + "`**.**").queue();
@@ -76,7 +76,7 @@ public class MMPoints extends AbstractCommand {
                     int p;
                     User target = null;
                     try {
-                        String id = StringUtilsL.mentionToId(args[1]);
+                        String id = StringUtils.mentionToId(args[1]);
                         target = j.getUserById(id);
                     } catch (NumberFormatException e) {
                         c.sendMessage("**Expected a user mention (or id), but found** `" + args[1] + "`**.**").queue();
@@ -92,7 +92,7 @@ public class MMPoints extends AbstractCommand {
                     int p;
                     User target = null;
                     try {
-                        String id = StringUtilsL.mentionToId(args[1]);
+                        String id = StringUtils.mentionToId(args[1]);
                         target = j.getUserById(id);
                     } catch (NumberFormatException e) {
                         c.sendMessage("**Expected a user mention (or id), but found** `" + args[1] + "`**.**").queue();

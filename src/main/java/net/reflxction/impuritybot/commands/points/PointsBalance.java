@@ -23,7 +23,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.utils.data.PointsManager;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /**
  * Command class which manages the "-points" command
@@ -47,7 +47,7 @@ public class PointsBalance extends AbstractCommand {
                 break;
             case 1:
                 try {
-                    String id = StringUtilsL.mentionToId(args[0]);
+                    String id = StringUtils.mentionToId(args[0]);
                     User target = j.getUserById(id);
                     c.sendMessage("**" + target.getName() + "** currently has **" + manager.getUserPoints(u) + "** points.").queue();
                 } catch (NumberFormatException ex) {

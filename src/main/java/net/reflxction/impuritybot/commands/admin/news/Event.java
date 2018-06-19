@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.utils.lang.StringUtilsL;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -50,7 +50,7 @@ public class Event extends AbstractCommand {
                         .replace("-event ", "")
                         .replace("-eventz ", ""), true)
                 .addField("Time: ", time, true)
-                .setFooter("By " + u.getName() + ", at " + StringUtilsL.getTimeEST(), null)
+                .setFooter("By " + u.getName() + ", at " + StringUtils.getTimeEST(), null)
                 .build();
         channel.sendMessage(builder.build()).queue();
     }
