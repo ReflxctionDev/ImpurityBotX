@@ -123,7 +123,7 @@ public class ManagePointsCmd extends AbstractCommand {
                 User target;
                 String name;
                 try {
-                    name = StringUtils.mentionToId(args[2]);
+                    name = StringUtils.mentionToId(args[1]);
                     target = j.getUserById(name);
                 } catch (Exception e7) {
                     c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**!**").queue();
@@ -137,6 +137,9 @@ public class ManagePointsCmd extends AbstractCommand {
                 c.sendMessage("**Reset points for " + target.getName() + "**").queue();
                 AssignRanking assignRanking = new AssignRanking(g.getMember(target), pointsManager.getLevel(target));
                 assignRanking.assignRating();
+            } else {
+                c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**.").queue();
+                return;
             }
         } else {
             c.sendMessage("**The option " + args[0] + " seems to be invalid.\nUse add, remove, reset, or set**").queue();
@@ -152,10 +155,10 @@ public class ManagePointsCmd extends AbstractCommand {
     public static void removePoints(int toRemove, User target, MessageChannel c) {
         int total = pointsManager.getUserPoints(target) - toRemove;
         if (total < 0) {
-            total = 0;
+           total = 0;
         }
         pointsManager.setUserPoints(target, total);
-        c.sendMessage("**Removed " + target.getName() + "'s point to " + total + "**").queue();
+        c.sendMessage("**Removed " + total + " points from " + target.getName() + "**").queue();
     }
 
     @Override
