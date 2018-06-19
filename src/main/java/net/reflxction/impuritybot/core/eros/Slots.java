@@ -28,6 +28,9 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Slots extends AbstractCommand {
 
     private CreditsManager cu = new CreditsManager();
@@ -70,22 +73,53 @@ public class Slots extends AbstractCommand {
                     if (amount < 10) {
                         c.sendMessage("**You can't bet less than 10 credits!**").queue();
                     } else {
+                        cu.setUserCredits(u, cu.getUserCredits(u) - amount);
+                        String[] queuedEmotes = queueEmotes();
                         String first, second, third, fourth, fifth, sixth, seventh, eighth, ninth;
-                        first = randomEmote();
-                        second = randomEmote();
-                        third = randomEmote();
-                        fourth = randomEmote();
-                        fifth = randomEmote();
-                        sixth = randomEmote();
-                        seventh = randomEmote();
-                        eighth = randomEmote();
-                        ninth = randomEmote();
+                        first = queuedEmotes[0];
+                        second = queuedEmotes[1];
+                        third = queuedEmotes[2];
+                        fourth = queuedEmotes[3];
+                        fifth = queuedEmotes[4];
+                        sixth = queuedEmotes[5];
+                        seventh = queuedEmotes[6];
+                        eighth = queuedEmotes[7];
+                        ninth = queuedEmotes[8];
                         c.sendMessage("" +
                                 "╔════[SLOTS]════╗\n" +
                                 "║  " + first + "  ║  " + second + "  ║  " + third + "  ║\n" +
                                 ">  " + fourth + "  ║  " + fifth + "  ║  " + sixth + "  <\n" +
                                 "║  " + seventh + "  ║  " + eighth + "  ║  " + ninth + "  ║\n" +
                                 "╚════[SLOTS]════╝").queue();
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            String[] queuedEmotes = queueEmotes();
+                            String first, second, third, fourth, fifth, sixth, seventh, eighth, ninth;
+                            first = queuedEmotes[0];
+                            second = queuedEmotes[1];
+                            third = queuedEmotes[2];
+                            fourth = queuedEmotes[3];
+                            fifth = queuedEmotes[4];
+                            sixth = queuedEmotes[5];
+                            seventh = queuedEmotes[6];
+                            eighth = queuedEmotes[7];
+                            ninth = queuedEmotes[8];
+                            c.sendMessage("" +
+                                    "╔════[SLOTS]════╗\n" +
+                                    "║  " + first + "  ║  " + second + "  ║  " + third + "  ║\n" +
+                                    ">  " + fourth + "  ║  " + fifth + "  ║  " + sixth + "  <\n" +
+                                    "║  " + seventh + "  ║  " + eighth + "  ║  " + ninth + "  ║\n" +
+                                    "╚════[SLOTS]════╝").queue();
+
+                        }
+                    }, 1000);
+                        if(hasWon(fourth, fifth, second)) {
+                            int prize = nu.randomBetween(50, 100);
+                            c.sendMessage("Congratulations! You have bet **" + amount + "** and won **" + prize + "**").queue();
+                        } else {
+                            c.sendMessage("You have bet **" + amount + "** and lost everything! L").queue();
+                        }
                     }
                 } else {
                     c.sendMessage("**You don't have enough credits to bet this amount!").queue();
@@ -136,7 +170,11 @@ public class Slots extends AbstractCommand {
         seventh = randomEmote();
         eighth = randomEmote();
         ninth = randomEmote();
-        return new String[] {first, second, third, fourth, fifth, sixth, seventh, eighth, ninth};
+        return new String[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth};
+    }
+
+    private boolean hasWon(String first, String second, String third) {
+        return first.equals(second) && second.equals(third) && third.equals(first);
     }
 
 }
