@@ -42,7 +42,7 @@ public class MuteManager {
     }
 
     /**
-     * Returns the time left for the user, 0 if the user isn't muted
+     * Returns the time left for the user, 0 if the user isn't muted.
      *
      * @param u User to get time for
      * @return Time left until the mute is over
