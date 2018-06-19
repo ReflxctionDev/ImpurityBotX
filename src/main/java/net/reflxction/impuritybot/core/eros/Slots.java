@@ -121,8 +121,9 @@ public class Slots extends AbstractCommand {
                                 new Timer().schedule(new TimerTask() {
                                     @Override
                                     public void run() {
-                                        if (hasWon(fourth, fifth, second)) {
+                                        if (hasWon(fourth, fifth, sixth)) {
                                             int prize = nu.randomBetween(50, 100) + amount;
+                                            cu.setUserCredits(u, cu.getUserCredits(u) + prize);
                                             c.sendMessage("Congratulations! You have bet **" + amount + "** and won **" + prize + "**").queue();
                                         } else {
                                             c.sendMessage("You have bet **" + amount + "** and lost everything! L").queue();

@@ -121,6 +121,7 @@ public class ImpurityBot extends JavaPlugin {
         GameManager gm = new GameManager();
         DelayManager dm = new DelayManager();
         TpsDelay tps = new TpsDelay();
+        MuteManager mute = new MuteManager();
         //TODO
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, gm::manageGames, 12000, 12000);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
@@ -129,6 +130,7 @@ public class ImpurityBot extends JavaPlugin {
                 dm.manageDelay(u);
             }
             tps.start();
+            mute.updateMuteTime();
         }, 80, 80);
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TpsMeasurer(), 100L, 1L);
         final DataManager data = new DataManager(this);
