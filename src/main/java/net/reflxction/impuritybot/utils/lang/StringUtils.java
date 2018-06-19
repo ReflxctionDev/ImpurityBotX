@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  * limitations under the License.
  */
 
-public class StringUtilsL {
+public class StringUtils {
 
     public static String capitalize(String arg0) {
         return arg0.substring(0, 1).toUpperCase() + arg0.substring(1);
