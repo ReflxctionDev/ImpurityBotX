@@ -26,7 +26,7 @@ public class Notify extends AbstractCommand {
             if (args[0].equalsIgnoreCase("remove")) {
                 g.getController().removeSingleRoleFromMember(g.getMember(u), updates).queue();
                 c.sendMessage("**You will not be notified on bot updates**").queue();
-                m.addReaction("\uD83D\uDC4C").queue();
+
             } else if (args[0].equalsIgnoreCase("add")) {
                 addRole(u, g, m, c);
             } else {
@@ -39,8 +39,10 @@ public class Notify extends AbstractCommand {
 
     private void addRole(User user, Guild g, Message m, MessageChannel c) {
         Role updates = g.getRolesByName("Bot updates", true).get(0);
+        if (g.getMember(user).getRoles().contains(updates)) {
+            c.sendMessage("**You already have bot notifications enabled**").queue();
+        }
         g.getController().addSingleRoleToMember(g.getMember(user), updates).queue();
-        m.addReaction("\uD83D\uDC4C").queue();
         c.sendMessage("**You will now be notified on bot updates**").queue();
     }
 
