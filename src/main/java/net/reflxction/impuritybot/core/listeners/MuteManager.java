@@ -21,7 +21,7 @@ import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.GuildUtils;
 
 /**
- * Class which manages the mute
+ * Class which manages user mutes
  *
  * @author Reflxction
  */
