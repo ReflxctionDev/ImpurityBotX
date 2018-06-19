@@ -28,5 +28,8 @@ public class Roles {
     public static final Role HELPER = GuildUtils.roleById("415187616774881282");
     public static final Role EVENTS_TEAM = GuildUtils.roleById("445237461912911883");
     public static final Role STAFF = GuildUtils.roleById("454636856387043329");
+    public static final Role MUTED = GuildUtils.roleById("430697317537153034");
+    public static final Role ADMIN = GuildUtils.roleById("367318849978105857");
+    public static final Role OFFICER = GuildUtils.roleById("364809414743687169");
 
 }
