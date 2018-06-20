@@ -21,6 +21,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.GuildUtils;
+import net.reflxction.impuritybot.utils.data.DataManager;
 
 /**
  * Class which manages user mutes
@@ -30,6 +31,7 @@ import net.reflxction.impuritybot.utils.GuildUtils;
 public class MuteManager {
 
     private ImpurityBot bot = ImpurityBot.getBot();
+    private DataManager data = new DataManager(bot);
 
     /**
      * Mutes a user and saves it into the file
@@ -41,6 +43,7 @@ public class MuteManager {
     public void muteUser(User user, int seconds) {
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Name", user.getName());
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Mute", seconds);
+        data.saveFile(bot.getCreditsFile(), "credits");
         Guild g = GuildUtils.guild();
         g.getController().addSingleRoleToMember(g.getMember(user), Roles.MUTED).queue();
     }
@@ -80,4 +83,18 @@ public class MuteManager {
             }
         }
     }
+
+    /**
+     * Unmutes a user
+     *
+     * @param user User to unmute
+     */
+    public void unmute(User user) {
+        if (isMuted(user)) {
+            GuildUtils.controller().removeSingleRoleFromMember(GuildUtils.guild().getMember(user), Roles.MUTED).queue();
+            bot.getCreditsFile().set("Mutes." + user.getId(), null);
+            data.saveCreditsFile();
+        }
+    }
+
 }
