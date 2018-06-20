@@ -14,45 +14,40 @@ public class Mute extends AbstractCommand {
 
     @Override
     public String getCommand() {
-        return "-mute";
+        return "mute";
     }
 
     private boolean isAllowed(User u, Guild g) {
         Role admin = g.getRolesByName("Admin", true).get(0);
         Role owner = g.getRolesByName("Owner", true).get(0);
-        Role coowner = g.getRolesByName("coowner", true).get(0);
         Role co_owner = g.getRolesByName("co-owner", true).get(0);
-        Role co__owner = g.getRolesByName("co owner", true).get(0);
         Member executor = g.getMember(u);
-        if (!(executor.getRoles().contains(admin) && executor.getRoles().contains(owner) && executor.getRoles().contains(co__owner)
-                && executor.getRoles().contains(co_owner) && executor.getRoles().contains(coowner) && executor.isOwner())) {
-            return false;
-        }
-        return true;
+        return executor.getRoles().contains(admin) && executor.getRoles().contains(owner)
+                && executor.getRoles().contains(co_owner) || executor.isOwner();
     }
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
         Role admin = g.getRolesByName("Admin", true).get(0);
         Role owner = g.getRolesByName("Owner", true).get(0);
-        Role coowner = g.getRolesByName("coowner", true).get(0);
         Role co_owner = g.getRolesByName("co-owner", true).get(0);
-        Role co__owner = g.getRolesByName("co owner", true).get(0);
         if (!isAllowed(u, g)) {
             c.sendMessage("**You do not have permission to execute this command**").queue();
+            return;
         }
-
         if (args.length < 3) {
             c.sendMessage("**Invalid usage. Usage: " + getUsage() + "**").queue();
             return;
         }
         Member target;
         Member executor = g.getMember(u);
-        String reason = "";
+        StringBuilder reason;
         String id;
+        StringBuilder reasonBuilder = new StringBuilder();
         for (int i = 2; i < args.length; i++) {
-            reason += args[i];
+            reasonBuilder.append(args[i]);
         }
+        reason = new StringBuilder(reasonBuilder.toString());
         try {
             id = StringUtils.mentionToId(args[0]);
             target = g.getMember(j.getUserById(id));
@@ -73,8 +68,8 @@ public class Mute extends AbstractCommand {
                 c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
                 return;
             }
-            if (executor.getRoles().contains(admin) && (target.getRoles().contains(coowner) || target.getRoles().contains(co__owner)
-            || target.getRoles().contains(co_owner))) {
+            if (executor.getRoles().contains(admin)
+            || target.getRoles().contains(co_owner)) {
                 c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
                 return;
             }
@@ -82,7 +77,7 @@ public class Mute extends AbstractCommand {
                 c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
                 return;
             }
-            if ((executor.getRoles().contains(coowner) || executor.getRoles().contains(co__owner) || executor.getRoles().contains(co_owner)) && (target.getRoles().contains(owner) || target.isOwner())) {
+            if (executor.getRoles().contains(co_owner) && (target.getRoles().contains(owner) || target.isOwner())) {
                 c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
                 return;
             }
@@ -94,24 +89,24 @@ public class Mute extends AbstractCommand {
             }
             try {
                 TextChannel toSend = g.getTextChannelsByName("mute-log", true).get(0);
-                sendLog(executor.getUser(), target.getUser(), reason, time_seconds, toSend);
-            } catch (Exception e) {
+                sendLog(executor.getUser(), target.getUser(), reason.toString(), time_seconds, toSend);
+            } catch (Exception ignored) {
 
             }
             manager.muteUser(target.getUser(), time_seconds);
             c.sendMessage("**Successfully muted " + target.getUser().getAsMention() + "**").queue();
-            sendNews(u, reason, time_seconds, executor.getUser());
+            sendNews(u, reason.toString(), time_seconds, executor.getUser());
         } catch (NumberFormatException e) {
             c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
             return;
         }
         for (int i = 3; i < args.length; i++) {
-            reason += args[i] + " ";
+            reason.append(args[i]).append(" ");
         }
     }
 
     private int parseTime(String toParse, MessageChannel channel) {
-        int breakpoint = 0;
+        int breakpoint;
         String time = "";
         char[] array = toParse.toLowerCase().toCharArray();
         int parsed = Integer.MIN_VALUE;
