@@ -63,7 +63,6 @@ public class Slots extends AbstractCommand {
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        final String s = "\uD83C\uDFB0";
         if (args.length != 1) {
             c.sendMessage("**Incorrect command usage. Try `" + getUsage() + "`**.").queue();
         } else {
@@ -126,7 +125,7 @@ public class Slots extends AbstractCommand {
                                             cu.setUserCredits(u, cu.getUserCredits(u) + prize);
                                             c.sendMessage("Congratulations! You have bet **" + amount + "** and won **" + prize + "**").queue();
                                         } else {
-                                            c.sendMessage("You have bet **" + amount + "** and lost everything! L").queue();
+                                            c.sendMessage("You have bet **" + amount + "** and lost everything!").queue();
                                         }
                                     }
                                 }, 750);
