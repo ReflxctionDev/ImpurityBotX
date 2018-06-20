@@ -73,10 +73,10 @@ public class Kick extends AbstractCommand {
                         } else {
                             g.getController().kick(g.getMember(ImpurityBot.getJDA().getUserById(StringUtils.mentionToId(args[0])))).queue();
                             channel.sendMessage(args[0] + " has been kicked.").queue();
-                            String reason = "";
+                            StringBuilder reason = new StringBuilder();
                             for (int i = 1; i < args.length; i++) {
                                 String arg = args[i] + " ";
-                                reason = reason + arg;
+                                reason.append(arg);
                             }
                             j.getUserById(StringUtils.mentionToId(args[0])).openPrivateChannel().complete()
                                     .sendMessage("You've been kicked from the Impurity guild. Reason: **" + reason + "**").queue();
