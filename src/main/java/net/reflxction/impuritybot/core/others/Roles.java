@@ -31,5 +31,6 @@ public class Roles {
     public static final Role MUTED = GuildUtils.roleById("430697317537153034");
     public static final Role ADMIN = GuildUtils.roleById("367318849978105857");
     public static final Role OFFICER = GuildUtils.roleById("364809414743687169");
+    public static final Role MUTE_ACCESS = GuildUtils.roleById("458737084467773471");
 
 }
