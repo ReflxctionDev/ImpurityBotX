@@ -5,6 +5,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.listeners.MuteManager;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
@@ -75,7 +76,8 @@ public class Unmute extends AbstractCommand {
                 c.sendMessage("**You are not allowed to unmute a member with higher or equal role**").queue();
                 return;
             }
-            unmute(target.getUser(), g);
+            MuteManager manager = new MuteManager();
+            manager.unmute(target.getUser());
             try {
                 TextChannel channel = g.getTextChannelsByName("mute-log", false).get(0);
                 sendLog(target, executor, channel);
@@ -115,11 +117,6 @@ public class Unmute extends AbstractCommand {
         return "-unmute <@user>";
     }
 
-    private void unmute(User user, Guild guild) {
-        bot.getCreditsFile().set("Mutes." + user.getId() + ".Name", null);
-        bot.getCreditsFile().set("Mutes." + user.getId() + ".Mute", null);
-        guild.getController().removeSingleRoleFromMember(guild.getMember(user), Roles.MUTED).queue();
-    }
 
     private void sendLog(Member target, Member executor, TextChannel channel) throws Exception {
         EmbedBuilder builder = new EmbedBuilder();
