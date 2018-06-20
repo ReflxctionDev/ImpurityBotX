@@ -15,8 +15,10 @@
  */
 package net.reflxction.impuritybot.core.listeners;
 
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.GuildUtils;
 
@@ -32,13 +34,15 @@ public class MuteManager {
     /**
      * Mutes a user and saves it into the file
      *
-     * @param user User to mute
+     * @param user    User to mute
      * @param seconds Seconds to mute the user for
      * @see net.reflxction.impuritybot.utils.lang.TimeUtils
      */
     public void muteUser(User user, int seconds) {
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Name", user.getName());
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Mute", seconds);
+        Guild g = GuildUtils.guild();
+        g.getController().addSingleRoleToMember(g.getMember(user), Roles.MUTED).queue();
     }
 
     /**
@@ -70,6 +74,9 @@ public class MuteManager {
             final User u = m.getUser();
             if (isMuted(u)) {
                 muteUser(u, getTimeLeftForMute(u) - 4);
+            } else {
+                Guild g = GuildUtils.guild();
+                g.getController().removeSingleRoleFromMember(g.getMember(u), Roles.MUTED).queue();
             }
         }
     }
