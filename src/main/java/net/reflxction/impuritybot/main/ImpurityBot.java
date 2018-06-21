@@ -24,6 +24,8 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.commands.fun.exclusive.Rate;
 import net.reflxction.impuritybot.commands.hypixel.SkyWarsC;
+import net.reflxction.impuritybot.core.cache.CacheHandler;
+import net.reflxction.impuritybot.core.cache.ProfileAdapterCache;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.listeners.*;
@@ -33,6 +35,7 @@ import net.reflxction.impuritybot.levels.MessageListener;
 import net.reflxction.impuritybot.logs.user.UserWarnLoggers;
 import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.utils.lang.TimeUtils;
 import net.reflxction.impuritybot.utils.tps.TpsDelay;
 import net.reflxction.impuritybot.utils.tps.TpsMeasurer;
 import org.bukkit.Bukkit;
@@ -42,12 +45,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImpurityBot extends JavaPlugin {
 
     public static ImpurityBot bot;
     private static JDA japi;
     private static boolean enabled = false;
+
+    private static CacheHandler cacheHandler = new CacheHandler();
+
+    private static List<ProfileAdapterCache> caches = new ArrayList<>();
 
     private File igns = new File(getDataFolder(), "igns.yml");
     private FileConfiguration ignsfile = YamlConfiguration.loadConfiguration(igns);
@@ -132,7 +141,8 @@ public class ImpurityBot extends JavaPlugin {
             tps.start();
             mute.updateMuteTime();
         }, 80, 80);
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TpsMeasurer(), 100L, 1L);
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, tps::start, TimeUtils.secondsToTicks(90), TimeUtils.secondsToTicks(90));
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, this::updateCache, TimeUtils.secondsToTicks(15), TimeUtils.secondsToTicks(15));
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();
@@ -190,8 +200,7 @@ public class ImpurityBot extends JavaPlugin {
                 .setToken(BotConfig.TOKEN)
                 .addEventListener(new MessageListener(), new SkyWarsC(), new Welcome(), new Engine(), new Rate(),
                         new TableFlip(), new PollReactions(bot)).buildAsync();
-        //.addEventListener(new AntiSwear())
-        //.addEventListener(new UserProfileAdapter())
+
     }
 
     private void register() {
@@ -203,4 +212,13 @@ public class ImpurityBot extends JavaPlugin {
             registry.registerLogger(logger);
         }
     }
+
+    public static List<ProfileAdapterCache> getCurrentCache() {
+        return caches.isEmpty() ? cacheHandler.updateCache() : caches;
+    }
+
+    private void updateCache() {
+        caches = cacheHandler.updateCache();
+    }
+
 }
