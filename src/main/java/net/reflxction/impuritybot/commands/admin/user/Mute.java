@@ -22,8 +22,8 @@ public class Mute extends AbstractCommand {
         Role owner = g.getRolesByName("Owner", true).get(0);
         Role co_owner = g.getRolesByName("co-owner", true).get(0);
         Member executor = g.getMember(u);
-        return executor.getRoles().contains(admin) && executor.getRoles().contains(owner)
-                && executor.getRoles().contains(co_owner) || executor.isOwner();
+        return executor.getRoles().contains(admin) || executor.getRoles().contains(owner)
+                || executor.getRoles().contains(co_owner) || executor.isOwner();
     }
 
     @Override
