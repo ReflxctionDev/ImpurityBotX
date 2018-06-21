@@ -24,6 +24,7 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.GuildUtils;
 import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.utils.data.IDataManager;
 import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.data.exp.ExpManager;
 
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LevelManager {
+public class LevelManager implements IDataManager {
 
     public static ImpurityBot bot = ImpurityBot.getPlugin(ImpurityBot.class);
 

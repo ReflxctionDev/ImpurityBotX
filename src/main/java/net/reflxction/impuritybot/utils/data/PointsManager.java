@@ -24,7 +24,7 @@ import net.reflxction.impuritybot.points.PointsRank;
 import net.reflxction.impuritybot.points.mechanics.AssignRanking;
 import net.reflxction.impuritybot.utils.GuildUtils;
 
-public class PointsManager {
+public class PointsManager implements IDataManager {
 
     private ImpurityBot bot = ImpurityBot.getBot();
 

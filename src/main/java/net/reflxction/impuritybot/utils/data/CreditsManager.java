@@ -19,7 +19,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.eros.ErosItem;
 import net.reflxction.impuritybot.main.ImpurityBot;
 
-public class CreditsManager {
+public class CreditsManager implements IDataManager {
 
     private ImpurityBot bot = ImpurityBot.getPlugin(ImpurityBot.class);
     private final DataManager du = new DataManager(bot);

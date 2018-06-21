@@ -18,7 +18,7 @@ import net.reflxction.impuritybot.main.ImpurityBot;
 
 import java.util.List;
 
-public class PollsManager {
+public class PollsManager implements IDataManager {
 
     private ImpurityBot bot;
 

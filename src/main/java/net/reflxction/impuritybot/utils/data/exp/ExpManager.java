@@ -18,12 +18,13 @@ package net.reflxction.impuritybot.utils.data.exp;
 
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.main.ImpurityBot;
+import net.reflxction.impuritybot.utils.data.IDataManager;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 import net.reflxction.impuritybot.utils.data.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-public class ExpManager {
+public class ExpManager implements IDataManager {
 
     private ImpurityBot bot = ImpurityBot.getBot();
 

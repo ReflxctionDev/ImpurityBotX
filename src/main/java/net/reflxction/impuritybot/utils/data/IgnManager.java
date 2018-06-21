@@ -24,7 +24,7 @@ import net.reflxction.impuritybot.utils.GuildUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IgnManager {
+public class IgnManager implements IDataManager {
 
     private ImpurityBot bot = ImpurityBot.getBot();
 
