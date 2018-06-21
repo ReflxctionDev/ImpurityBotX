@@ -18,6 +18,7 @@ package net.reflxction.impuritybot.utils;
 import net.reflxction.impuritybot.utils.lang.TimeUtils;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,42 +36,62 @@ public class MuteDuration {
     // Time unit (e.g seconds, minutes, etc.)
     private TimeUnit unit;
 
-    /**
-     * A private constructor for initializing after using regex to parse
-     *
-     * @param time Time to mute for
-     * @param unit Time unit
-     */
-    private MuteDuration(int time, TimeUnit unit) {
-        this.time = time;
-        this.unit = unit;
-    }
+    // Time, before getting converted to seconds
+    private int preTime;
 
-    public MuteDuration(String parse) {
+    /**
+     * Constructor which uses regex to parse the mute duration
+     *
+     * @param parse String parse
+     * @throws DurationParseException If the given duration couldn't be parsed
+     */
+    public MuteDuration(String parse) throws DurationParseException {
         Pattern p = Pattern.compile("-?\\d+");
         Matcher m = p.matcher(parse);
         while (m.find()) {
-            int preTime = Integer.parseInt(m.group());
+            preTime = Integer.parseInt(m.group());
             this.unit = TimeUnit.getByName(parse.replace(m.group(), "")).get();
             this.time = unit.convertToSeconds(preTime);
         }
     }
 
+    /**
+     * Time of the mute in seconds
+     *
+     * @return Time of the mute in seconds
+     */
+    public int getTime() {
+        return time;
+    }
+
+    /**
+     * @return Human-readable text (e.g "5 minute(s)"
+     */
+    public String getNiceName() {
+        return preTime + " " + unit.getNiceName();
+    }
+
     private enum TimeUnit {
 
-        SECONDS("s"),
-        MINUTES("m"),
-        HOURS("h"),
-        DAYS("d");
+        SECONDS("s", "second(s)"),
+        MINUTES("m", "minute(s)"),
+        HOURS("h", "hour(s)"),
+        DAYS("d", "day(s)");
 
         private String name;
+        private String niceName;
 
-        TimeUnit(String name) {
+        TimeUnit(String name, String niceName) {
             this.name = name;
+            this.niceName = niceName;
         }
 
         public String getName() {
             return name;
+        }
+
+        public String getNiceName() {
+            return niceName;
         }
 
         public static Optional<TimeUnit> getByName(String name) {
@@ -93,7 +114,21 @@ public class MuteDuration {
             }
             return 0;
         }
+    }
 
+    public class DurationParseException extends Exception {
+
+        private String message;
+
+        DurationParseException(String message) {
+            super(message);
+            this.message = message;
+        }
+
+        @Override
+        public String getMessage() {
+            return message;
+        }
     }
 
 }
