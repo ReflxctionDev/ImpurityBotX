@@ -37,8 +37,10 @@ import static net.reflxction.impuritybot.main.ImpurityBot.getImpurityGuild;
 
 public class GuildUtils {
 
+    private static final Guild guild = getImpurityGuild();
+
     public static Guild guild() {
-        return getImpurityGuild();
+        return guild;
     }
 
     public static List<Member> members() {
@@ -63,7 +65,7 @@ public class GuildUtils {
 
     private static IgnManager igns = new IgnManager();
 
-    private static final String API_KEY = "f7e8fdcb-8b4c-4c7c-afb2-45aae43a270e";
+    private static final String API_KEY = "lel no";
 
     private static List<String> players() {
         List<String> players = new ArrayList<>();
