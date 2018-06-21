@@ -69,7 +69,7 @@ public class Mute extends AbstractCommand {
                 return;
             }
             if (executor.getRoles().contains(admin)
-            || target.getRoles().contains(co_owner)) {
+            && target.getRoles().contains(co_owner)) {
                 c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
                 return;
             }
