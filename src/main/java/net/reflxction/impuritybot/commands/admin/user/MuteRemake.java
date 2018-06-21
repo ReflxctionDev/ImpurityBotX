@@ -16,17 +16,21 @@
 package net.reflxction.impuritybot.commands.admin.user;
 
 import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.listeners.MuteManager;
+import net.reflxction.impuritybot.core.others.Roles;
+import net.reflxction.impuritybot.utils.MuteDuration;
+import net.reflxction.impuritybot.utils.MuteDuration.DurationParseException;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /**
  * A remake of {@link Mute}
  */
 public class MuteRemake extends AbstractCommand {
+
+    private MuteManager manager = new MuteManager();
 
     @Override
     public String getCommand() {
@@ -35,7 +39,39 @@ public class MuteRemake extends AbstractCommand {
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+        Member sender = g.getMember(u);
+        if (sender.getRoles().contains(Roles.MUTE_ACCESS)) {
+            if (args.length < 3) {
+                c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**").queue();
+            } else {
+                User target;
+                try {
+                    String id = StringUtils.mentionToId(args[0]);
+                    target = j.getUserById(id);
+                    if (g.getMember(target).getRoles().get(0).getPositionRaw() < sender.getRoles().get(0).getPositionRaw()) {
+                        String parse = args[1];
+                        MuteDuration duration = new MuteDuration(parse);
+                        manager.muteUser(target, duration.getTime());
+                        StringBuilder reason = new StringBuilder();
+                        for (int i = 2; i < args.length; i++) {
+                            String arg = args[i] + " ";
+                            reason.append(arg);
+                        }
+                        PrivateChannel pm = target.openPrivateChannel().complete();
+                        pm.sendMessage("You have been muted by **" + u.getName() + "** for **" + duration.getNiceName() + "**. Reason: **" + reason.toString() + "**").queue();
+                    } else {
+                        c.sendMessage("**You can't mute people higher than you!**").queue();
+                    }
+                } catch (DurationParseException e) {
+                    c.sendMessage("**Invalid duration, should be <number><unit> (e.g `5m` which is 5 minutes), but found **`" + args[1] + "`").queue();
+                } catch (NumberFormatException e) {
+                    c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**!**").queue();
+                }
 
+            }
+        } else {
+            c.sendMessage("**You don't have permission to mute members!**").queue();
+        }
     }
 
     @Override
@@ -45,7 +81,7 @@ public class MuteRemake extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return null;
+        return CommandCategory.ADMIN;
     }
 
     @Override
@@ -55,11 +91,11 @@ public class MuteRemake extends AbstractCommand {
 
     @Override
     public String getDescription() {
-        return null;
+        return "Mute a user";
     }
 
     @Override
     public String getUsage() {
-        return null;
+        return "-mmute <@user> <duration> <reason>";
     }
 }
