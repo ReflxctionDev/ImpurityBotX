@@ -35,7 +35,7 @@ public class Mute extends AbstractCommand {
             c.sendMessage("**You do not have permission to execute this command**").queue();
             return;
         }
-        if (args.length < 3) {
+        if (args.length < 2) {
             c.sendMessage("**Invalid usage. Usage: " + getUsage() + "**").queue();
             return;
         }
