@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.main;
+package net.reflxction.impuritybot.core.listeners;
 
 import me.brokenearth.core.scheduler.Timer;
 import net.dv8tion.jda.core.entities.Message;
