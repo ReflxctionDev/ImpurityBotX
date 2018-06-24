@@ -149,12 +149,7 @@ public class ImpurityBot extends JavaPlugin {
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();
-        try {
-            Container container = new Container(new File("src/main/resources/container"));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        getJDA().addEventListener(new CleanChatFilter());
+
     }
 
     @Override
@@ -207,7 +202,7 @@ public class ImpurityBot extends JavaPlugin {
         japi = new JDABuilder(AccountType.BOT)
                 .setToken(BotConfig.TOKEN)
                 .addEventListener(new MessageListener(), new SkyWarsC(), new Welcome(), new Engine(), new Rate(),
-                        new TableFlip(), new PollReactions(bot)).buildAsync();
+                        new TableFlip(), new PollReactions(bot), new CleanChatFilter()).buildAsync();
 
     }
 
