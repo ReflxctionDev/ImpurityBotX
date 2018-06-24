@@ -54,7 +54,7 @@ public final class Cache<K, V> extends LinkedHashMap<K, V> {
      * @return the new cache's instance
      */
     public static <K, V> Cache<K, V> createNewCache(int size) {
-        return new Cache<K, V>(size);
+        return new Cache<>(size);
     }
     /**
      * Checks whether it should remove the eldest entry

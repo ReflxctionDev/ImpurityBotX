@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.core.others;/*
+/*
  * * Copyright 2018 github.com/ReflxctionDev
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +13,7 @@ package net.reflxction.impuritybot.core.others;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.core.others;
 
 import me.brokenearth.core.container.Container;
 import me.brokenearth.core.yaml.YamlConfiguration;
