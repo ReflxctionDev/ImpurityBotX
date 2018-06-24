@@ -17,6 +17,7 @@ package net.reflxction.impuritybot.core.cache;
 
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.GuildUtils;
 
 import java.util.ArrayList;
