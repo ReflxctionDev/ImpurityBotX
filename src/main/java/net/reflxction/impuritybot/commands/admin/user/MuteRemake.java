@@ -21,6 +21,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.listeners.MuteManager;
 import net.reflxction.impuritybot.core.others.Roles;
+import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.MuteDuration;
 import net.reflxction.impuritybot.utils.MuteDuration.DurationParseException;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
@@ -52,6 +53,7 @@ public class MuteRemake extends AbstractCommand {
                         String parse = args[1];
                         MuteDuration duration = new MuteDuration(parse);
                         manager.muteUser(target, duration.getTime());
+                        ImpurityBot.getImpurityGuild().getController().addSingleRoleToMember(ImpurityBot.getImpurityGuild().getMember(target), Roles.MUTED).queue();
                         StringBuilder reason = new StringBuilder();
                         for (int i = 2; i < args.length; i++) {
                             String arg = args[i] + " ";
