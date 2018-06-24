@@ -93,16 +93,17 @@ public class Mute extends AbstractCommand {
             } catch (Exception ignored) {
 
             }
+            for (int i = 3; i < args.length; i++) {
+                reason.append(args[i]).append(" ");
+            }
             manager.muteUser(target.getUser(), time_seconds);
             c.sendMessage("**Successfully muted " + target.getUser().getAsMention() + "**").queue();
-            sendNews(u, reason.toString(), time_seconds, executor.getUser());
+            sendNews(target.getUser(), reason.toString(), time_seconds, executor.getUser());
         } catch (NumberFormatException e) {
             c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
             return;
         }
-        for (int i = 3; i < args.length; i++) {
-            reason.append(args[i]).append(" ");
-        }
+
     }
 
     private int parseTime(String toParse, MessageChannel channel) {

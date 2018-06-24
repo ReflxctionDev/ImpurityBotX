@@ -4,7 +4,7 @@ import me.brokenearth.core.commands.Command;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-/*
+/**
  * Copyright 2018 github.com/BrokenEarthDev
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
