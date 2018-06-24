@@ -16,6 +16,7 @@
  */
 package net.reflxction.impuritybot.main;
 
+import com.google.common.eventbus.EventBus;
 import me.brokenearth.core.container.Container;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -53,6 +54,8 @@ public class ImpurityBot extends JavaPlugin {
     public static ImpurityBot bot;
     private static JDA japi;
     private static boolean enabled = false;
+
+    public static final EventBus EVENT_BUS = new EventBus();
 
     private static CacheHandler cacheHandler = new CacheHandler();
 
