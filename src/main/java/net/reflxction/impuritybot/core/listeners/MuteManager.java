@@ -44,8 +44,7 @@ public class MuteManager {
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Name", user.getName());
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Mute", seconds);
         data.saveFile(bot.getCreditsFile(), "credits");
-        Guild g = GuildUtils.guild();
-        g.getController().addSingleRoleToMember(g.getMember(user), Roles.MUTED).queue();
+        ImpurityBot.getImpurityGuild().getController().addSingleRoleToMember(ImpurityBot.getImpurityGuild().getMember(user), Roles.MUTED).queue();
     }
 
     /**
