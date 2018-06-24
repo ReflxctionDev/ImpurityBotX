@@ -151,6 +151,7 @@ public class ImpurityBot extends JavaPlugin {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        getJDA().addEventListener(new CleanChatFilter());
     }
 
     @Override
