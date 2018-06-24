@@ -38,7 +38,6 @@ import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
 import net.reflxction.impuritybot.utils.lang.TimeUtils;
 import net.reflxction.impuritybot.utils.tps.TpsDelay;
-import net.reflxction.impuritybot.utils.tps.TpsMeasurer;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -143,7 +142,7 @@ public class ImpurityBot extends JavaPlugin {
             mute.updateMuteTime();
         }, 80, 80);
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, tps::start, TimeUtils.secondsToTicks(90), TimeUtils.secondsToTicks(90));
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, this::updateCache, TimeUtils.secondsToTicks(15), TimeUtils.secondsToTicks(15));
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, cacheHandler::updateCache, TimeUtils.secondsToTicks(15), TimeUtils.secondsToTicks(15));
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();
@@ -220,10 +219,6 @@ public class ImpurityBot extends JavaPlugin {
 
     public static List<ProfileAdapterCache> getCurrentCache() {
         return caches.isEmpty() ? cacheHandler.updateCache() : caches;
-    }
-
-    private void updateCache() {
-        caches = cacheHandler.updateCache();
     }
 
 }
