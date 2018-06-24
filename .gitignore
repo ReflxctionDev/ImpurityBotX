@@ -29,3 +29,4 @@ target/
 *.png
 dependency-reduced-pom.xml
 src/test/
+src/main/java/net/reflxction/impuritybot/utils/GuildUtils.java

@@ -65,7 +65,7 @@ public class GuildUtils {
 
     private static IgnManager igns = new IgnManager();
 
-    private static final String API_KEY = "lel no";
+    private static final String API_KEY = "f7e8fdcb-8b4c-4c7c-afb2-45aae43a270e";
 
     private static List<String> players() {
         List<String> players = new ArrayList<>();
@@ -99,7 +99,7 @@ public class GuildUtils {
 
     private static final List<String> players = players();
 
-    public static boolean isGuildMmeber(User u) {
+    public static boolean isGuildMember(User u) {
         return players != null && players.contains(igns.getIGN(u));
     }
 }

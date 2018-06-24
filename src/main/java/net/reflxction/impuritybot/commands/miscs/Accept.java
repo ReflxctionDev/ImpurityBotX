@@ -40,7 +40,7 @@ public class Accept extends AbstractCommand {
             if (igns.hasAssignedIGN(u)) {
                 GuildUtils.controller().removeSingleRoleFromMember(g.getMember(u), Roles.UNREGISTERED).queue();
                 GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.D_MEMBER).queue();
-                if (GuildUtils.isGuildMmeber(u)) {
+                if (GuildUtils.isGuildMember(u)) {
                     GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.I_MEMBER).queue();
                 }
             } else {

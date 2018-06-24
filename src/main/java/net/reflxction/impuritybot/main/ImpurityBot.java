@@ -124,7 +124,7 @@ public class ImpurityBot extends JavaPlugin {
     }
 
     @Override
-    public void onEnable(){
+    public void onEnable() {
         bot = this;
         UserWarnLoggers.wu = new WarningsManager(this);
         WarningsManager.loggers = new UserWarnLoggers(this);
