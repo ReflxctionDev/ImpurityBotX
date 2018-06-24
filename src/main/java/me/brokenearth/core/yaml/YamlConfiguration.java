@@ -1,6 +1,6 @@
 package me.brokenearth.core.yaml;
 
-import com.sun.istack.internal.NotNull;
+
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -36,7 +36,7 @@ public final class YamlConfiguration {
      * The yaml file
      */
     private File file;
-    private YamlConfiguration(@NotNull File file) {
+    private YamlConfiguration(File file) {
         if (!file.getName().endsWith(".yml") && !file.getName().endsWith(".yaml")) {
             try {
                 throw new Exception("This is not a yaml file");
@@ -60,7 +60,7 @@ public final class YamlConfiguration {
      * @param file the yaml file
      * @return an instance of the YamlConfiguration class
      */
-    public static YamlConfiguration loadConfig(@NotNull File file) {
+    public static YamlConfiguration loadConfig(File file) {
         return new YamlConfiguration(file);
     }
     /**

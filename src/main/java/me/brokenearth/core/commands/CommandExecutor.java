@@ -1,6 +1,6 @@
 package me.brokenearth.core.commands;
 
-import com.sun.istack.internal.NotNull;
+
 import me.brokenearth.core.events.CommandEvent;
 
 /**
@@ -25,5 +25,5 @@ public interface CommandExecutor {
      * @param event the event that occurs when a command is executed
      * @param args the argument of the command - split by a regex
      */
-    void onCommand(@NotNull CommandEvent event, String[] args);
+    void onCommand(CommandEvent event, String[] args);
 }

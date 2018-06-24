@@ -1,6 +1,6 @@
 package me.brokenearth.core.loader;
 
-import com.sun.istack.internal.NotNull;
+
 
 /**
  * Copyright 2018 github.com/BrokenEarthDev
@@ -21,15 +21,15 @@ public final class LoadException extends Exception {
         super();
     }
 
-    public LoadException(@NotNull String message) {
+    public LoadException(String message) {
         super(message);
     }
 
-    public LoadException(@NotNull String message, @NotNull Throwable cause) {
+    public LoadException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public LoadException(@NotNull Throwable cause) {
+    public LoadException(Throwable cause) {
         super(cause);
     }
 }

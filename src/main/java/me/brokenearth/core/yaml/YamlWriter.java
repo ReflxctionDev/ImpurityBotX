@@ -1,6 +1,6 @@
 package me.brokenearth.core.yaml;
 
-import com.sun.istack.internal.NotNull;
+
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -28,7 +28,7 @@ public final class YamlWriter {
      * Is what is going to be written
      */
     private Map<String, Object> stream = new HashMap<String, Object>();
-    YamlWriter(@NotNull YamlConfiguration config) {
+    YamlWriter(YamlConfiguration config) {
         this.file = config.getFile();
     }
     /**
@@ -36,7 +36,7 @@ public final class YamlWriter {
      * @param path the path that will be written to
      * @param value the value of the path
      */
-    public void write(@NotNull String path, @NotNull Object value) {
+    public void write(String path, Object value) {
         if (String.valueOf(value).contains(":") || String.valueOf(path).contains(":")) {
             try {
                 throw new InterruptedException("Grouping character found");
@@ -59,7 +59,7 @@ public final class YamlWriter {
      * @param string the string where unwanted characters will be eliminated
      * @return the string without the unwanted characters
      */
-    private String eliminateChar(@NotNull String string) {
+    private String eliminateChar(String string) {
         return string.replace("{", "").replace("}", "");
     }
     /**

@@ -1,6 +1,6 @@
 package me.brokenearth.core.scheduler;
 
-import com.sun.istack.internal.NotNull;
+
 
 import java.util.TimerTask;
 
@@ -29,7 +29,7 @@ public final class Scheduler {
      * @param timer the timer class
      * @param millis time must be in milliseconds
      */
-    public void schedule(@NotNull final Timer timer, int millis) {
+    public void schedule(final Timer timer, int millis) {
         timer1.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -43,7 +43,7 @@ public final class Scheduler {
      * @param timer the timer class
      * @param millis time mute be in milliseconds
      */
-    public void runEvery(@NotNull final Timer timer, final int millis) {
+    public void runEvery(final Timer timer, final int millis) {
         timer1.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -56,7 +56,7 @@ public final class Scheduler {
      * Cancels the timer of the given class
      * @param timer the timer class
      */
-    public void cancel(@NotNull Timer timer) {
+    public void cancel(Timer timer) {
         timer.cancel();
         timer1.cancel();
     }

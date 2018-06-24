@@ -1,6 +1,6 @@
 package me.brokenearth.core.yaml;
 
-import com.sun.istack.internal.NotNull;
+
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -35,7 +35,7 @@ public final class YamlReader {
      * A file reader
      */
     private FileReader fileReader;
-    YamlReader(@NotNull YamlConfiguration config) {
+    YamlReader(YamlConfiguration config) {
         this.file = config.getFile();
         try {
             this.fileReader = new FileReader(file);
@@ -55,7 +55,7 @@ public final class YamlReader {
      * @param path the path of the object
      * @return the object found
      */
-    public Object get(@NotNull String path) {
+    public Object get(String path) {
         return getContents().get(path);
     }
     /**
@@ -63,7 +63,7 @@ public final class YamlReader {
      * @param path the path of the integer
      * @return the integer found
      */
-    public int getInt(@NotNull String path) {
+    public int getInt(String path) {
         return (Integer) getContents().get(path);
     }
     /**
@@ -71,7 +71,7 @@ public final class YamlReader {
      * @param path the path of the boolean
      * @return the boolean found
      */
-    public boolean getBoolean(@NotNull String path) {
+    public boolean getBoolean(String path) {
         return (Boolean) getContents().get(path);
     }
     /**
@@ -79,7 +79,7 @@ public final class YamlReader {
      * @param path the path of the long
      * @return the long found
      */
-    public long getLong(@NotNull String path) {
+    public long getLong(String path) {
         return (Long) getContents().get(path);
     }
     /**
@@ -87,7 +87,7 @@ public final class YamlReader {
      * @param path the path of the short
      * @return the short found
      */
-    public short getShort(@NotNull String path) {
+    public short getShort(String path) {
         return (Short) getContents().get(path);
     }
     /**
@@ -95,7 +95,7 @@ public final class YamlReader {
      * @param path the path of the byte
      * @return the byte found
      */
-    public byte getByte(@NotNull String path) {
+    public byte getByte(String path) {
         return (Byte) getContents().get(path);
     }
     /**

@@ -1,7 +1,7 @@
 package me.brokenearth.core.events;
 
 
-import com.sun.istack.internal.NotNull;
+
 import me.brokenearth.core.scheduler.Scheduler;
 import me.brokenearth.core.scheduler.Timer;
 import net.dv8tion.jda.core.JDA;
@@ -51,7 +51,7 @@ public final class CommandEvent {
      * The channel in which the command is executed
      */
     private MessageChannel channel;
-    public CommandEvent(@NotNull Member member, @NotNull Guild guild, @NotNull String command, @NotNull String prefix, @NotNull JDA jda, @NotNull MessageChannel channel) {
+    public CommandEvent(Member member, Guild guild, String command, String prefix, JDA jda, MessageChannel channel) {
         this.member = member;
         this.guild = guild;
         this.jda = jda;
