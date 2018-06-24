@@ -16,6 +16,7 @@
  */
 package net.reflxction.impuritybot.main;
 
+import me.brokenearth.core.container.Container;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -121,7 +122,7 @@ public class ImpurityBot extends JavaPlugin {
     }
 
     @Override
-    public void onEnable() {
+    public void onEnable(){
         bot = this;
         UserWarnLoggers.wu = new WarningsManager(this);
         WarningsManager.loggers = new UserWarnLoggers(this);
@@ -146,7 +147,11 @@ public class ImpurityBot extends JavaPlugin {
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();
-
+        try {
+            Container container = new Container(new File("src/main/resources/container"));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

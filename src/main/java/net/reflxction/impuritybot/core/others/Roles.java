@@ -14,8 +14,14 @@ package net.reflxction.impuritybot.core.others;/*
  * limitations under the License.
  */
 
+import me.brokenearth.core.container.Container;
+import me.brokenearth.core.yaml.YamlConfiguration;
+import me.brokenearth.core.yaml.YamlReader;
+import me.brokenearth.core.yaml.YamlWriter;
 import net.dv8tion.jda.core.entities.Role;
 import net.reflxction.impuritybot.utils.GuildUtils;
+
+import java.io.File;
 
 public class Roles {
 
@@ -32,5 +38,25 @@ public class Roles {
     public static final Role ADMIN = GuildUtils.roleById("367318849978105857");
     public static final Role OFFICER = GuildUtils.roleById("364809414743687169");
     public static final Role MUTE_ACCESS = GuildUtils.roleById("458737084467773471");
+
+    public static YamlConfiguration roleFileConfiguration() {
+       return YamlConfiguration.loadConfig(new File(Container.getFile().getPath() + "/roles.yml"));
+    }
+
+    public static Role getRoleFromYaml(String rolename) {
+        YamlReader reader = roleFileConfiguration().getReader();
+        String roleId = String.valueOf(reader.get(rolename));
+        return GuildUtils.roleById(roleId);
+    }
+
+    public static Role getRoleFromId(String roleid) {
+        YamlReader reader = roleFileConfiguration().getReader();
+        return GuildUtils.roleById(roleid);
+    }
+
+    public static void addRoleToYaml(String rolename, String roleid) {
+        YamlWriter writer = roleFileConfiguration().getWriter();
+        writer.write(rolename, roleid);
+    }
 
 }
