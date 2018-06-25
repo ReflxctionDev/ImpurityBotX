@@ -25,7 +25,7 @@ hs_err_pid*
 *.iml
 target/
 *.yml
-!src/main/resources/container
+!src/main/resources/container/*
 *.txt
 *.png
 dependency-reduced-pom.xml
