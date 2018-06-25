@@ -24,7 +24,6 @@ public class ImpurityCore extends ListenerAdapter {
      * The jda
      */
     private static JDA jda;
-
     /**
      * Registers the jda
      *
@@ -34,7 +33,6 @@ public class ImpurityCore extends ListenerAdapter {
         ImpurityCore.jda = jda;
         jda.addEventListener(new Command());
     }
-
     /**
      * Gets the jda and
      ** @return it
