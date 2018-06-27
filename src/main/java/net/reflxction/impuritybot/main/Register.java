@@ -15,6 +15,7 @@
  */
 package net.reflxction.impuritybot.main;
 
+import me.brokenearth.core.container.Container;
 import net.reflxction.impuritybot.commands.admin.botupdates.ReleasedCommand;
 import net.reflxction.impuritybot.commands.admin.botupdates.ToDo;
 import net.reflxction.impuritybot.commands.admin.messages.*;
@@ -34,6 +35,7 @@ import net.reflxction.impuritybot.commands.points.ManagePointsCmd;
 import net.reflxction.impuritybot.commands.points.PointsBalance;
 import net.reflxction.impuritybot.commands.user.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.eros.Slots;
 import net.reflxction.impuritybot.core.loggers.Logger;
 import net.reflxction.impuritybot.eros.*;
@@ -51,6 +53,10 @@ import net.reflxction.impuritybot.logs.user.UserJoinLogger;
 import net.reflxction.impuritybot.logs.user.UserLeaveLogger;
 import net.reflxction.impuritybot.logs.user.UserNickLogger;
 
+import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
+
 import static net.reflxction.impuritybot.main.ImpurityBot.bot;
 
 /**
@@ -62,7 +68,7 @@ public class Register {
 
     private static AbstractCommand[] abstractCommands = {new Announce(), new About(), new Delete(), new EmbedMaker(), new GuildInfo(),
             new HateMe(), new Help(), new HistoryDelete(), new Introduce(), new Kick(), new NewYear(), new Say(), new IGN(), new IGNOf(),
-            new RankCmd(), new LevelCmd(), new Pin(),  new CommandInfo(), new EightBall(), new TopLevels(), new Daily(),
+            new RankCmd(), new LevelCmd(), new Pin(), new CommandInfo(), new EightBall(), new TopLevels(), new Daily(),
             new PunishmentRules(), new Unpin(), new Warn(bot), new UserWarnings(bot), new RemoveWarn(bot), new ClearWarns(bot), new WarnInfo(bot),
             new UpdateRoles(), new net.reflxction.impuritybot.commands.user.Invite(), new Ping(), new UserInfo(), new DiscordInfo(), new Notify(), new NotifyUpdate(), new Poll(bot),
             new ToDo(), new ReleasedCommand(), new Balance(), new WelcomeManager(bot), new PlayerIGN(), new Menu(), new Buy(), new Credits(),
@@ -80,4 +86,7 @@ public class Register {
     public static Logger[] getLoggers() {
         return loggers;
     }
+
 }
+
+

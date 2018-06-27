@@ -55,7 +55,6 @@ public class Mute extends AbstractCommand {
                 c.sendMessage("** " + target.getUser().getName() + " is already muted").queue();
                 return;
             }
-
             if (executor == target) {
                 c.sendMessage("**You can't mute yourself**").queue();
                 return;
@@ -87,17 +86,11 @@ public class Mute extends AbstractCommand {
                 c.sendMessage("**You can't mute a member less than 1 second**").queue();
                 return;
             }
-            try {
-                TextChannel toSend = g.getTextChannelsByName("mute-log", true).get(0);
-                sendLog(executor.getUser(), target.getUser(), reason.toString(), time_seconds, toSend);
-            } catch (Exception ignored) {
-
-            }
             for (int i = 3; i < args.length; i++) {
                 reason.append(args[i]).append(" ");
             }
             manager.muteUser(target.getUser(), time_seconds);
-            c.sendMessage("**Successfully muted " + target.getUser().getAsMention() + "**").queue();
+            c.sendMessage("Successfully muted **" + target.getUser().getName() + "**").queue();
             sendNews(target.getUser(), reason.toString(), time_seconds, executor.getUser());
         } catch (NumberFormatException e) {
             c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();

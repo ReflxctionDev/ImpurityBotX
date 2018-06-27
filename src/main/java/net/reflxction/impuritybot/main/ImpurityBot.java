@@ -151,6 +151,12 @@ public class ImpurityBot extends JavaPlugin {
         data.loadFiles();
         try {
             Container container = new Container(new File("src/main/resources/container"));
+            //here we defined the container file
+            //Only define container once
+            //Or an exception will be thrown
+            //After defining container
+            //You can use
+            //Container container = Container.getContainer();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
