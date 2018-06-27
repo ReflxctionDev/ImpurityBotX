@@ -33,7 +33,7 @@ public class PollReactions extends ListenerAdapter {
                 m.addReaction("\u2705").queue();
                 m.addReaction(e).queue();
             }
-			if(c.getId().equals("455473103431270411")) {
+			if(c.getId().equals("433614676086095890")) {
                 final Message m = event.getMessage();
                 m.addReaction("⭐").queue();
 			}
