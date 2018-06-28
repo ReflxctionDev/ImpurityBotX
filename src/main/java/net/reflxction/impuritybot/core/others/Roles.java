@@ -39,25 +39,4 @@ public class Roles {
     public static final Role ADMIN = GuildUtils.roleById("367318849978105857");
     public static final Role OFFICER = GuildUtils.roleById("364809414743687169");
     public static final Role MUTE_ACCESS = GuildUtils.roleById("458737084467773471");
-
-    public static YamlConfiguration roleFileConfiguration() {
-       return YamlConfiguration.loadConfig(new File(Container.getFile().getPath() + "/roles.yml"));
-    }
-
-    public static Role getRoleFromYaml(String rolename) {
-        YamlReader reader = roleFileConfiguration().getReader();
-        String roleId = String.valueOf(reader.get(rolename));
-        return GuildUtils.roleById(roleId);
-    }
-
-    public static Role getRoleFromId(String roleid) {
-        YamlReader reader = roleFileConfiguration().getReader();
-        return GuildUtils.roleById(roleid);
-    }
-
-    public static void addRoleToYaml(String rolename, String roleid) {
-        YamlWriter writer = roleFileConfiguration().getWriter();
-        writer.write(rolename, roleid);
-    }
-
 }
