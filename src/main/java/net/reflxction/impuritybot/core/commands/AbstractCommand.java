@@ -43,17 +43,6 @@ public abstract class AbstractCommand extends ListenerAdapter {
         MessageChannel c = event.getChannel();
         if (u.isBot()) return;
         String[] args;
-        String[] arguments = event.getMessage().getContentRaw().split("\\s+");
-        if (arguments[0].startsWith("-") && event.getChannel().getId().equals("363721897743089671") && !event.getMember().getRoles().contains(Roles.STAFF)) {
-            Message message = event.getChannel().sendMessage("**Please make sure to use commands in #bot-commands**").complete();
-            new Timer() {
-                @Override
-                public void run() {
-                    message.delete().queue();
-                }
-            }.schedule(3000);
-            return;
-        }
         if (content.contains(" ")) {
             args = content.replace("-" + getCommand() + " ", "").split(" ");
         }
