@@ -35,7 +35,7 @@ public class PollReactions extends ListenerAdapter {
             }
 			if(c.getId().equals("433614676086095890")) {
                 final Message m = event.getMessage();
-                m.addReaction("⭐").queue();
+                m.addReaction("\u2B50").queue();
 			}
         }
     }
