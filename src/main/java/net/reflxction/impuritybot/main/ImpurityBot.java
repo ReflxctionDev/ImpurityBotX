@@ -17,7 +17,7 @@
 package net.reflxction.impuritybot.main;
 
 import com.google.common.eventbus.EventBus;
-import me.brokenearth.core.container.Container;
+import javafx.scene.control.Tab;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -201,9 +201,14 @@ public class ImpurityBot extends JavaPlugin {
     private void registerListeners() throws LoginException {
         japi = new JDABuilder(AccountType.BOT)
                 .setToken(BotConfig.TOKEN)
-                .addEventListener(new MessageListener(), new SkyWarsC(), new Welcome(), new Engine(), new Rate(),
-                        new TableFlip(), new PollReactions(bot)).buildAsync();
-
+                .addEventListener(new MessageListener())
+                .addEventListener(new SkyWarsC())
+                .addEventListener(new Welcome())
+                .addEventListener(new Engine())
+                .addEventListener(new Rate())
+                .addEventListener(new TableFlip())
+                .addEventListener(new PollReactions(bot))
+                .buildAsync();
     }
 
     private void register() {
