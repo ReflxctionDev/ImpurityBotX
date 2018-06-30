@@ -55,7 +55,8 @@ public class AssignRanking {
      */
     public void assignRating() {
         PointsRank pointsRank = PointsRank.getByLevel(level);
-        GuildUtils.controller().setNickname(member, "[" + pointsRank.getChar() + "] " + ignManager.getIGN(member.getUser())).queue();
+       // TODO Replace it with role giving
+        // GuildUtils.controller().setNickname(member, "[" + pointsRank.getChar() + "] " + ignManager.getIGN(member.getUser())).queue();
     }
 }
 
