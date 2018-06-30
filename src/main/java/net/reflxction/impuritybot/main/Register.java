@@ -58,7 +58,7 @@ import static net.reflxction.impuritybot.main.ImpurityBot.bot;
  *
  * @author BrokenEarth
  */
-public class Register {
+class Register {
 
     private static AbstractCommand[] abstractCommands = {new Announce(), new About(), new Delete(), new EmbedMaker(), new GuildInfo(),
             new HateMe(), new Help(), new HistoryDelete(), new Introduce(), new Kick(), new NewYear(), new Say(), new IGN(), new IGNOf(),
@@ -73,11 +73,11 @@ public class Register {
             new MessageEditedLogger(), new UserBanLogger(), new UserNickLogger(), new ServerChangeNameLogger(), new RoleGivenLogger(), new RoleRemovedLogger(),
             new RoleRemovedLogger(), new RoleCreatedLogger(), new RoleDeletedLogger()};
 
-    public static AbstractCommand[] getAbstractCommands() {
+    static AbstractCommand[] getAbstractCommands() {
         return abstractCommands;
     }
 
-    public static Logger[] getLoggers() {
+    static Logger[] getLoggers() {
         return loggers;
     }
 
