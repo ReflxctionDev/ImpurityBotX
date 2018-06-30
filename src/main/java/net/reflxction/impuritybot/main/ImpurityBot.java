@@ -33,6 +33,7 @@ import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.listeners.*;
 import net.reflxction.impuritybot.core.loggers.Logger;
 import net.reflxction.impuritybot.core.others.BotConfig;
+import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.levels.MessageListener;
 import net.reflxction.impuritybot.logs.user.UserWarnLoggers;
 import net.reflxction.impuritybot.utils.data.DataManager;
@@ -149,7 +150,7 @@ public class ImpurityBot extends JavaPlugin {
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();
-
+        System.out.println(Roles.UNREGISTERED);
     }
 
     @Override

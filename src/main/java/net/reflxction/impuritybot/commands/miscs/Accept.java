@@ -37,6 +37,7 @@ public class Accept extends AbstractCommand {
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
         final Member member = g.getMember(u);
         if (member.getRoles().contains(Roles.UNREGISTERED)) {
+            
             if (igns.hasAssignedIGN(u)) {
                 GuildUtils.controller().removeSingleRoleFromMember(g.getMember(u), Roles.UNREGISTERED).queue();
                 GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.D_MEMBER).queue();

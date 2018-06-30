@@ -1,6 +1,5 @@
 package net.reflxction.impuritybot.core.commands;
 
-import me.brokenearth.core.scheduler.Timer;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -9,9 +8,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
-import net.reflxction.impuritybot.core.others.Roles;
 
-@SuppressWarnings("all")
 public abstract class AbstractCommand extends ListenerAdapter {
 
     private String content;
