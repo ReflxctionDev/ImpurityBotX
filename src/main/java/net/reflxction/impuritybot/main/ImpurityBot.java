@@ -133,7 +133,6 @@ public class ImpurityBot extends JavaPlugin {
         japi.getPresence().setGame(Game.listening("Shifty's wise words"));
         GameManager gm = new GameManager();
         DelayManager dm = new DelayManager();
-        TpsDelay tps = new TpsDelay();
         MuteManager mute = new MuteManager();
         //TODO
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, gm::manageGames, 12000, 12000);
@@ -142,10 +141,8 @@ public class ImpurityBot extends JavaPlugin {
                 User u = getImpurityGuild().getMembers().get(i).getUser();
                 dm.manageDelay(u);
             }
-            tps.start();
             mute.updateMuteTime();
         }, 80, 80);
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, tps::start, TimeUtils.secondsToTicks(90), TimeUtils.secondsToTicks(90));
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, cacheHandler::updateCache, TimeUtils.secondsToTicks(15), TimeUtils.secondsToTicks(15));
         final DataManager data = new DataManager(this);
         saveDefaultConfig();

@@ -37,10 +37,8 @@ import static net.reflxction.impuritybot.main.ImpurityBot.getImpurityGuild;
 
 public class GuildUtils {
 
-    private static final Guild guild = getImpurityGuild();
-
     public static Guild guild() {
-        return guild;
+        return getImpurityGuild();
     }
 
     public static List<Member> members() {

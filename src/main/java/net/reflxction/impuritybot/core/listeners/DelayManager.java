@@ -23,12 +23,6 @@ public class DelayManager implements IDelayManager {
         if (muteTime != 0) {
             bot.getCreditsFile().set("Credits." + u.getId() + ".Mute", muteTime  - 4);
             du.saveCreditsFile();
-            ensureMute(u);
-        } else {
-            Role muted = GuildUtils.guild().getRoleById("430447415515152384");
-            if (GuildUtils.guild().getMember(u).getRoles().contains(muted)) {
-                GuildUtils.controller().removeSingleRoleFromMember(GuildUtils.guild().getMember(u), muted).queue();
-            }
         }
     }
 
@@ -39,13 +33,8 @@ public class DelayManager implements IDelayManager {
 
 
     public void mute(User u) {
-        ensureMute(u);
         bot.getCreditsFile().set("Credits." + u.getId() + ".Mute", 600);
         du.saveCreditsFile();
-    }
-
-    private void ensureMute(User u) {
-        GuildUtils.controller().addSingleRoleToMember(GuildUtils.guild().getMember(u), GuildUtils.roleById("430447415515152384")).queue();
     }
 }
 
