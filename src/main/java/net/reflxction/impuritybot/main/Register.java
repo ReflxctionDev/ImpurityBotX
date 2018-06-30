@@ -15,7 +15,6 @@
  */
 package net.reflxction.impuritybot.main;
 
-import me.brokenearth.core.container.Container;
 import net.reflxction.impuritybot.commands.admin.botupdates.ReleasedCommand;
 import net.reflxction.impuritybot.commands.admin.botupdates.ToDo;
 import net.reflxction.impuritybot.commands.admin.messages.*;
@@ -35,7 +34,6 @@ import net.reflxction.impuritybot.commands.points.ManagePointsCmd;
 import net.reflxction.impuritybot.commands.points.PointsBalance;
 import net.reflxction.impuritybot.commands.user.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.eros.Slots;
 import net.reflxction.impuritybot.core.loggers.Logger;
 import net.reflxction.impuritybot.eros.*;
@@ -53,10 +51,6 @@ import net.reflxction.impuritybot.logs.user.UserJoinLogger;
 import net.reflxction.impuritybot.logs.user.UserLeaveLogger;
 import net.reflxction.impuritybot.logs.user.UserNickLogger;
 
-import java.io.*;
-import java.util.LinkedList;
-import java.util.List;
-
 import static net.reflxction.impuritybot.main.ImpurityBot.bot;
 
 /**
@@ -73,7 +67,7 @@ public class Register {
             new UpdateRoles(), new net.reflxction.impuritybot.commands.user.Invite(), new Ping(), new UserInfo(), new DiscordInfo(), new Notify(), new NotifyUpdate(), new Poll(bot),
             new ToDo(), new ReleasedCommand(), new Balance(), new WelcomeManager(bot), new PlayerIGN(), new Menu(), new Buy(), new Credits(),
             new Transfer(), new Open(), new Agree(), new Accept(), new Slots(), new SetLevel(), new Calendar(), new MakeCalendar(), new PointsBalance(), new ManagePointsCmd(),
-            new Unmute(), new Mute(), new MuteRemake(), new StealCommand()};
+            new Unmute(), new Mute(), new MuteRemake(), new StealCommand(), new Tester()};
 
     private static Logger[] loggers = {new UserJoinLogger(), new UserLeaveLogger(), new ChannelCreatedLogger(), new ChannelDeletedLogger(),
             new MessageEditedLogger(), new UserBanLogger(), new UserNickLogger(), new ServerChangeNameLogger(), new RoleGivenLogger(), new RoleRemovedLogger(),
