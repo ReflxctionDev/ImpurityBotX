@@ -10,9 +10,6 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
 import java.awt.*;
 import java.time.OffsetDateTime;
 
-/**
- * Created by Reflxction, on 01/30/18.
- */
 public class DiscordInfo extends AbstractCommand {
 
     @Override
