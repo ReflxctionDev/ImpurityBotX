@@ -34,15 +34,15 @@ public class Bet {
             channel.sendMessage("**There are no enough credits to start the bet**").queue();
             return;
         }
-        double executorchance = (new Random().nextInt(1000) + 1) / 10.0;
-        double targetchance = 100 - executorchance;
+        int executorchance = new Random().nextInt(100) + 1;
+        int targetchance = 100 - executorchance;
         makeEmbed(executor, target, channel, executorchance, targetchance);
         if (executorchance > targetchance) {
             channel.sendMessage("**" + executor.getUser().getName() + "** wins!").queue();
-            setCredits(executor, target, (int)executorchance, (int)targetchance, amount);
+            setCredits(executor, target, channel, (int)executorchance, (int)targetchance, amount);
         } else if (targetchance > executorchance) {
             channel.sendMessage("**" + target.getUser().getName() + "** wins!").queue();
-            setCredits(target, executor, (int)executorchance, (int)targetchance, amount);
+            setCredits(target, executor, channel, (int)executorchance, (int)targetchance, amount);
         } else channel.sendMessage("**" + executor.getUser().getName() + "** and **" + target.getUser().getName() + "** ties!").queue();
     }
     /**
@@ -53,11 +53,12 @@ public class Bet {
      * @param executorchance the chance of the first member
      * @param targetchance the chance of the second member
      */
-    private void makeEmbed(Member executor, Member target, MessageChannel channel, double executorchance, double targetchance) {
+    private void makeEmbed(Member executor, Member target, MessageChannel channel, int executorchance, int targetchance) {
+
         EmbedFactory factory = new EmbedFactory(new EmbedBuilder());
         factory.setTitle(executor.getUser().getName() + " vs " + target.getUser().getName());
-        factory.addField(executor.getUser().getAsMention(), String.valueOf(executorchance));
-        factory.addField(target.getUser().getAsMention(), String.valueOf(targetchance));
+        factory.addField(executor.getUser().getName(), String.valueOf(executorchance) + "%");
+        factory.addField(target.getUser().getName(), String.valueOf(targetchance) + "%");
         factory.setColor(Color.decode("#e84118"));
         channel.sendMessage(factory.build().build()).queue();
     }
@@ -67,9 +68,13 @@ public class Bet {
      * @param looser the looser
      * @param amount the amount used
      */
-    private void setCredits(Member winner, Member looser, int winnerchance, int looserchance, int amount) {
+    private void setCredits(Member winner, Member looser, MessageChannel channel, int winnerchance, int looserchance, int amount) {
         if (winnerchance * 2 != looserchance)manager.setUserCredits(winner.getUser(), manager.getUserCredits(winner.getUser()) + amount);
-        else manager.setUserCredits(winner.getUser(), manager.getUserCredits(winner.getUser()) + amount * 2);
+        else {
+            manager.setUserCredits(winner.getUser(), manager.getUserCredits(winner.getUser()) + amount * 2);
+            channel.sendMessage(winner.getUser().getName() + " got his bet amount doubled (**" + amount + "**)").queue();
+            return;
+        }
         manager.setUserCredits(looser.getUser(), manager.getUserCredits(looser.getUser()) - amount);
     }
 
