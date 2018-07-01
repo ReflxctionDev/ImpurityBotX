@@ -86,7 +86,7 @@ public class Calendar extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.OTHERS;
+        return CommandCategory.CALENDAR;
     }
 
     @Override
