@@ -24,19 +24,15 @@ import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.commands.fun.exclusive.Rate;
-import net.reflxction.impuritybot.commands.hypixel.SkyWarsC;
+import net.reflxction.impuritybot.commands.minecraft.SkyWarsC;
 import net.reflxction.impuritybot.core.cache.CacheHandler;
 import net.reflxction.impuritybot.core.cache.ProfileAdapterCache;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.listeners.*;
-import net.reflxction.impuritybot.core.loggers.Logger;
 import net.reflxction.impuritybot.core.others.BotConfig;
 import net.reflxction.impuritybot.levels.MessageListener;
 import net.reflxction.impuritybot.logs.user.UserWarnLoggers;
 import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
-import net.reflxction.impuritybot.utils.lang.TimeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -206,13 +202,9 @@ public class ImpurityBot extends JavaPlugin {
     }
 
     private void register() {
-        final RegistryBuilder registry = new RegistryBuilder(getJDA());
-        for (AbstractCommand abstractCommand : Register.getAbstractCommands()) {
-            registry.registerCommand(abstractCommand);
-        }
-        for (Logger logger : Register.getLoggers()) {
-            registry.registerLogger(logger);
-        }
+        Register reg = new Register();
+        reg.registerCommands();
+        reg.registerLoggers();
     }
 
     public static List<ProfileAdapterCache> getCurrentCache() {
