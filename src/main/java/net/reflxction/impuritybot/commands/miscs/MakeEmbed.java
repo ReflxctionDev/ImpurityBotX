@@ -26,7 +26,7 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
  * limitations under the License.
  */
 
-public class EmbedMaker extends AbstractCommand {
+public class MakeEmbed extends AbstractCommand {
 
     @Override
     public String getCommand() {
