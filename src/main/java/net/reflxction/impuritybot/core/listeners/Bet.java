@@ -72,7 +72,6 @@ public class Bet {
         if (winnerchance * 2 != looserchance)manager.setUserCredits(winner.getUser(), manager.getUserCredits(winner.getUser()) + amount);
         else {
             manager.setUserCredits(winner.getUser(), manager.getUserCredits(winner.getUser()) + amount * 2);
-            channel.sendMessage(winner.getUser().getName() + " got his bet amount doubled (**" + amount + "**)").queue();
             return;
         }
         manager.setUserCredits(looser.getUser(), manager.getUserCredits(looser.getUser()) - amount);

@@ -75,4 +75,5 @@ public class Agree extends AbstractCommand {
     public String getUsage() {
         return "-agree";
     }
+
 }
