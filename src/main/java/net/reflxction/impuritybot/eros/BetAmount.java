@@ -61,7 +61,7 @@ public class BetAmount extends AbstractCommand {
                     amount = manager.getUserCredits(u);
                     manager.removeCredis(u, amount);
                     int chance = nu.randomBetween(0, 100);
-                    if (chance <= 10) {
+                    if (chance <= 20) {
                         manager.addCredits(u, amount * 2);
                         c.sendMessage("You have successfully bet **" + amount + "** and received the double (**" + (amount * 2) + "**)").queue();
                     } else {
@@ -79,7 +79,7 @@ public class BetAmount extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.EROS;
+        return CommandCategory.CREDITS;
     }
 
     @Override
@@ -94,6 +94,6 @@ public class BetAmount extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "-bet <amount, default = 25>";
+        return "-bet <amount>";
     }
 }

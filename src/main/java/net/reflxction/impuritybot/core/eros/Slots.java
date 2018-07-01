@@ -148,7 +148,7 @@ public class Slots extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.EROS;
+        return CommandCategory.CREDITS;
     }
 
     @Override

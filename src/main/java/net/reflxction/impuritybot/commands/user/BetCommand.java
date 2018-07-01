@@ -56,7 +56,7 @@ public class BetCommand extends AbstractCommand {
     }
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.EROS;
+        return CommandCategory.CREDITS;
     }
 
     @Override

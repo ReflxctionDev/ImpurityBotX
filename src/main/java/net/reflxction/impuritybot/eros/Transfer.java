@@ -76,7 +76,7 @@ public class Transfer extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.EROS;
+        return CommandCategory.CREDITS;
     }
 
     @Override
