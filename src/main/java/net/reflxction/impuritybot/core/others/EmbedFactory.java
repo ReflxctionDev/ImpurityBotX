@@ -98,7 +98,7 @@ public class EmbedFactory {
     }
 
     public EmbedFactory addField(String name, String value) {
-        builder.addField(name, value, true);
+        builder.addField(name, value, false);
         return this;
     }
 
