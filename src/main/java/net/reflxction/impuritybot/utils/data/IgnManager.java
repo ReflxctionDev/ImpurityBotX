@@ -19,7 +19,7 @@ package net.reflxction.impuritybot.utils.data;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.GuildUtils;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 import java.util.ArrayList;
 import java.util.List;

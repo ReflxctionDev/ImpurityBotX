@@ -14,7 +14,6 @@ package net.reflxction.impuritybot.points.mechanics;
 
 import net.dv8tion.jda.core.entities.Member;
 import net.reflxction.impuritybot.points.PointsRank;
-import net.reflxction.impuritybot.utils.GuildUtils;
 import net.reflxction.impuritybot.utils.data.IgnManager;
 
 /**

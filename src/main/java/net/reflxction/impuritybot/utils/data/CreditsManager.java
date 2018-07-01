@@ -73,6 +73,14 @@ public class CreditsManager implements IDataManager {
         du.saveCreditsFile();
     }
 
+    public void addCredits(User u, int amount) {
+        setUserCredits(u, getUserCredits(u) + amount);
+    }
+
+    public void removeCredis(User u, int amount) {
+        setUserCredits(u, getUserCredits(u) - amount);
+    }
+
     public void giveDaily(User u, int credits) {
         try {
             setUserCredits(u, getUserCredits(u) + credits);

@@ -22,7 +22,7 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.points.PointsRank;
 import net.reflxction.impuritybot.points.mechanics.AssignRanking;
-import net.reflxction.impuritybot.utils.GuildUtils;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 public class PointsManager implements IDataManager {
 
