@@ -25,14 +25,14 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 
-public class Bet extends AbstractCommand {
+public class BetAmount extends AbstractCommand {
 
     private CreditsManager manager = new CreditsManager();
     private NumberUtils nu = new NumberUtils();
 
     @Override
     public String getCommand() {
-        return "bet";
+        return "betm";
     }
 
     @Override
@@ -41,22 +41,21 @@ public class Bet extends AbstractCommand {
             case 0:
                 c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**").queue();
                 break;
-
             case 1:
                 int amount = 0;
                 if (!args[0].equalsIgnoreCase("all")) {
                     try {
                         amount = Integer.parseInt(args[0]);
                         manager.removeCredis(u, amount);
-
                     } catch (NumberFormatException ex) {
                         c.sendMessage("**Expected a number value, but found **`" + args[1] + "`").queue();
-
                     }
                     int chance = nu.randomBetween(0, 100);
                     if (chance <= 10) {
                         manager.addCredits(u, amount * 2);
                         c.sendMessage("You have successfully bet **" + amount + "** and received the double (**" + (amount * 2) + "**)").queue();
+                    } else {
+                        c.sendMessage("You have bet **" + amount + "** and lost everything!").queue();
                     }
                 } else {
                     amount = manager.getUserCredits(u);
