@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.commands.hypixel;
+package net.reflxction.impuritybot.commands.minecraft;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
@@ -9,7 +9,6 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.data.IgnManager;
 
 import java.awt.*;
@@ -67,7 +66,7 @@ public class PlayerIGN extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.USER;
+        return CommandCategory.MINECRAFT;
     }
 
     @Override

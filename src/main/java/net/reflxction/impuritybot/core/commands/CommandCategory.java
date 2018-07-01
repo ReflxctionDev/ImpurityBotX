@@ -18,16 +18,25 @@ package net.reflxction.impuritybot.core.commands;
 
 public enum CommandCategory {
 
-    HYPIXEL("Hypixel"),
-    LEVEL("Level"),
-    FUN("Fun"),
     ADMIN("Admin"),
+
+    MINECRAFT("Minecraft"),
+
+    LEVEL("Level"),
+
+    FUN("Fun"),
+
     USER("User"),
+
     HELP("Help"),
-    EROS("Eros"),
+
+    CREDITS("Credits"),
+
     CALENDAR("Calendar"),
-    OTHERS("Others"),
-    POINTS("Points");
+
+    POINTS("Points"),
+
+    OTHERS("Others");
 
     private String name;
 

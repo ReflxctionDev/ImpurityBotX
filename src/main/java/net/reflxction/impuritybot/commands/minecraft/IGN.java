@@ -1,5 +1,6 @@
-package net.reflxction.impuritybot.commands.hypixel;
+package net.reflxction.impuritybot.commands.minecraft;
 
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -7,8 +8,8 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.hypixel.DName;
-import net.reflxction.impuritybot.hypixel.SkyWars;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.utils.data.IgnManager;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -26,20 +27,33 @@ import net.reflxction.impuritybot.hypixel.SkyWars;
  * limitations under the License.
  */
 
-public class SkyWarsC extends AbstractCommand {
+public class IGN extends AbstractCommand {
+
+    private IgnManager igns = new IgnManager();
 
     @Override
     public String getCommand() {
-        return "coins";
+        return "ign";
     }
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        if (args.length == 0) {
-            c.sendMessage("**Invalid arguments. Try -coins <player>**").queue();
-        }
         if (args.length == 1) {
-            c.sendMessage(DName.getName(args[0]) + "'s rank" + SkyWars.getCoins(args[0])).queue();
+            igns.setIGN(u, args[0]);
+            EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
+                    .setDescription("Name assigned!")
+                    .addField("Discord Name:", u.getName() + "#" + u.getDiscriminator(), true)
+                    .addField("Name assigned:", args[0], true)
+                    .setRandomColor()
+                    .build();
+            c.sendMessage(embed.build()).queue();
+            igns.setIGN(u, args[0]);
+        } else {
+            EmbedBuilder embed = new EmbedFactory(new EmbedBuilder()).setRandomColor()
+                    .setTitle("Invalid arguments!")
+                    .setDescription("Try -ign <your in-game name>")
+                    .build();
+            c.sendMessage(embed.build()).queue();
         }
     }
 
@@ -50,17 +64,17 @@ public class SkyWarsC extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.HYPIXEL;
+        return CommandCategory.MINECRAFT;
     }
 
     @Override
     public String getDescription() {
-        return "Get the coins of a player (SkyWars)";
+        return "Assign your Discord account to your Minecrat name";
     }
 
     @Override
     public String getUsage() {
-        return "-coins <player>";
+        return "-ign <your in-game name>";
     }
 
     @Override
