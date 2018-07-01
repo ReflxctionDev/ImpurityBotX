@@ -67,7 +67,7 @@ class Register {
             new UpdateRoles(), new net.reflxction.impuritybot.commands.user.Invite(), new Ping(), new UserInfo(), new DiscordInfo(), new Notify(), new NotifyUpdate(), new Poll(bot),
             new ToDo(), new ReleasedCommand(), new Balance(), new WelcomeManager(bot), new PlayerIGN(), new Menu(), new Buy(), new Credits(),
             new Transfer(), new Open(), new Agree(), new Accept(), new Slots(), new SetLevel(), new Calendar(), new MakeCalendar(), new PointsBalance(), new ManagePointsCmd(),
-            new Unmute(), new Mute(), new MuteRemake(), new StealCommand(), new Tester(), new BetCommand()};
+            new Unmute(), new Mute(), new MuteRemake(), new StealCommand(), new Tester(), new BetCommand(), new BetAmount()};
 
     private static Logger[] loggers = {new UserJoinLogger(), new UserLeaveLogger(), new ChannelCreatedLogger(), new ChannelDeletedLogger(),
             new MessageEditedLogger(), new UserBanLogger(), new UserNickLogger(), new ServerChangeNameLogger(), new RoleGivenLogger(), new RoleRemovedLogger(),
