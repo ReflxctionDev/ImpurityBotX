@@ -16,7 +16,7 @@
 package net.reflxction.impuritybot.core.others;
 
 import net.dv8tion.jda.core.entities.Role;
-import net.reflxction.impuritybot.utils.GuildUtils;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 public class Roles {
 

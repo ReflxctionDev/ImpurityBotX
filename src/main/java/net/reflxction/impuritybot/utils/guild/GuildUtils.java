@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.utils;
+package net.reflxction.impuritybot.utils.guild;
 
 /*
  * * Copyright 2018 github.com/ReflxctionDev

@@ -17,7 +17,6 @@
 package net.reflxction.impuritybot.main;
 
 import com.google.common.eventbus.EventBus;
-import javafx.scene.control.Tab;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -33,13 +32,11 @@ import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.listeners.*;
 import net.reflxction.impuritybot.core.loggers.Logger;
 import net.reflxction.impuritybot.core.others.BotConfig;
-import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.levels.MessageListener;
 import net.reflxction.impuritybot.logs.user.UserWarnLoggers;
 import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
 import net.reflxction.impuritybot.utils.lang.TimeUtils;
-import net.reflxction.impuritybot.utils.tps.TpsDelay;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -142,12 +139,11 @@ public class ImpurityBot extends JavaPlugin {
                 dm.manageDelay(u);
             }
             mute.updateMuteTime();
-        }, 80, 80);
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, cacheHandler::updateCache, TimeUtils.secondsToTicks(15), TimeUtils.secondsToTicks(15));
+            cacheHandler.updateCache();
+        }, 10 * 20, 10 * 20);
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();
-        System.out.println(Roles.UNREGISTERED);
     }
 
     @Override

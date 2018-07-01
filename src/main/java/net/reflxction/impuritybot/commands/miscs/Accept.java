@@ -21,7 +21,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
-import net.reflxction.impuritybot.utils.GuildUtils;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.data.IgnManager;
 
 public class Accept extends AbstractCommand {

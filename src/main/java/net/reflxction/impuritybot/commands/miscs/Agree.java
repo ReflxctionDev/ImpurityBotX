@@ -21,8 +21,8 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
-import net.reflxction.impuritybot.utils.GuildUtils;
 import net.reflxction.impuritybot.utils.data.IgnManager;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 public class Agree extends AbstractCommand {
 
@@ -33,22 +33,21 @@ public class Agree extends AbstractCommand {
         return "agree";
     }
 
-
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
         final Member member = g.getMember(u);
         if (member.getRoles().contains(Roles.UNREGISTERED)) {
             if (igns.hasAssignedIGN(u)) {
-                GuildUtils.controller().removeSingleRoleFromMember(g.getMember(u), Roles.UNREGISTERED).queue();
-                GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.D_MEMBER).queue();
+                GuildUtils.controller().removeSingleRoleFromMember(g.getMember(u), Roles.UNREGISTERED).queue(foo -> System.out.println("Unregister - removed"));
+                GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.D_MEMBER).queue(foo -> System.out.println("D Member - given"));
                 if (GuildUtils.isGuildMember(u)) {
-                    GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.I_MEMBER).queue();
+                    GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.I_MEMBER).queue(foo -> System.out.println("I Member - given"));
                 }
             } else {
-                c.sendMessage("**You must set your IGN first before accepting! Do so with `-ign <IGN>`**").queue();
+                c.sendMessage("You must set your IGN first before accepting! Do so with -ign <IGN>").queue();
             }
         } else {
-            c.sendMessage("**You are already registered!**").queue();
+            c.sendMessage("You are already registered!").queue();
         }
     }
 

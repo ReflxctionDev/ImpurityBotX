@@ -20,7 +20,7 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.GuildUtils;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.data.DataManager;
 
 /**
@@ -44,7 +44,7 @@ public class MuteManager {
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Name", user.getName());
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Mute", seconds);
         data.saveFile(bot.getCreditsFile(), "credits");
-        ImpurityBot.getImpurityGuild().getController().addSingleRoleToMember(ImpurityBot.getImpurityGuild().getMember(user), Roles.MUTED).queue();
+        ImpurityBot.getImpurityGuild().getController().addSingleRoleToMember(ImpurityBot.getImpurityGuild().getMember(user), Roles.MUTED).queue(role -> {}, Throwable::printStackTrace);
     }
 
     /**
@@ -65,7 +65,7 @@ public class MuteManager {
      * @return True if the user is muted
      */
     public boolean isMuted(User u) {
-        return bot.getCreditsFile().getInt("Mutes." + u + ".Mute") != 0;
+        return bot.getCreditsFile().getInt("Mutes." + u + ".Mute") > 0;
     }
 
     /**
@@ -75,7 +75,7 @@ public class MuteManager {
         for (Member m : GuildUtils.members()) {
             final User u = m.getUser();
             if (isMuted(u)) {
-                muteUser(u, getTimeLeftForMute(u) - 4);
+                muteUser(u, getTimeLeftForMute(u) - 10);
             } else {
                 Guild g = GuildUtils.guild();
                 g.getController().removeSingleRoleFromMember(g.getMember(u), Roles.MUTED).queue();

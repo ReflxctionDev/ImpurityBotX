@@ -11,24 +11,70 @@ import net.dv8tion.jda.core.hooks.SubscribeEvent;
 
 public abstract class AbstractCommand extends ListenerAdapter {
 
+    // Message content
     private String content;
 
+    /**
+     * Name of the command, prefixed with "-"
+     *
+     * @return ^
+     */
     public abstract String getCommand();
 
+    /**
+     * Process of the command
+     *
+     * @param j    Instance of the latest JDA cache
+     * @param g    Guild that the command is run in
+     * @param m    Message of the command
+     * @param c    Channel that the message was sent in
+     * @param u    User who sent the command
+     * @param args Extra arguments of the command
+     */
     public abstract void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args);
 
+    /**
+     * Aliases
+     *
+     * @return A string array that consists of other strings which should do the same process
+     */
     public abstract String[] getAliases();
 
+    /**
+     * Category
+     *
+     * @return Command category
+     */
     public abstract CommandCategory getCategory();
 
+    /**
+     * Delay
+     *
+     * @return Delay of the command
+     */
     public abstract long getDelay();
 
+    /**
+     * Message content
+     *
+     * @return Message's content with all args
+     */
     protected String getMessageContent() {
         return content;
     }
 
+    /**
+     * Description
+     *
+     * @return A brief command description
+     */
     public abstract String getDescription();
 
+    /**
+     * Usage
+     *
+     * @return Command usage
+     */
     public abstract String getUsage();
 
     @SubscribeEvent
