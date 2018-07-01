@@ -1,15 +1,3 @@
-package net.reflxction.impuritybot.commands.user;
-
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.others.EmbedFactory;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -25,6 +13,18 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.user;
+
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.*;
+import net.reflxction.impuritybot.commands.miscs.CommandInfo;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Help extends AbstractCommand {
 
@@ -37,14 +37,20 @@ public class Help extends AbstractCommand {
     public void process(JDA j, Guild g, Message m, MessageChannel channel, User u, String[] args) {
         EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
                 .setRandomColor()
-                .setAuthor("Impurity Bot\n", null, "https://cdn.discordapp.com/attachments/374104070945767424/400663237428772868/implogo.png")
-                .addField("Admin Commands:", "-announce - Make an announcement (Only works in <#374104070945767424>)\n-kick <user> <reason> - Kick a user from the Discord server\n-warn <@user> <reason> - Warn a user\n-removewarn <@user> [amount] - Remove a warning (or more) from a specific user\n-clearwarnings <@user> - Reset a user's warnings\n-pin <message id> - Pin a message\n-unpin <message id> - Unpin a message", true)
-                .addField("User Commands:", "-credits - Show the ones who contributed in making the bot\n-guildinfo - Show information about the Impurity guild\n-makeembed - Create an embed message (user -makeembed to show syntax)\n-8ball <question> - Question the 8ball (Impurity exclusive)\n-rate <term> - Get the bot's opinion (Impurity exclusive)\n-ping - Get the bot's ping\n-invite - Get the official invite link\n-userinfo <@user> / -userinfo - Get information about a specific user\n-discordinfo - Get information about the Discord guild and the Hypixel guild", true)
-                .addField("Hypixel Commands:", "-updateroles <IGN> - Receive the roles that match your stats (WIP)\n-ign <your in-game name> - Assign your Discord name to your Minecraft name\n-ignof <@user> - Get the IGN of that user (They must have assigned their IGN)", true)
-                .addField("Level Commands:", "-level <@user> - Get the level of that user\n-top - Get the top users (WIP)\nMore coming soon!", true)
+                .addField("Admin commands", convert(getAdminCommands()))
+                .addField("Minecraft commands", convert(getMinecraftCommands()))
+                .addField("Leveling commands", convert(getLevelCommands()))
+                .addField("Fun commands", convert(getFunCommands()))
+                .addField("User commands", convert(getUserCommands()))
+                .addField("Help commands", convert(getHelpCommands()))
+                .addField("Credits commands", convert(getCreditsCommands()))
+                .addField("Points commands (WIP)", convert(getPointsCommands()))
+                .addField("Others", convert(getOthers()))
+                .setFooter("For information on any command, use -command <command>", null)
                 .build();
-        channel.sendMessage(embed.build()).queue();
-//https://cdn.discordapp.com/icons/363721897743089668/1860cac179e12745c0e5c52b34e40a54.webp - Old
+        PrivateChannel pm = u.openPrivateChannel().complete();
+        pm.sendMessage(embed.build()).queue();
+        m.addReaction("\uD83D\uDCE5").queue();
     }
 
     @Override
@@ -71,4 +77,121 @@ public class Help extends AbstractCommand {
     public long getDelay() {
         return 0;
     }
+
+    private List<AbstractCommand> getAdminCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.ADMIN) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getMinecraftCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.MINECRAFT) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getLevelCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.LEVEL) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getFunCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.FUN) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getUserCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.USER) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getHelpCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.HELP) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getCreditsCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.CREDITS) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getCalendarCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.CALENDAR) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getPointsCommands() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.POINTS) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private List<AbstractCommand> getOthers() {
+        List<AbstractCommand> commands = new ArrayList<>();
+        for (AbstractCommand command : CommandInfo.getCommands()) {
+            if (command.getCategory() == CommandCategory.OTHERS) {
+                commands.add(command);
+            }
+        }
+        return commands;
+    }
+
+    private String convert(List<AbstractCommand> commands) {
+        StringBuilder builder = new StringBuilder();
+        if (commands.size() != 0) {
+            for (int i = 0; i < commands.size(); i++) {
+                final AbstractCommand command = commands.get(i);
+                builder.append(command.getCommand());
+                if (i != commands.size() - 1) {
+                    builder.append(", ");
+                }
+            }
+        } else {
+            return "None!";
+        }
+        return builder.toString();
+    }
+
 }
