@@ -1,6 +1,7 @@
 package net.reflxction.impuritybot.core.listeners;
 
 import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.entities.Game.GameType;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 
@@ -17,37 +18,34 @@ public class GameManager implements IPlayingStateManager {
     @Override
     public void manageGames() {
         final NumberUtils nu = new NumberUtils();
-        int r = nu.randomBetween(0, 9);
+        int r = nu.randomBetween(0, 8);
         switch (r) {
             case 0:
-                setGame(Game.GameType.WATCHING, "Scindra losing to a steveW || -help");
+                setGame(Game.GameType.WATCHING, "Scindra die to a steve || -help");
                 break;
             case 1:
-                setGame(Game.GameType.DEFAULT, "with Dani and MK4 || -help");
+                setGame(Game.GameType.DEFAULT, "with SkyWars with daddy Daresome || -help");
                 break;
             case 2:
-                setGame(Game.GameType.WATCHING, "Technoblade's bad videos || -help");
+                setGame(Game.GameType.WATCHING, "Impurity's bad videos || -help");
                 break;
             case 3:
-                setGame(Game.GameType.LISTENING, "Kyle's wise words || -help");
+                setGame(Game.GameType.LISTENING, "Loki's wise words || -help");
                 break;
             case 4:
-                setGame(Game.GameType.WATCHING, "anime with MK4 and D2G || -help");
+                setGame(Game.GameType.WATCHING, "anime with Meth || -help");
                 break;
             case 5:
-                setGame(Game.GameType.DEFAULT, "Skyclash with Ref || -help");
+                setGame(Game.GameType.DEFAULT, "the Pit with Reflxction || -help");
                 break;
             case 6:
-                setGame(Game.GameType.DEFAULT, "TKR with Yrism || -help");
+                setGame(Game.GameType.DEFAULT, "Bedwars with BrokenEarth || -help");
                 break;
             case 7:
-                setGame(Game.GameType.WATCHING, "the loss of Thommie12 in duels || -help");
+                setGame(Game.GameType.WATCHING, "people burn with FiteMeNerd || -help");
                 break;
             case 8:
-                setGame(Game.GameType.WATCHING, "Thommie's road to 100 winstreaks || -help");
-                break;
-            case 9:
-                setGame(Game.GameType.WATCHING, "People burning with FiteMeNerd || -help");
+                setGame(GameType.WATCHING, "Nikky fall in the void || -help");
                 break;
         }
 
