@@ -31,7 +31,7 @@ public class Unmute extends AbstractCommand {
             c.sendMessage("**You do not have permission to execute this command**").queue();
             return;
         }
-        if (args.length != 2) {
+        if (args.length != 1) {
             c.sendMessage("**Invalid usage. Usage: " + getUsage() + "**").queue();
             return;
         }
