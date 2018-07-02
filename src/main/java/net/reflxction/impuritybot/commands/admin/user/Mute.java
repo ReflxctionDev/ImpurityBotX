@@ -125,7 +125,7 @@ public class Mute extends AbstractCommand {
                 .addField("You are muted", "by " + executor.getName(), false)
                 .addField("Reason",  reason , false)
                 .addField("Time", timeToString(time_seconds), false)
-                .setFooter("If you believe this is a error, please contact the development team", null)
+                .setFooter("If you believe this is an error, please contact the development team", null)
                 .build();
         channel.sendMessage(builder.build()).queue();
     }
