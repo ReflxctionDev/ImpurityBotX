@@ -23,6 +23,9 @@ import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.data.DataManager;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * Class which manages user mutes
  *
@@ -44,7 +47,7 @@ public class MuteManager {
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Name", user.getName());
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Mute", seconds);
         data.saveFile(bot.getCreditsFile(), "credits");
-        ImpurityBot.getImpurityGuild().getController().addSingleRoleToMember(ImpurityBot.getImpurityGuild().getMember(user), Roles.MUTED).queue(role -> {}, Throwable::printStackTrace);
+        GuildUtils.controller().modifyMemberRoles(GuildUtils.guild().getMember(user), Collections.emptySet(), Collections.singleton(Roles.MUTED)).queue();
     }
 
     /**
