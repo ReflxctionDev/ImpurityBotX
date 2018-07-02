@@ -107,7 +107,7 @@ public class Mute extends AbstractCommand {
                 } else {
                     if (array[i] != '1' && array[i] != '2' && array[i] != '3' && array[i] != '4' && array[i] != '5' && array[i] != '6' &&
                             array[i] != '0' && array[i] != '9' && array[i] != '8' && array[i] != '7') {
-                        channel.sendMessage("**Invalid usage** Time must be either s, m, h, or d followed by a number").queue();
+                        channel.sendMessage("**Invalid usage** Time must be either s, m, or h followed by a number").queue();
                     }
                 }
             }

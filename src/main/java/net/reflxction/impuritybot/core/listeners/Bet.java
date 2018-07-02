@@ -37,7 +37,7 @@ public class Bet {
         }
         int executorchance = new Random().nextInt(100) + 1;
         int targetchance = 100 - executorchance;
-        makeEmbed(executor, target, channel, executorchance, targetchance);
+        makeEmbed(executor, target, channel, executorchance, targetchance, amount);
         if (executorchance > targetchance) {
             channel.sendMessage("**" + executor.getUser().getName() + "** wins!").queue();
             setCredits(executor, target, channel, (int) executorchance, (int) targetchance, amount);
@@ -57,11 +57,12 @@ public class Bet {
      * @param executorchance the chance of the first member
      * @param targetchance   the chance of the second member
      */
-    private void makeEmbed(Member executor, Member target, MessageChannel channel, int executorchance, int targetchance) {
+    private void makeEmbed(Member executor, Member target, MessageChannel channel, int executorchance, int targetchance, int amount) {
         EmbedFactory factory = new EmbedFactory(new EmbedBuilder());
         factory.setTitle(executor.getUser().getName() + " vs " + target.getUser().getName());
         factory.addField(executor.getUser().getName(), String.valueOf(executorchance) + "%", true);
         factory.addField(target.getUser().getName(), String.valueOf(targetchance) + "%", true);
+        factory.addField("Amount", String.valueOf(amount));
         factory.setColor(Color.decode("#e84118"));
         channel.sendMessage(factory.build().build()).queue();
     }
