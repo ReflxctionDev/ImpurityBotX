@@ -34,7 +34,6 @@ public class RegistryBuilder {
         final CommandCategory category = command.getCategory() == null ? CommandCategory.OTHERS : command.getCategory();
         final String description = command.getDescription() == null ? "None set" : command.getDescription();
         final String usage = command.getUsage() == null ? "None set" : command.getUsage();
-
         CommandInfo.getCommandNames().add(name);
         CommandInfo.getCategories().add(category.toString());
         CommandInfo.getDesc().add(description);
