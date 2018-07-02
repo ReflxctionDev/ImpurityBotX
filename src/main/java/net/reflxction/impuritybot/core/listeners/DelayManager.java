@@ -14,12 +14,12 @@ public class DelayManager implements IDelayManager {
     public void manageDelay(User u) {
         int remainingTime = bot.getCreditsFile().getInt("Credits." + u.getId() + ".TimeLeft");
         if (remainingTime != 0) {
-            bot.getCreditsFile().set("Credits." + u.getId() + ".TimeLeft", remainingTime - 10);
+            bot.getCreditsFile().set("Credits." + u.getId() + ".TimeLeft", remainingTime - 4);
             du.saveCreditsFile();
         }
         int muteTime = bot.getCreditsFile().getInt("Credits." + u.getId() + ".Mute");
         if (muteTime != 0) {
-            bot.getCreditsFile().set("Credits." + u.getId() + ".Mute", muteTime  - 10);
+            bot.getCreditsFile().set("Credits." + u.getId() + ".Mute", muteTime  - 4);
             du.saveCreditsFile();
         }
     }
