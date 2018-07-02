@@ -17,10 +17,10 @@ public class GameManager implements IPlayingStateManager {
     @Override
     public void manageGames() {
         final NumberUtils nu = new NumberUtils();
-        int r = nu.randomBetween(0, 8);
+        int r = nu.randomBetween(0, 9);
         switch (r) {
             case 0:
-                setGame(Game.GameType.WATCHING, "Lith losing to a steveW || -help");
+                setGame(Game.GameType.WATCHING, "Scindra losing to a steveW || -help");
                 break;
             case 1:
                 setGame(Game.GameType.DEFAULT, "with Dani and MK4 || -help");
@@ -45,6 +45,10 @@ public class GameManager implements IPlayingStateManager {
                 break;
             case 8:
                 setGame(Game.GameType.WATCHING, "Thommie's road to 100 winstreaks || -help");
+                break;
+            case 9:
+                setGame(Game.GameType.WATCHING, "People burning with FiteMeNerd || -help");
+                break;
         }
 
     }
