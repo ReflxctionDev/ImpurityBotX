@@ -6,6 +6,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.listeners.MuteManager;
+import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class Mute extends AbstractCommand {
@@ -17,21 +18,9 @@ public class Mute extends AbstractCommand {
         return "mute";
     }
 
-    private boolean isAllowed(User u, Guild g) {
-        Role admin = g.getRolesByName("Admin", true).get(0);
-        Role owner = g.getRolesByName("Owner", true).get(0);
-        Role co_owner = g.getRolesByName("co-owner", true).get(0);
-        Member executor = g.getMember(u);
-        return executor.getRoles().contains(admin) || executor.getRoles().contains(owner)
-                || executor.getRoles().contains(co_owner) || executor.isOwner();
-    }
-
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        Role admin = g.getRolesByName("Admin", true).get(0);
-        Role owner = g.getRolesByName("Owner", true).get(0);
-        Role co_owner = g.getRolesByName("co-owner", true).get(0);
-        if (!isAllowed(u, g)) {
+        if (!(g.getMember(u).getRoles().get(0).getPosition() >= Roles.ADMIN.getPosition())) {
             c.sendMessage("**You do not have permission to execute this command**").queue();
             return;
         }
@@ -63,22 +52,8 @@ public class Mute extends AbstractCommand {
                 c.sendMessage("**You can't mute bots**").queue();
                 return;
             }
-            if (executor.getRoles().contains(admin) && target.getRoles().contains(owner)) {
-                c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
-                return;
-            }
-            if (executor.getRoles().contains(admin)
-            && target.getRoles().contains(co_owner)) {
-                c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
-                return;
-            }
-            if (executor.getRoles().contains(admin) && target.isOwner()) {
-                c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
-                return;
-            }
-            if (executor.getRoles().contains(co_owner) && (target.getRoles().contains(owner) || target.isOwner())) {
-                c.sendMessage("**You are not allowed to mute a member with higher or equal role**").queue();
-                return;
+            if (executor.getRoles().get(0).getPosition() <= target.getRoles().get(0).getPosition()) {
+                c.sendMessage("You cannot mute **" + target.getUser().getName() + "** because he has a higher or equal role!").queue();
             }
             int time_seconds = parseTime(args[1], c);
             if (time_seconds == Integer.MIN_VALUE) return;
@@ -96,7 +71,6 @@ public class Mute extends AbstractCommand {
             c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
             return;
         }
-
     }
 
     private int parseTime(String toParse, MessageChannel channel) {

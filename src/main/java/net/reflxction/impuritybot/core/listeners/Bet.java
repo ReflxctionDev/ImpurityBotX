@@ -54,7 +54,6 @@ public class Bet {
      * @param targetchance the chance of the second member
      */
     private void makeEmbed(Member executor, Member target, MessageChannel channel, int executorchance, int targetchance) {
-
         EmbedFactory factory = new EmbedFactory(new EmbedBuilder());
         factory.setTitle(executor.getUser().getName() + " vs " + target.getUser().getName());
         factory.addField(executor.getUser().getName(), String.valueOf(executorchance) + "%");
@@ -76,7 +75,6 @@ public class Bet {
         }
         manager.setUserCredits(looser.getUser(), manager.getUserCredits(looser.getUser()) - amount);
     }
-
     /**
      * Checks of the target or executor has enough credits
      * @param executor the first member that got bet

@@ -62,6 +62,7 @@ public class BetCommand extends AbstractCommand {
     public String[] getAliases() {
         return new String[0];
     }
+
     @Override
     public CommandCategory getCategory() {
         return CommandCategory.CREDITS;
