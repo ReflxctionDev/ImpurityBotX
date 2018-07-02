@@ -35,10 +35,11 @@ public class RegistryBuilder {
         final String description = command.getDescription() == null ? "None set" : command.getDescription();
         final String usage = command.getUsage() == null ? "None set" : command.getUsage();
 
-        CommandInfo.names.add(name);
-        CommandInfo.categories.add(category.toString());
-        CommandInfo.desc.add(description);
-        CommandInfo.usage.add(usage);
+        CommandInfo.getCommandNames().add(name);
+        CommandInfo.getCategories().add(category.toString());
+        CommandInfo.getDesc().add(description);
+        CommandInfo.getUsages().add(usage);
+        CommandInfo.getCommands().add(command);
         return this;
     }
 
@@ -49,10 +50,10 @@ public class RegistryBuilder {
         final String description = command.getDescription() == null ? "None set" : command.getDescription();
         final String usage = command.getUsage() == null ? "None set" : command.getUsage();
 
-        CommandInfo.names.remove(name);
-        CommandInfo.categories.remove(category.toString());
-        CommandInfo.desc.remove(description);
-        CommandInfo.usage.remove(usage);
+        CommandInfo.getNames().remove(name);
+        CommandInfo.getCategories().remove(category.toString());
+        CommandInfo.getDesc().remove(description);
+        CommandInfo.getUsages().remove(usage);
         return this;
     }
 

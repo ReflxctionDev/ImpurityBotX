@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.commands.hypixel;
+package net.reflxction.impuritybot.commands.minecraft;
 
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
@@ -8,7 +8,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.hypixel.DName;
-import net.reflxction.impuritybot.hypixel.IHypixelObjective;
+import net.reflxction.impuritybot.hypixel.SkyWars;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -26,41 +26,41 @@ import net.reflxction.impuritybot.hypixel.IHypixelObjective;
  * limitations under the License.
  */
 
-public class PlayerRank extends AbstractCommand {
+public class SkyWarsC extends AbstractCommand {
+
     @Override
     public String getCommand() {
-        return "playerrank";
+        return "coins";
     }
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        if (getMessageContent().length() <= 12) {
-            c.sendMessage("**Invalid usage. Try -playerrank <player>**").queue();
+        if (args.length == 0) {
+            c.sendMessage("**Invalid arguments. Try -coins <player>**").queue();
         }
         if (args.length == 1) {
-            IHypixelObjective ob = new IHypixelObjective();
-            c.sendMessage(DName.getName(args[0]) + "'s rank: " + ob.getRank(args[0])).queue();
+            c.sendMessage(DName.getName(args[0]) + "'s rank" + SkyWars.getCoins(args[0])).queue();
         }
     }
 
     @Override
     public String[] getAliases() {
-        return new String[0];
+        return new String[]{};
     }
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.HYPIXEL;
+        return CommandCategory.MINECRAFT;
     }
 
     @Override
     public String getDescription() {
-        return "Get the rank of a player (Hypixel)";
+        return "Get the coins of a player (SkyWars)";
     }
 
     @Override
     public String getUsage() {
-        return "-playerrank <player>";
+        return "-coins <player>";
     }
 
     @Override

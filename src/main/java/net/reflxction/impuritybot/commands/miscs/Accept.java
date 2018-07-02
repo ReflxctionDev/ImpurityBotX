@@ -25,6 +25,8 @@ import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.data.IgnManager;
 
+import java.util.*;
+
 public class Accept extends AbstractCommand {
 
     private IgnManager igns = new IgnManager();
@@ -38,13 +40,13 @@ public class Accept extends AbstractCommand {
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
         final Member member = g.getMember(u);
         if (member.getRoles().contains(Roles.UNREGISTERED)) {
-            
             if (igns.hasAssignedIGN(u)) {
-                GuildUtils.controller().removeSingleRoleFromMember(g.getMember(u), Roles.UNREGISTERED).queue();
-                GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.D_MEMBER).queue();
+                List<Role> roles = new ArrayList<>();
+                roles.add(Roles.D_MEMBER);
                 if (GuildUtils.isGuildMember(u)) {
-                    GuildUtils.controller().addSingleRoleToMember(g.getMember(u), Roles.I_MEMBER).queue();
+                    roles.add(Roles.I_MEMBER);
                 }
+                GuildUtils.controller().modifyMemberRoles(g.getMember(u), roles, Collections.singleton(Roles.UNREGISTERED)).queue();
             } else {
                 c.sendMessage("**You must set your IGN first before accepting! Do so with `-ign <IGN>`**").queue();
             }

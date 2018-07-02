@@ -89,9 +89,7 @@ public class UpdateRoles extends AbstractCommand {
                         .setDescription("This player cannot be found. Ensure that the spelling is correct.")
                         .build();
                 channel.sendMessage(embed.build()).queue();
-            } catch (APIException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (APIException | IOException e) {
                 e.printStackTrace();
             }
         }
@@ -104,7 +102,7 @@ public class UpdateRoles extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.HYPIXEL;
+        return CommandCategory.MINECRAFT;
     }
 
     @Override

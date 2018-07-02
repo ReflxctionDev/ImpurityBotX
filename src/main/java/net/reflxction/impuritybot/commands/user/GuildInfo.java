@@ -28,7 +28,6 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
 
 public class GuildInfo extends AbstractCommand {
 
-
     @Override
     public String getCommand() {
         return "guildinfo";
@@ -43,8 +42,8 @@ public class GuildInfo extends AbstractCommand {
                     .setRandomColor()
                     .setAuthor("The Impurity Guild", "https://hypixel.net/threads/guild-impurity-discord-party-motd.1376085/", null)
                     .setThumbnail("https://hypixel.net/attachments/screen-shot-2017-10-26-at-1-40-22-pm-png.738051/")
-                    .addField("Guild Master", "Inariiiii", true)
-                    .addField("Guild Tag", "[IMPURE]", true)
+                    .addField("Guild Master", "Scindra", true)
+                    .addField("Guild Tag", "[I]", true)
                     .addBlankField()
                     .addField("Founded in:", "8th of September, 2017", true)
                     .addField("Texture Pack", "Coming soon!", true)

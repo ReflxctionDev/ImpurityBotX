@@ -1,6 +1,5 @@
-package net.reflxction.impuritybot.commands.hypixel;
+package net.reflxction.impuritybot.commands.minecraft;
 
-import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -8,9 +7,8 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.IgnManager;
+import net.reflxction.impuritybot.hypixel.DName;
+import net.reflxction.impuritybot.hypixel.IHypixelObjective;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -28,54 +26,41 @@ import net.reflxction.impuritybot.utils.data.IgnManager;
  * limitations under the License.
  */
 
-public class IGN extends AbstractCommand {
-
-    private IgnManager igns = new IgnManager();
-
+public class PlayerRank extends AbstractCommand {
     @Override
     public String getCommand() {
-        return "ign";
+        return "playerrank";
     }
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+        if (getMessageContent().length() <= 12) {
+            c.sendMessage("**Invalid usage. Try -playerrank <player>**").queue();
+        }
         if (args.length == 1) {
-            igns.setIGN(u, args[0]);
-            EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
-                    .setDescription("Name assigned!")
-                    .addField("Discord Name:", u.getName() + "#" + u.getDiscriminator(), true)
-                    .addField("Name assigned:", args[0], true)
-                    .setRandomColor()
-                    .build();
-            c.sendMessage(embed.build()).queue();
-            igns.setIGN(u, args[0]);
-        } else {
-            EmbedBuilder embed = new EmbedFactory(new EmbedBuilder()).setRandomColor()
-                    .setTitle("Invalid arguments!")
-                    .setDescription("Try -ign <your in-game name>")
-                    .build();
-            c.sendMessage(embed.build()).queue();
+            IHypixelObjective ob = new IHypixelObjective();
+            c.sendMessage(DName.getName(args[0]) + "'s rank: " + ob.getRank(args[0])).queue();
         }
     }
 
     @Override
     public String[] getAliases() {
-        return new String[]{};
+        return new String[0];
     }
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.USER;
+        return CommandCategory.MINECRAFT;
     }
 
     @Override
     public String getDescription() {
-        return "Assign your Discord account to your Minecrat name";
+        return "Get the rank of a player (Hypixel)";
     }
 
     @Override
     public String getUsage() {
-        return "-ign <your in-game name>";
+        return "-playerrank <player>";
     }
 
     @Override

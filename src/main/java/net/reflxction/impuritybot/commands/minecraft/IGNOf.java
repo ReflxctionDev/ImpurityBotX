@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.commands.hypixel;
+package net.reflxction.impuritybot.commands.minecraft;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
@@ -74,7 +74,7 @@ public class IGNOf extends AbstractCommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.USER;
+        return CommandCategory.MINECRAFT;
     }
 
     @Override

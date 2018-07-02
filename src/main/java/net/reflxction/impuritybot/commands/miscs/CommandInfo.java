@@ -1,17 +1,3 @@
-package net.reflxction.impuritybot.commands.miscs;
-
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.others.EmbedFactory;
-
-import java.util.ArrayList;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -27,16 +13,32 @@ import java.util.ArrayList;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.miscs;
+
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
+
+import java.util.ArrayList;
+
 
 public class CommandInfo extends AbstractCommand {
 
-    public static ArrayList<String> names = new ArrayList<>();
+    private static ArrayList<String> names = new ArrayList<>();
 
-    public static ArrayList<String> categories = new ArrayList<>();
+    private static ArrayList<String> categories = new ArrayList<>();
 
-    public static ArrayList<String> desc = new ArrayList<>();
+    private static ArrayList<String> desc = new ArrayList<>();
 
-    public static ArrayList<String> usage = new ArrayList<>();
+    private static ArrayList<String> usage = new ArrayList<>();
+
+    private static ArrayList<AbstractCommand> commands = new ArrayList<>();
 
     @Override
     public String getCommand() {
@@ -53,16 +55,16 @@ public class CommandInfo extends AbstractCommand {
             c.sendMessage(embed.build()).queue();
         }
         if (args.length == 1) {
-            for (int i = 0; i < names.size(); i++) {
-                if (args[0].equalsIgnoreCase(names.get(i))) {
-                    EmbedBuilder embed = new EmbedFactory(new EmbedBuilder()).setRandomColor()
-                            .setDescription("Command Information\n")
-                            .addField("Name:", names.get(i) + "\n", true)
-                            .addField("Description", desc.get(i) + "\n", true)
-                            .addBlankField()
-                            .addField("Category", categories.get(i) + "\n", true)
-                            .addField("Usage", usage.get(i), true)
-                            .build();
+            for (int i = 0; i < getCommands().size(); i++) {
+                if (args[0].equalsIgnoreCase(getCommands().get(i).getCommand())) {
+                    AbstractCommand command = getCommands().get(i);
+                    EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
+                            .setRandomColor()
+                            .addField("Command Information:",
+                                    "**Name**: " + command.getCommand() +
+                                            "\n**Description**: " + command.getDescription() +
+                                            "\n**Category**: " + command.getCategory() +
+                                            "\n**Usage**: " + command.getUsage()).build();
                     c.sendMessage(embed.build()).queue();
                 }
             }
@@ -94,8 +96,28 @@ public class CommandInfo extends AbstractCommand {
         return 0;
     }
 
-    public static ArrayList<String> getCommands() {
+    public static ArrayList<String> getCommandNames() {
         return names;
+    }
+
+    public static ArrayList<String> getNames() {
+        return names;
+    }
+
+    public static ArrayList<String> getCategories() {
+        return categories;
+    }
+
+    public static ArrayList<String> getDesc() {
+        return desc;
+    }
+
+    public static ArrayList<String> getUsages() {
+        return usage;
+    }
+
+    public static ArrayList<AbstractCommand> getCommands() {
+        return commands;
     }
 
 }
