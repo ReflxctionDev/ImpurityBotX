@@ -6,8 +6,11 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.listeners.MuteManager;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
+
+import java.awt.*;
 
 public class Mute extends AbstractCommand {
 
@@ -66,7 +69,7 @@ public class Mute extends AbstractCommand {
             }
             c.sendMessage("Successfully muted **" + target.getUser().getName() + "**").queue();
             manager.muteUser(target.getUser(), time_seconds);
-            sendNews(target.getUser(), reason.toString(), time_seconds, executor.getUser());
+            sendNews(target.getUser().openPrivateChannel().complete(), reason.toString(), time_seconds, executor.getUser(), target.getUser());
         } catch (NumberFormatException e) {
             c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
             return;
@@ -116,47 +119,29 @@ public class Mute extends AbstractCommand {
         return parsed;
     }
 
-    private void sendLog(User executor, User target, String reason, int time_seconds, TextChannel channel) throws Exception {
-        EmbedBuilder builder = new EmbedBuilder();
-        builder.addField("You are muted", "by " + executor.getAsMention(), false);
-        builder.setTitle(target.getAsMention());
-        if (time_seconds >= 60 && time_seconds < 3600) {
-            int t1 = time_seconds / 60;
-            builder.addField("Time", t1 + " minutes", false);
-        } else if (time_seconds >= 3600 && time_seconds < 3600 * 24) {
-            int t1 = time_seconds / 3600;
-            builder.addField("Time", t1 + " hours", false);
-        } else if (time_seconds >= 3600 * 24) {
-            int t1 = time_seconds / (3600 * 24);
-            builder.addField("Time", t1 + " days", false);
-        } else {
-            builder.addField("Time", time_seconds + " seconds", false);
-        }
-        if (reason != null && !reason.equalsIgnoreCase("")) builder.addField("Reason", reason, false);
+    private void sendNews(MessageChannel channel, String reason, int time_seconds, User executor, User target) {
+        EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
+                .setTitle(target.getAsMention())
+                .setColor(Color.decode("#e84118"))
+                .addField("You are muted", "by " + executor.getName(), false)
+                .addField("Reason", reason, false)
+                .addField("Time", timeToString(time_seconds), false)
+                .setFooter("If you believe this is a error, please contact the development team", null)
+                .build();
         channel.sendMessage(builder.build()).queue();
     }
 
-    private void sendNews(User u, String reason, int time_seconds, User executor) {
-        PrivateChannel channel = u.openPrivateChannel().complete();
-        //EMBED
-        EmbedBuilder builder = new EmbedBuilder();
-        builder.addField("You are muted", "by " + executor.getName(), false);
-        if (time_seconds >= 60 && time_seconds < 3600) {
-            int t1 = time_seconds / 60;
-            builder.addField("Time", t1 + " minutes", false);
-        } else if (time_seconds >= 3600 && time_seconds < 3600 * 24) {
-            int t1 = time_seconds / 3600;
-            builder.addField("Time", t1 + " hours", false);
-        } else if (time_seconds >= 3600 * 24) {
-            int t1 = time_seconds / (3600 * 24);
-            builder.addField("Time", t1 + " days", false);
-        } else {
-            builder.addField("Time", time_seconds + " seconds", false);
+    private String timeToString(int time_seconds) {
+        if (time_seconds < 60) {
+            return time_seconds + " seconds";
         }
-        if (reason != null && !reason.equalsIgnoreCase("")) builder.addField("Reason", reason, false);
-        builder.setFooter("If you believe this is an error, contact an admin or " + executor.getAsMention(), null);
-        //=====
-        channel.sendMessage(builder.build()).queue();
+        else if (time_seconds >= 60 && time_seconds < 3600) {
+            return time_seconds / 60 + " minutes";
+        } else if (time_seconds >= 3600 && time_seconds < 86400) {
+            return time_seconds / 3600 + " hours";
+        } else {
+            return time_seconds / 86400 + " days";
+        }
     }
 
     @Override
