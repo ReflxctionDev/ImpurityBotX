@@ -10,6 +10,9 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 
+import java.awt.*;
+import java.util.HashMap;
+
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -30,35 +33,80 @@ public class MakeEmbed extends AbstractCommand {
 
     @Override
     public String getCommand() {
-        return "makeembed";
+        return "embed";
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        String content = getMessageContent();
-        if (content.length() <= 10) {
-            c.sendMessage("Syntax: `-makeembed (Embed Title) {-Field title-} {{Field content}}`").queue();
-            c.sendMessage("Remember: You must put the title in ( ), the field title in {- -}, and the field content in {{ }}").queue();
-            c.sendMessage("E.g: ```yml\n-makeembed (My life) {-It's bad-} {{I want to suicide}}```").queue();
-        } else {
-            String whole = content.substring(10);
-            int fbt = whole.indexOf("(");
-            int sbt = whole.indexOf(")");
-            String title = whole.substring(fbt, sbt);
-            int firstfieldt = whole.indexOf("{-");
-            int firstfieldt2 = whole.indexOf("-}");
-            String fieldtitle = whole.substring(firstfieldt, firstfieldt2);
-            int firstfield = whole.indexOf("{{");
-            int firstfield2 = whole.indexOf("}}");
-            String fieldc = whole.substring(firstfield, firstfield2);
-            EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
-                    .setTitle(title.replace("(", "").replace(")", ""))
-                    .addField(fieldtitle.replace("{-", "").replace("-}", ""), fieldc.replace("{", "").replace("}", ""), true)
-                    .setRandomColor()
-                    .build();
-            c.sendMessage(embed.build()).queue();
-            c.deleteMessageById(m.getId()).queue();
+    public void process(JDA jda, Guild guild, Message message, MessageChannel channel, User user, String[] args) {
+        if (args.length == 0) {
+            channel.sendMessage("**Invalid usage** Try " + getUsage()).queue();
+            return;
         }
+        boolean foundTitle = false;
+        boolean foundFieldTitle = false;
+        boolean foundFieldBody = false;
+        String recent = "";
+        String title = "";
+        String titleField = "";
+        String BodyField = "";
+        for (String arg : args) {
+            if (arg.equals("title:")) {
+                if (foundTitle) {
+                    channel.sendMessage("Please enter the title once").queue();
+                    break;
+                }
+                recent = "title:";
+                foundTitle = true;
+            } else if (arg.equals("t-field:")) {
+                if (foundFieldTitle) {
+                    channel.sendMessage("Please enter the field title once").queue();
+                    break;
+                }
+                recent = "t-field:";
+                foundFieldTitle = true;
+            } else if (arg.equals("b-field:")) {
+                if (foundFieldBody) {
+                    channel.sendMessage("Please enter the field body once").queue();
+                    break;
+                }
+                recent = "b-field:";
+                foundFieldBody = true;
+            } else {
+                if (recent.equals("title:")) {
+                    title += arg;
+                } else if (recent.equals("t-field:")) {
+                    titleField += arg;
+                } else if (recent.equals("b-field:")) {
+                    BodyField += arg;
+                } else {
+                    channel.sendMessage("Please use **title:<text>** for title, **t-field:<text>** for field title, and **b-field:<text>** for field body").queue();
+                    break;
+                }
+            }
+        }
+        EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
+                .setColor(Color.decode("#e84118"))
+                .setTitle(title)
+                .addField(titleField, BodyField, false)
+                .build();
+        channel.sendMessage(builder.build()).queue();
+    }
+
+    private String parse(String arg, String startPoint) {
+        char[] array = arg.toCharArray();
+        int breakpoint = 0;
+        String parsed = "";
+        String previous = "";
+        for (int i = 0; i < array.length; i++) {
+            previous += array[i];
+            if (previous.equals(startPoint)) {
+                breakpoint = i;
+            }
+        }
+        for (int i = breakpoint + 1; i > breakpoint && i < array.length; i++) {
+            parsed += array[i];
+        }
+        return parsed;
     }
 
     @Override
@@ -78,7 +126,7 @@ public class MakeEmbed extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "-makeembed (Embed Title) {-Field title-} {{Field content}}";
+        return "-makeembed title:<title> t-field:<field title> b-field:<field body>";
     }
 
     @Override
