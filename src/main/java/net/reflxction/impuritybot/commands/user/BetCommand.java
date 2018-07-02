@@ -69,6 +69,10 @@ public class BetCommand extends AbstractCommand {
                     channel.sendMessage("**You cannot start a bet with yourself!**").queue();
                 } else {
                     if (manager.getUserCredits(user) >= amount) {
+                        if (target.getUser().isBot()) {
+                            channel.sendMessage("**You cannot bet bots").queue();
+                            return;
+                        }
                         BetRange range = new BetRange(executor, target, amount, false);
                         currentBets.add(range);
                         new Timer().schedule(new TimerTask() {
