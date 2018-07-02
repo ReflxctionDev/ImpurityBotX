@@ -118,7 +118,7 @@ class Register {
                 .registerCommand(new Unmute())
                 .registerCommand(new Mute())
                 .registerCommand(new MuteRemake())
-                .registerCommand(new StealCommand())
+                //.registerCommand(new StealCommand())
                 .registerCommand(new Tester())
                 .registerCommand(new BetCommand());
                 //.registerCommand(new BetAmount());
