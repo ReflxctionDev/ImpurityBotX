@@ -23,7 +23,7 @@ public class Mute extends AbstractCommand {
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        if (!(g.getMember(u).getRoles().get(0).getPosition() >= Roles.ADMIN.getPosition())) {
+        if (!(g.getMember(u).getRoles().get(0).getPositionRaw() >= Roles.ADMIN.getPosition())) {
             c.sendMessage("**You do not have permission to execute this command**").queue();
             return;
         }
@@ -55,7 +55,7 @@ public class Mute extends AbstractCommand {
                 c.sendMessage("**You can't mute bots**").queue();
                 return;
             }
-            if (executor.getRoles().get(0).getPosition() <= target.getRoles().get(0).getPosition()) {
+            if (executor.getRoles().get(0).getPositionRaw() <= target.getRoles().get(0).getPositionRaw()) {
                 c.sendMessage("You cannot mute **" + target.getUser().getName() + "** because he has a higher or equal role!").queue();
             }
             int time_seconds = parseTime(args[1], c);
