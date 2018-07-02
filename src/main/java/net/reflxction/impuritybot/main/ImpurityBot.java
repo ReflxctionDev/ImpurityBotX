@@ -136,7 +136,7 @@ public class ImpurityBot extends JavaPlugin {
             }
             mute.updateMuteTime();
             cacheHandler.updateCache();
-        }, 10 * 20, 10 * 20);
+        }, 4 * 20, 4 * 20);
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();

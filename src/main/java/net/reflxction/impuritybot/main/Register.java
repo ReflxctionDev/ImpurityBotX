@@ -120,8 +120,8 @@ class Register {
                 .registerCommand(new MuteRemake())
                 .registerCommand(new StealCommand())
                 .registerCommand(new Tester())
-                .disableCommand(new BetCommand())
-                .registerCommand(new BetAmount());
+                .registerCommand(new BetCommand());
+                //.registerCommand(new BetAmount());
     }
 
     void registerLoggers() {

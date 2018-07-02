@@ -5,9 +5,20 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.listeners.Bet;
+import net.reflxction.impuritybot.utils.data.CreditsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.lang.TimeUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BetCommand extends AbstractCommand {
+
+    private CreditsManager manager = new CreditsManager();
+
+    private List<BetRange> currentBets = new ArrayList<>();
 
     @Override
     public String getCommand() {
@@ -16,37 +27,66 @@ public class BetCommand extends AbstractCommand {
 
     @Override
     public void process(JDA jda, Guild guild, Message message, MessageChannel channel, User user, String[] args) {
-        if (args.length != 2) {
+        if (args.length == 0) {
             channel.sendMessage("**Invalid usage!** Try " + getUsage()).queue();
-            return;
+        } else {
+            if (args.length == 1) {
+                if (args[0].equalsIgnoreCase("accept")) {
+                    BetRange range = getRangeFor(user);
+                    if (range != null) {
+                        if (!range.hasExpired()) {
+                            Bet bet = new Bet();
+                            bet.bet(range.getM1(), range.getM2(), channel, range.getAmount());
+                            range.setExpired();
+                            currentBets.remove(range);
+                        } else {
+                            channel.sendMessage("**Your last bet has expired!**").queue();
+                        }
+                    } else {
+                        channel.sendMessage("**You haven't got any bets or your last bet has expired!!**").queue();
+                    }
+                } else {
+                    channel.sendMessage("**Invalid usage. Try " + getUsage() + "**").queue();
+                }
+            } else if (args.length == 2) {
+                Member executor = guild.getMember(user);
+                Member target;
+                int amount;
+                try {
+                    String id = StringUtils.mentionToId(args[0]);
+                    target = guild.getMember(jda.getUserById(id));
+                } catch (Exception e) {
+                    channel.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
+                    return;
+                }
+                try {
+                    amount = Integer.parseInt(args[1]);
+                } catch (Exception e) {
+                    channel.sendMessage("**Expected a number, but found** `" + args[1] + "`**.**").queue();
+                    return;
+                }
+                if (executor.getUser().equals(target.getUser())) {
+                    channel.sendMessage("**You cannot start a bet with yourself!**").queue();
+                } else {
+                    if (manager.getUserCredits(user) >= amount) {
+                        BetRange range = new BetRange(executor, target, amount, false);
+                        currentBets.add(range);
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                range.setExpired();
+                                currentBets.remove(range);
+                            }
+                        }, TimeUtils.minutesToSeconds(5) * 1000);
+                        channel.sendMessage("You have started a bet with **" + target.getUser().getName() + "**. They have 5 minutes to accept").queue();
+                    } else {
+                        channel.sendMessage("**You don't have enough credits to bet this amount!**").queue();
+                    }
+                }
+            }
         }
-        Member executor = guild.getMember(user);
-        Member target;
-        int amount;
-        try {
-            String id = StringUtils.mentionToId(args[0]);
-            target = guild.getMember(jda.getUserById(id));
-        } catch (Exception e) {
-            channel.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
-            return;
-        }
-        if (target == executor) {
-            channel.sendMessage("You can't bet **yourself**").queue();
-            return;
-        }
-        try {
-            amount = Integer.parseInt(args[1]);
-        } catch (Exception e) {
-            channel.sendMessage("**Expected a number, but found** `" + args[1] + "`**.**").queue();
-            return;
-        }
-        if (amount < 5) {
-            channel.sendMessage("You can't bet with less than **5** credits").queue();
-            return;
-        }
-        Bet bet = new Bet();
-        bet.bet(executor, target, channel, amount);
     }
+
 
     @Override
     public String getUsage() {
@@ -62,6 +102,7 @@ public class BetCommand extends AbstractCommand {
     public String[] getAliases() {
         return new String[0];
     }
+
     @Override
     public CommandCategory getCategory() {
         return CommandCategory.CREDITS;
@@ -71,4 +112,50 @@ public class BetCommand extends AbstractCommand {
     public long getDelay() {
         return 0;
     }
+
+    private BetRange getRangeFor(User user) {
+        for (BetRange range : currentBets) {
+            if (range.getM2().getUser().getId().equals(user.getId())) {
+                return range;
+            }
+        }
+        return null;
+    }
+
+    private class BetRange {
+
+        private Member m1, m2;
+
+        private int amount;
+
+        private boolean expired;
+
+        BetRange(Member m1, Member m2, int amount, boolean expired) {
+            this.m1 = m1;
+            this.m2 = m2;
+            this.amount = amount;
+            this.expired = expired;
+        }
+
+        Member getM1() {
+            return m1;
+        }
+
+        Member getM2() {
+            return m2;
+        }
+
+        int getAmount() {
+            return amount;
+        }
+
+        boolean hasExpired() {
+            return expired;
+        }
+
+        void setExpired() {
+            this.expired = true;
+        }
+    }
+
 }
