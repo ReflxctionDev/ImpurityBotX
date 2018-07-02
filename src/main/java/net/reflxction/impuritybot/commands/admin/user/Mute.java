@@ -121,7 +121,7 @@ public class Mute extends AbstractCommand {
 
     private void sendNews(MessageChannel channel, String reason, int time_seconds, User executor, User target) {
         EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
-                .setTitle(target.getAsMention())
+                .setTitle(target.getName())
                 .setColor(Color.decode("#e84118"))
                 .addField("You are muted", "by " + executor.getName(), false)
                 .addField("Reason", reason, false)
