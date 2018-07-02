@@ -57,6 +57,7 @@ public class Mute extends AbstractCommand {
             }
             if (executor.getRoles().get(0).getPositionRaw() <= target.getRoles().get(0).getPositionRaw()) {
                 c.sendMessage("You cannot mute **" + target.getUser().getName() + "** because he has a higher or equal role!").queue();
+                return;
             }
             int time_seconds = parseTime(args[1], c);
             if (time_seconds == Integer.MIN_VALUE) return;
