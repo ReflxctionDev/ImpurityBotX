@@ -20,10 +20,9 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -47,7 +46,7 @@ public class MuteManager {
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Name", user.getName());
         bot.getCreditsFile().set("Mutes." + user.getId() + ".Mute", seconds);
         data.saveFile(bot.getCreditsFile(), "credits");
-        GuildUtils.controller().modifyMemberRoles(GuildUtils.guild().getMember(user), Collections.emptySet(), Collections.singleton(Roles.MUTED)).queue();
+        GuildUtils.controller().modifyMemberRoles(GuildUtils.guild().getMember(user), Collections.singleton(Roles.MUTED), Collections.emptySet()).queue();
     }
 
     /**
@@ -80,8 +79,7 @@ public class MuteManager {
             if (isMuted(u)) {
                 muteUser(u, getTimeLeftForMute(u) - 4);
             } else {
-                Guild g = GuildUtils.guild();
-                g.getController().removeSingleRoleFromMember(g.getMember(u), Roles.MUTED).queue();
+                GuildUtils.controller().modifyMemberRoles(GuildUtils.guild().getMember(u), Collections.emptySet(), Collections.singleton(Roles.MUTED)).queue();
             }
         }
     }
@@ -93,7 +91,7 @@ public class MuteManager {
      */
     public void unmute(User user) {
         if (isMuted(user)) {
-            GuildUtils.controller().removeSingleRoleFromMember(GuildUtils.guild().getMember(user), Roles.MUTED).queue();
+            GuildUtils.controller().modifyMemberRoles(GuildUtils.guild().getMember(user), Collections.emptySet(), Collections.singleton(Roles.MUTED)).queue();
             bot.getCreditsFile().set("Mutes." + user.getId(), null);
             data.saveCreditsFile();
         }
