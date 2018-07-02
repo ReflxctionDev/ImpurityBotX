@@ -75,7 +75,7 @@ public class MuteManager {
         for (Member m : GuildUtils.members()) {
             final User u = m.getUser();
             if (isMuted(u)) {
-                muteUser(u, getTimeLeftForMute(u) - 10);
+                muteUser(u, getTimeLeftForMute(u) - 4);
             } else {
                 Guild g = GuildUtils.guild();
                 g.getController().removeSingleRoleFromMember(g.getMember(u), Roles.MUTED).queue();
