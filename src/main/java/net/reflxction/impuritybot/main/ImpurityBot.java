@@ -123,7 +123,7 @@ public class ImpurityBot extends JavaPlugin {
         UserWarnLoggers.wu = new WarningsManager(this);
         WarningsManager.loggers = new UserWarnLoggers(this);
         enable();
-        japi.getPresence().setGame(Game.listening("Shifty's wise words"));
+        japi.getPresence().setGame(Game.listening("Loki's wise words"));
         GameManager gm = new GameManager();
         DelayManager dm = new DelayManager();
         MuteManager mute = new MuteManager();
