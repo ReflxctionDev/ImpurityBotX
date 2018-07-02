@@ -30,10 +30,18 @@ public class BetCommand extends AbstractCommand {
             channel.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
             return;
         }
+        if (target == executor) {
+            channel.sendMessage("You can't bet **yourself**").queue();
+            return;
+        }
         try {
             amount = Integer.parseInt(args[1]);
         } catch (Exception e) {
             channel.sendMessage("**Expected a number, but found** `" + args[1] + "`**.**").queue();
+            return;
+        }
+        if (amount < 5) {
+            channel.sendMessage("You can't bet with less than **5** credits").queue();
             return;
         }
         Bet bet = new Bet();
