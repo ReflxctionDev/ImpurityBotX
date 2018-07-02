@@ -60,8 +60,8 @@ public class Bet {
     private void makeEmbed(Member executor, Member target, MessageChannel channel, int executorchance, int targetchance) {
         EmbedFactory factory = new EmbedFactory(new EmbedBuilder());
         factory.setTitle(executor.getUser().getName() + " vs " + target.getUser().getName());
-        factory.addField(executor.getUser().getName(), String.valueOf(executorchance) + "%");
-        factory.addField(target.getUser().getName(), String.valueOf(targetchance) + "%");
+        factory.addField(executor.getUser().getName(), String.valueOf(executorchance) + "%", true);
+        factory.addField(target.getUser().getName(), String.valueOf(targetchance) + "%", true);
         factory.setColor(Color.decode("#e84118"));
         channel.sendMessage(factory.build().build()).queue();
     }
