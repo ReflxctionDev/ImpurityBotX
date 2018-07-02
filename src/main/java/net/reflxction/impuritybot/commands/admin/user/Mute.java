@@ -84,7 +84,7 @@ public class Mute extends AbstractCommand {
         int parsed = Integer.MIN_VALUE;
         try {
             for (int i = 0; i < array.length; i++) {
-                if (array[i] == 's' || array[i] == 'm' || array[i] == 'h' || array[i] == 'd') {
+                if (array[i] == 's' || array[i] == 'm' || array[i] == 'h' ) {
                     breakpoint = i;
                     if (array[i] == 's') {
                         for (int c = 0; c < breakpoint; c++) {
@@ -104,9 +104,6 @@ public class Mute extends AbstractCommand {
                         }
                         parsed = Integer.parseInt(time) * 3600;
                     }
-                    if (array[i] == 'd') {
-                        parsed = Integer.parseInt(time) * 3600 * 24;
-                    }
                 } else {
                     if (array[i] != '1' && array[i] != '2' && array[i] != '3' && array[i] != '4' && array[i] != '5' && array[i] != '6' &&
                             array[i] != '0' && array[i] != '9' && array[i] != '8' && array[i] != '7') {
@@ -115,17 +112,18 @@ public class Mute extends AbstractCommand {
                 }
             }
         } catch (Exception e) {
-            channel.sendMessage("**Invalid usage** Time must be either s, m, h, or d followed by a number").queue();
+            channel.sendMessage("**Invalid usage** Time must be either s, m, or h followed by a number").queue();
         }
         return parsed;
     }
 
     private void sendNews(MessageChannel channel, String reason, int time_seconds, User executor, User target) {
+        if (reason.equals("")) reason = "unspecified";
         EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                 .setTitle(target.getName())
                 .setColor(Color.decode("#e84118"))
                 .addField("You are muted", "by " + executor.getName(), false)
-                .addField("Reason", reason, false)
+                .addField("Reason",  reason , false)
                 .addField("Time", timeToString(time_seconds), false)
                 .setFooter("If you believe this is a error, please contact the development team", null)
                 .build();
