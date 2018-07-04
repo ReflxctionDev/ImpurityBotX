@@ -30,6 +30,7 @@ public class DelayManager implements IDelayManager {
     }
 
 
+    @Deprecated
     public void mute(User u) {
         bot.getCreditsFile().set("Credits." + u.getId() + ".Mute", 600);
         du.saveCreditsFile();

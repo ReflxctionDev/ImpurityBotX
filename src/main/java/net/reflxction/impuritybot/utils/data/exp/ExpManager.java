@@ -18,16 +18,23 @@ package net.reflxction.impuritybot.utils.data.exp;
 
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.main.ImpurityBot;
+import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.IDataManager;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
-import net.reflxction.impuritybot.utils.data.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
+/**
+ * Class which manages leveling exp for users
+ *
+ * @author Reflxction
+ */
 public class ExpManager implements IDataManager {
 
+    // Instance of the bot
     private ImpurityBot bot = ImpurityBot.getBot();
 
+    // Instance of the data manager
     private DataManager du = new DataManager(bot);
 
     public int getRemExp(User u) {
@@ -47,8 +54,6 @@ public class ExpManager implements IDataManager {
             ex.printStackTrace();
         }
     }
-
-
 
 
     public int getUserExp(User u) {
@@ -89,5 +94,14 @@ public class ExpManager implements IDataManager {
         setUserExp(u, getUserExp(u) + nu.randomBetween(5, 15));
     }
 
+    /**
+     * If a user has talked before
+     *
+     * @param user User to check for
+     * @return True if the user has talked before
+     */
+    public boolean hasTalkedBefore(User user) {
+        return bot.getExpFile().getString("Exp." + user.getId() + ".Name") != null;
+    }
 
 }

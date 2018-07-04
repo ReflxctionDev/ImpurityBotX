@@ -17,8 +17,12 @@
 package net.reflxction.impuritybot.core.commands;
 
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.hooks.EventListener;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.reflxction.impuritybot.commands.miscs.CommandInfo;
+import net.reflxction.impuritybot.core.events.Event;
 import net.reflxction.impuritybot.core.loggers.Logger;
+import net.reflxction.impuritybot.main.ImpurityBot;
 
 public class RegistryBuilder {
 
@@ -63,6 +67,41 @@ public class RegistryBuilder {
 
     public RegistryBuilder disableLogger(Logger logger) {
         j.removeEventListener(logger);
+        return this;
+    }
+
+    public RegistryBuilder registerListener(ListenerAdapter listener) {
+        j.addEventListener(listener);
+        return this;
+    }
+
+    public RegistryBuilder disableListener(ListenerAdapter listener) {
+        j.removeEventListener(listener);
+        return this;
+    }
+
+    public RegistryBuilder registerListener(EventListener listener) {
+        j.addEventListener(listener);
+        return this;
+    }
+
+    public RegistryBuilder disableListener(EventListener listener) {
+        j.removeEventListener(listener);
+        return this;
+    }
+
+    public RegistryBuilder registerBotEvent(Object event) {
+        ImpurityBot.EVENT_BUS.register(event);
+        return this;
+    }
+
+    public RegistryBuilder unregisterBotEvent(Object event) {
+        ImpurityBot.EVENT_BUS.unregister(event);
+        return this;
+    }
+
+    public RegistryBuilder callEvent(Event event) {
+        ImpurityBot.EVENT_BUS.post(event);
         return this;
     }
 

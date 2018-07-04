@@ -1,13 +1,3 @@
-package net.reflxction.impuritybot.antiswear;
-
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -23,9 +13,24 @@ import net.reflxction.impuritybot.utils.lang.StringUtils;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.antiswear;
+
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
+
+/**
+ * The -unused- anti swear which deletes messages that contain offensive words
+ */
 public class AntiSwear extends ListenerAdapter {
 
-    private String[] swears = {"Asshole",
+    // List of words to detect
+    private String[] swears = {
+            "Asshole",
             "bitch",
             "cunt",
             "dick",

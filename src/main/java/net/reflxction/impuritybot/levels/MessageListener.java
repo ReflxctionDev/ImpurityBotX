@@ -44,7 +44,7 @@ public class MessageListener extends ListenerAdapter {
         if (!u.isBot()) {
             if (c instanceof TextChannel) {
                 if (g.getId().equals("363721897743089668")) {
-                    if (eu.getUserExp(u) == 0) {
+                    if (!eu.hasTalkedBefore(u)) {
                         eu.addUserForFirstTime(u);
                         lu.addUserForFirstTime(u);
                     } else {

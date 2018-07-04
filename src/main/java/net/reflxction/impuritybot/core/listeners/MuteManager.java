@@ -15,7 +15,6 @@
  */
 package net.reflxction.impuritybot.core.listeners;
 
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.others.Roles;
@@ -67,7 +66,9 @@ public class MuteManager {
      * @return True if the user is muted
      */
     public boolean isMuted(User u) {
-        return bot.getCreditsFile().getInt("Mutes." + u + ".Mute") > 0;
+        return bot
+                .getCreditsFile()
+                .getInt("Mutes." + u + ".Mute") > 0;
     }
 
     /**

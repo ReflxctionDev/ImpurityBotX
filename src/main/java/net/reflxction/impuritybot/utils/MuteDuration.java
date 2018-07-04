@@ -18,7 +18,6 @@ package net.reflxction.impuritybot.utils;
 import net.reflxction.impuritybot.utils.lang.TimeUtils;
 
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,7 +64,7 @@ public class MuteDuration {
     }
 
     /**
-     * @return Human-readable text (e.g "5 minute(s)"
+     * @return Human-readable text (e.g "5 minute(s)")
      */
     public String getNiceName() {
         return preTime + " " + unit.getNiceName();

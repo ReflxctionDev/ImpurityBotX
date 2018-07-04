@@ -33,6 +33,7 @@ import net.reflxction.impuritybot.levels.MessageListener;
 import net.reflxction.impuritybot.logs.user.UserWarnLoggers;
 import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.logger.core.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -50,6 +51,7 @@ public class ImpurityBot extends JavaPlugin {
     private static boolean enabled = false;
 
     public static final EventBus EVENT_BUS = new EventBus();
+    public static final Logger LOGGER = new Logger("ImpurityBot", false);
 
     private static CacheHandler cacheHandler = new CacheHandler();
 
@@ -136,7 +138,10 @@ public class ImpurityBot extends JavaPlugin {
             }
             mute.updateMuteTime();
             cacheHandler.updateCache();
-        }, 4 * 20, 4 * 20);
+            LOGGER.info("Updated cache and mute time");
+            LOGGER.info("Mute time: " + mute.getTimeLeftForMute(getJDA().getUserById("443470103963500545")));
+            LOGGER.info("Is muted: " + mute.isMuted(getJDA().getUserById("443470103963500545")));
+            }, 4 * 20, 4 * 20);
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();

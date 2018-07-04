@@ -1,5 +1,3 @@
-package net.reflxction.impuritybot.calendar;
-
 /*
  * * Copyright 2018 github.com/ReflxctionDev
  *
@@ -15,6 +13,7 @@ package net.reflxction.impuritybot.calendar;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.calendar;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageChannel;
