@@ -36,6 +36,8 @@ public enum CommandCategory {
 
     POINTS("Points"),
 
+    MUSIC("Music"),
+
     OTHERS("Others");
 
     private String name;
