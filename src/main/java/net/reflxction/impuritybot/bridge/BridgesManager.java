@@ -27,6 +27,7 @@ import java.util.List;
  *
  * @author Reflxction
  */
+@SuppressWarnings("WeakerAccess")
 public class BridgesManager {
 
     private ImpurityBot bot = ImpurityBot.getBot();
@@ -64,7 +65,7 @@ public class BridgesManager {
     /**
      * @return An int that returns the current brides amount
      */
-    private int getBridgesSize() {
+    public int getBridgesSize() {
         int size = bot.getBridgesFile().getConfigurationSection("Bridges").getKeys(false).size();
         return size == 0 ? 1 : size;
     }
@@ -83,6 +84,57 @@ public class BridgesManager {
             bridges.add(new Bridge(channel1, channel2, i));
         }
         return bridges;
+    }
+
+    /**
+     * Get a bridge by an id
+     *
+     * @param id ID to look for
+     * @return Bridge with the given id, null if not found
+     */
+    public Bridge getBridgeById(int id) {
+        for (Bridge bridge : getBridges()) {
+            if (bridge.getId() == id) {
+                return bridge;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * If a channel is in a bridge
+     *
+     * @param channel Channel to look for
+     * @return True if the channel is in a bridge, false if not
+     */
+    public boolean isBridge(Channel channel) {
+        for (Bridge bridge : getBridges()) {
+            if (bridge.getChannel1().equals(channel) || bridge.getChannel2().equals(channel)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Get the channel that is in the same bridge as the given channel
+     *
+     * @param channel Channel to get for
+     * @return The channel, null if non are found
+     */
+    public Channel getCorrespondingChannel(Channel channel) {
+        if (isBridge(channel)) {
+            for (Bridge bridge : getBridges()) {
+                if (bridge.getChannel1().equals(channel)) {
+                    return bridge.getChannel2();
+                } else if (bridge.getChannel2().equals(channel)) {
+                    return bridge.getChannel1();
+                }
+            }
+        } else {
+            return null;
+        }
+        return null;
     }
 
 }
