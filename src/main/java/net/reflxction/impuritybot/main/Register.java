@@ -15,6 +15,7 @@
  */
 package net.reflxction.impuritybot.main;
 
+import net.reflxction.impuritybot.bridge.BridgeCommand;
 import net.reflxction.impuritybot.commands.admin.botupdates.ReleasedCommand;
 import net.reflxction.impuritybot.commands.admin.botupdates.ToDo;
 import net.reflxction.impuritybot.commands.admin.messages.*;
@@ -120,6 +121,7 @@ class Register {
                 .registerCommand(new MuteRemake())
                 //.registerCommand(new StealCommand())
                 .registerCommand(new Tester())
+                .registerBotEvent(new BridgeCommand())
                 .registerCommand(new BetCommand());
                 //.registerCommand(new BetAmount());
     }
