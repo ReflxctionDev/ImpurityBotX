@@ -18,6 +18,7 @@ package net.reflxction.impuritybot.bridge;
 import net.dv8tion.jda.core.entities.Channel;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.data.DataManager;
+import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +67,14 @@ public class BridgesManager {
      * @return An int that returns the current brides amount
      */
     public int getBridgesSize() {
-        int size = bot.getBridgesFile().getConfigurationSection("Bridges").getKeys(false).size();
-        return size == 0 ? 1 : size;
+        ConfigurationSection section = bot
+                .getBridgesFile()
+                .getConfigurationSection("Bridges");
+        try {
+            return section.getKeys(false) == null ? 0 : section.getKeys(false).size();
+        } catch (NullPointerException e) {
+            return 0;
+        }
     }
 
     /**

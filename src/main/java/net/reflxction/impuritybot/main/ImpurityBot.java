@@ -142,9 +142,6 @@ public class ImpurityBot extends JavaPlugin {
             }
             mute.updateMuteTime();
             cacheHandler.updateCache();
-            LOGGER.info("Updated cache and mute time");
-            LOGGER.info("Mute time: " + mute.getTimeLeftForMute(getJDA().getUserById("443470103963500545")));
-            LOGGER.info("Is muted: " + mute.isMuted(getJDA().getUserById("443470103963500545")));
         }, 4 * 20, 4 * 20);
         final DataManager data = new DataManager(this);
         saveDefaultConfig();

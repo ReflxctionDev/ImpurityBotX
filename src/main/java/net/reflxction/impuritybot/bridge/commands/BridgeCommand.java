@@ -80,7 +80,7 @@ public class BridgeCommand extends AbstractCommand {
                             Channel channel2 = j.getTextChannelById(StringUtils.channelToId(args[2]));
                             Bridge bridge = new Bridge(channel1, channel2, manager.getBridgesSize() + 1);
                             manager.createBridge(bridge);
-                            c.sendMessage("**A new bridge has been created with the ID `" + bridge.getId() + "`**. For information about a bridge, use `-bridgeinfo <id>").queue();
+                            c.sendMessage("**A new bridge has been created with the ID `" + bridge.getId() + "`**. For information about a bridge, use `-bridgeinfo <id>`").queue();
                             break;
                     }
                     break;

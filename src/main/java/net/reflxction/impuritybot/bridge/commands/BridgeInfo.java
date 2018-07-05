@@ -68,8 +68,8 @@ public class BridgeInfo extends AbstractCommand {
                                 .setColor(Color.WHITE)
                                 .addField("Bridge " + id,
                                         "**ID:** " + bridge.getId() +
-                                                "**Channels:** <#" + bridge.getChannel1().getId() + ">, <#" + bridge.getChannel2().getId() + ">" +
-                                                "**Guilds:** " + bridge.getChannel1().getGuild().getName() + ", " + bridge.getChannel2().getGuild().getName())
+                                                "\n**Channels:** <#" + bridge.getChannel1().getId() + ">, <#" + bridge.getChannel2().getId() + ">" +
+                                                "\n**Guilds:** " + bridge.getChannel1().getGuild().getName() + ", " + bridge.getChannel2().getGuild().getName())
                                 .build();
                         c.sendMessage(builder.build()).queue();
                     } else {
