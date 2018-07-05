@@ -23,6 +23,7 @@ import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.bridge.BridgeListener;
 import net.reflxction.impuritybot.commands.fun.exclusive.Rate;
 import net.reflxction.impuritybot.commands.minecraft.SkyWarsC;
 import net.reflxction.impuritybot.core.cache.CacheHandler;
@@ -214,6 +215,7 @@ public class ImpurityBot extends JavaPlugin {
                 .addEventListener(new Rate())
                 .addEventListener(new TableFlip())
                 .addEventListener(new PollReactions(bot))
+                .addEventListener(new BridgeListener())
                 .buildAsync();
     }
 
