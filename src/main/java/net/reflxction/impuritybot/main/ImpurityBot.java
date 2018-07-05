@@ -75,6 +75,9 @@ public class ImpurityBot extends JavaPlugin {
     private File points = new File(getDataFolder(), "points.yml");
     private FileConfiguration pointsfile = YamlConfiguration.loadConfiguration(points);
 
+    private File bridges = new File(getDataFolder(), "bridges.yml");
+    private FileConfiguration bridgesFile = YamlConfiguration.loadConfiguration(bridges);
+
     private File rules = new File(getDataFolder(), "rules.png");
     private File ranks = new File(getDataFolder(), "ranks.png");
     private File punishments = new File(getDataFolder(), "punishments.png");
@@ -141,7 +144,7 @@ public class ImpurityBot extends JavaPlugin {
             LOGGER.info("Updated cache and mute time");
             LOGGER.info("Mute time: " + mute.getTimeLeftForMute(getJDA().getUserById("443470103963500545")));
             LOGGER.info("Is muted: " + mute.isMuted(getJDA().getUserById("443470103963500545")));
-            }, 4 * 20, 4 * 20);
+        }, 4 * 20, 4 * 20);
         final DataManager data = new DataManager(this);
         saveDefaultConfig();
         data.loadFiles();
@@ -175,6 +178,14 @@ public class ImpurityBot extends JavaPlugin {
 
     public FileConfiguration getPointsFile() {
         return pointsfile;
+    }
+
+    public FileConfiguration getBridgesFile() {
+        return bridgesFile;
+    }
+
+    public File getBridges() {
+        return bridges;
     }
 
     public File getRulesP() {

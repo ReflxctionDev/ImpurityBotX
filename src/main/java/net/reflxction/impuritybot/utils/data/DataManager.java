@@ -86,6 +86,7 @@ public class DataManager {
         createFile("polls");
         createFile("points");
         createFile("config");
+        createFile("bridges");
         addFile("rules.png");
         addFile("punishments.png");
         addFile("ranks.png");
@@ -96,5 +97,6 @@ public class DataManager {
         loadFile("polls");
         loadFile("points");
         loadFile("config");
+        loadFile("bridges");
     }
 }
