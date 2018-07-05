@@ -38,7 +38,9 @@ public enum CommandCategory {
 
     MUSIC("Music"),
 
-    OTHERS("Others");
+    OTHERS("Others"),
+
+    BRIDGES("Bridges");
 
     private String name;
 
