@@ -102,7 +102,7 @@ class Register {
                 .registerCommand(new ToDo())
                 .registerCommand(new ReleasedCommand())
                 .registerCommand(new Balance())
-                .registerCommand(new WelcomeManager(getBot()))
+                .registerCommand(new WelcomeManager())
                 .registerCommand(new PlayerIGN())
                 .registerCommand(new Menu())
                 .registerCommand(new Buy())

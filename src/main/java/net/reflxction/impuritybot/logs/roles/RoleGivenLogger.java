@@ -38,7 +38,7 @@ public class RoleGivenLogger extends Logger {
                     "\n" +
                     "**Strictly no drama and toxicity** - Any form of harassment, toxicity, insults directed towards other people, suicide encouragement, and excessive/inappropriate tagging are not allowed under any circumstances and are punishable.\n" +
                     "\n" +
-                    "**Follow the Rules of the Hypixel network** - If you intend to become a part of Impurity and of the Hypixel community, keep in mind to follow the Hypixel rules. This ensures that everyone isn’t getting bothered by someone else and creates a friendly community. Respect all other players, including allies.\n" +
+                    "**Follow the Rule of the Hypixel network** - If you intend to become a part of Impurity and of the Hypixel community, keep in mind to follow the Hypixel rules. This ensures that everyone isn’t getting bothered by someone else and creates a friendly community. Respect all other players, including allies.\n" +
                     "\n" +
                     "You can find a full list of our rules in . Once you have read all of the rules, DM/tag an officer or above and you will receive a guild invite in game.\n" +
                     "\n" +

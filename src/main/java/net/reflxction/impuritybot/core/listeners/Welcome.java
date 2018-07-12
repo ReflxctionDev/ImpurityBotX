@@ -33,7 +33,7 @@ public class Welcome extends ListenerAdapter {
         if (!event.getUser().isBot()) {
             GuildUtils.controller().addSingleRoleToMember(event.getMember(), GuildUtils.roleById("433595739416035338")).queue();
             PrivateChannel pm = event.getUser().openPrivateChannel().complete();
-            pm.sendMessage("**Welcome to our Discord! Please visit <#446349281448689664> for steps on registering and getting access to the Discord. Enjoy your stay!**").queue();
+            pm.sendMessage("**Welcome to our Discord! Please visit <#452333985419493376> for steps on registering and getting access to the Discord. Enjoy your stay!**").queue();
         }
     }
 
@@ -44,7 +44,7 @@ public class Welcome extends ListenerAdapter {
         MessageChannel c = g.getTextChannelById("363721897743089671");
         String mention = "<@" + m.getUser().getId() + ">";
         if (name.equalsIgnoreCase("Impurity")) {
-            c.sendMessage("Welcome, " + mention + " to the Impurity Discord server! Please make sure to give <#410514619883454474> a look before hanging with us. Enjoy your stay! \uD83D\uDC4B").queue();
+            c.sendMessage("Welcome, " + mention + " to the Impurity Discord server! Please make sure to give <#452333985419493376> a look before hanging out with us. Enjoy your stay! \uD83D\uDC4B").queue();
             g.getController().addRolesToMember(m, Roles.UNREGISTERED).queue();
         }
     }

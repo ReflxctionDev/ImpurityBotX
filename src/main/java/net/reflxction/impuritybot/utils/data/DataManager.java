@@ -15,6 +15,7 @@
  */
 package net.reflxction.impuritybot.utils.data;
 
+import net.reflxction.impuritybot.core.info.EnumImages;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -87,9 +88,7 @@ public class DataManager {
         createFile("points");
         createFile("config");
         createFile("bridges");
-        addFile("rules.png");
-        addFile("punishments.png");
-        addFile("ranks.png");
+
         loadFile("igns");
         loadFile("credits");
         loadFile("exp");
@@ -98,5 +97,9 @@ public class DataManager {
         loadFile("points");
         loadFile("config");
         loadFile("bridges");
+
+        for (EnumImages image : EnumImages.values()) {
+            addFile(image.getName());
+        }
     }
 }
