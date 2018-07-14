@@ -26,6 +26,8 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.eros.ErosItem;
 
+import java.awt.*;
+
 public class Menu extends AbstractCommand {
 
     @Override
@@ -35,7 +37,7 @@ public class Menu extends AbstractCommand {
 
     @Override
     public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
+        /* EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                 .setDescription("**Shop Menu**\n")
                 .addField("Impure Chest",
                         "**Description**: " + ErosItem.IMPURE_CHEST.getDescription() +
@@ -64,8 +66,30 @@ public class Menu extends AbstractCommand {
 
                 .setRandomColor()
                 .build();
-        c.sendMessage(builder.build()).queue();
-    }
+               */
+        EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
+                .setTitle("Shop menu")
+                .setColor(Color.decode("#e84118"))
+                .setDescription("Requested by " + u.getName())
+                .addField("Impure Chest", "**Description**: " + ErosItem.IMPURE_CHEST.getDescription() + "\n" +
+                        "**ID**: " + ErosItem.IMPURE_CHEST.getId() + "\n" +
+                        "**Price**: " + + ErosItem.IMPURE_CHEST.getPrice(), false)
+                .addField("Impure can","**Description**: " + ErosItem.IMPURE_CAN.getDescription() + "\n" +
+                        "**ID**L " + ErosItem.IMPURE_CAN.getId() + "\n" +
+                        "**Price**: " + ErosItem.IMPURE_CAN.getPrice())
+                .addField("Gangster (Role) ", "**Description**: "+ ErosItem.RICH_BOI.getDescription() + "\n" +
+                        "**ID**: " + ErosItem.RICH_BOI.getId() + "\n" +
+                        "**Price**: " + ErosItem.GANGSTER_ROLE.getPrice())
+                .addField("Money Baller (Role)", "**Description**: " + ErosItem.MONEY_BALLER.getDescription() + "\n" +
+                        "**ID**: " + ErosItem.MONEY_BALLER.getId() + "\n" +
+                        "**Price**: " + ErosItem.MONEY_BALLER.getPrice())
+                .build();
+        try {
+            u.openPrivateChannel().complete().sendMessage(builder.build()).queue();
+        } catch (Exception e) {
+            c.sendMessage(builder.build()).queue();
+        }
+     }
 
     @Override
     public String[] getAliases() {
