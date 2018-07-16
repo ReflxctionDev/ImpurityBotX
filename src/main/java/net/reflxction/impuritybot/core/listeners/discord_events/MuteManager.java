@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.core.listeners;
+package net.reflxction.impuritybot.core.listeners.discord_events;
 
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
@@ -54,7 +54,7 @@ public class MuteManager {
      * @param u User to get time for
      * @return Time left until the mute is over
      */
-    public int getTimeLeftForMute(User u) {
+    private int getTimeLeftForMute(User u) {
         if (!isMuted(u)) return 0;
         return bot.getCreditsFile().getInt("Mutes." + u + ".Mute");
     }

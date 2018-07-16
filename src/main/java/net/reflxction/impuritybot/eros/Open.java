@@ -21,7 +21,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.eros.Emotes;
-import net.reflxction.impuritybot.core.listeners.DelayManager;
+import net.reflxction.impuritybot.core.listeners.discord_events.DelayManager;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
@@ -117,7 +117,7 @@ public class Open extends AbstractCommand {
                     // SILENCE SODA
                     if (nu.isBetween(random, 81, 90)) {
                         c.sendMessage("You've received: **Silence Soda**! You will be muted for 10 minutes").queue();
-                        dm.mute(u);
+                        //dm.mute(u);
                     }
                     // GENIE SODA
                     if (nu.isBetween(random, 91, 95)) {

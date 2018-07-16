@@ -13,9 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.core.listeners.bot_events;
 
-package net.reflxction.impuritybot.core.events;
+import com.google.common.eventbus.Subscribe;
+import net.reflxction.impuritybot.core.events.levels.UserLevelUpEvent;
 
-public class EventFactory {
+/**
+ * Listener for {@link net.reflxction.impuritybot.core.events.levels.UserLevelUpEvent}
+ */
+public class LevelUpListener {
+
+    @Subscribe
+    public void onUserLevelUp(UserLevelUpEvent event) {
+
+    }
 
 }

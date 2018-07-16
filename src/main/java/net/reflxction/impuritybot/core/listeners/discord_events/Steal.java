@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.core.listeners;
+package net.reflxction.impuritybot.core.listeners.discord_events;
 
 import me.brokenearth.core.scheduler.Timer;
 import net.dv8tion.jda.core.entities.Member;
@@ -102,7 +102,7 @@ public class Steal {
     /**
      * @return the percentage
      */
-    public int getPercentage() {
+    private int getPercentage() {
         return percentage;
     }
 }

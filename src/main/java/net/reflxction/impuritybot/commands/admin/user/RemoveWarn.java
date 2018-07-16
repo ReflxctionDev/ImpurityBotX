@@ -6,8 +6,8 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -33,7 +33,7 @@ public class RemoveWarn extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager(bot);
+    private final WarningsManager wu = new WarningsManager();
 
 
     @Override
@@ -53,8 +53,7 @@ public class RemoveWarn extends AbstractCommand {
                 try {
                     target = j.getUserById(StringUtils.mentionToId(args[0]));
                     if (wu.getWarnings(target) > 0) {
-                        wu.removeWarning(target, u);
-                        wu.removeWarning(target, u);
+                        wu.removeWarning(target, u, ((TextChannel) c));
                         PrivateChannel pm = target.openPrivateChannel().complete();
                         pm.sendMessage("<@" + u.getId() + "> has removed a warning from your total warnings.").queue();
                         c.sendMessage("Removed **1** of **" + target.getName() + "**'s warnings. Total warnings: **" + wu.getWarnings(target) + "**").queue();
@@ -72,7 +71,7 @@ public class RemoveWarn extends AbstractCommand {
                 try {
                     target = j.getUserById(StringUtils.mentionToId(args[0]));
                     if (wu.getWarnings(target) > 0) {
-                        wu.removeWarnings(target, u, Integer.parseInt(args[1]));
+                        wu.removeWarnings(target, u, Integer.parseInt(args[1]), ((TextChannel) c));
                         PrivateChannel pm = target.openPrivateChannel().complete();
                         pm.sendMessage("<@" + u.getId() + "> has removed " + args[1] + " from your total warnings. Current warnings: **" + wu.getWarnings(u) + "**").queue();
                         c.sendMessage("Removed **" + args[1] + "** of **" + target.getName() + "**'s warnings. Total warnings: **" + wu.getWarnings(target) + "**").queue();

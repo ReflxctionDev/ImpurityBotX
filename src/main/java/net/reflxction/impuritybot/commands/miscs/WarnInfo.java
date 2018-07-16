@@ -24,7 +24,7 @@ public class WarnInfo extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager(bot);
+    private final WarningsManager wu = new WarningsManager();
 
 
 

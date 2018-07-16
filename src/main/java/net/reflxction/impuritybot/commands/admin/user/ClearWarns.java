@@ -32,7 +32,7 @@ public class ClearWarns extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager(bot);
+    private final WarningsManager wu = new WarningsManager();
 
     @Override
     public String getCommand() {
@@ -49,7 +49,7 @@ public class ClearWarns extends AbstractCommand {
             if (args.length == 1) {
                 try {
                     User target = j.getUserById(StringUtils.mentionToId(args[0]));
-                    wu.clearWarnings(target, u);
+                    wu.clearWarnings(target, u, ((TextChannel) c));
                     PrivateChannel pm = target.openPrivateChannel().complete();
                     pm.sendMessage("<@" + u.getId() + "> has cleared all your warnings.").queue();
                     c.sendMessage("**" + target.getName() + "**'s warnings have been reset to 0.").queue();

@@ -28,6 +28,7 @@ import java.util.Optional;
  *
  * @see CacheHandler
  */
+@SuppressWarnings("ALL")
 public class ProfileAdapterCache {
 
     private User user;
@@ -37,7 +38,7 @@ public class ProfileAdapterCache {
             new LevelManager(),
             new IgnManager(),
             new PointsManager(),
-            new WarningsManager(null),
+            new WarningsManager(),
             new CreditsManager()
     };
 

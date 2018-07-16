@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.core.listeners;
+package net.reflxction.impuritybot.core.listeners.discord_events;
 
 import net.dv8tion.jda.core.entities.Emote;
 import net.dv8tion.jda.core.entities.Guild;
@@ -14,13 +14,7 @@ import net.reflxction.impuritybot.utils.data.PollsManager;
  */
 public class PollReactions extends ListenerAdapter {
 
-    private ImpurityBot bot;
-
-    public PollReactions(ImpurityBot bot) {
-        this.bot = bot;
-    }
-
-    private PollsManager polls = new PollsManager(bot);
+    private PollsManager polls = new PollsManager(null);
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
