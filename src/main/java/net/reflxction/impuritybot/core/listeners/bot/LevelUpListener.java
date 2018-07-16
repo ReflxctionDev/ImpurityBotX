@@ -16,7 +16,9 @@
 package net.reflxction.impuritybot.core.listeners.bot;
 
 import com.google.common.eventbus.Subscribe;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.reflxction.impuritybot.core.events.levels.UserLevelUpEvent;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
 
 /**
  * Listener for {@link net.reflxction.impuritybot.core.events.levels.UserLevelUpEvent}
@@ -25,7 +27,10 @@ public class LevelUpListener {
 
     @Subscribe
     public void onUserLevelUp(UserLevelUpEvent event) {
-
+        EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
+                .setRandomColor()
+                //.setTitle()
+                .build();
     }
 
 }

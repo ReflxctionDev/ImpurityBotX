@@ -22,9 +22,10 @@ public class PollReactions extends ListenerAdapter {
             final Guild g = event.getGuild();
             if (polls.isPoll(c.getId())) {
                 final Message m = event.getMessage();
-                Emote e = g.getEmoteById("412956641630093316");
-                m.addReaction("\u2705").queue();
-                m.addReaction(e).queue();
+                Emote yes = g.getEmoteById("468484733194731533");
+                Emote no = g.getEmoteById("412956641630093316");
+                m.addReaction(yes).queue();
+                m.addReaction(no).queue();
             }
 			if(c.getId().equals("433614676086095890")) {
                 final Message m = event.getMessage();

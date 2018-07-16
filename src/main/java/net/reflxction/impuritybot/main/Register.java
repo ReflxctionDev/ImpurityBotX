@@ -24,13 +24,13 @@ import net.reflxction.impuritybot.commands.admin.news.*;
 import net.reflxction.impuritybot.commands.admin.roles.UpdateRoles;
 import net.reflxction.impuritybot.commands.admin.user.*;
 import net.reflxction.impuritybot.commands.fun.exclusive.EightBall;
-import net.reflxction.impuritybot.commands.minecraft.IGN;
-import net.reflxction.impuritybot.commands.minecraft.IGNOf;
-import net.reflxction.impuritybot.commands.minecraft.PlayerIGN;
 import net.reflxction.impuritybot.commands.level.LevelCmd;
 import net.reflxction.impuritybot.commands.level.RankCmd;
 import net.reflxction.impuritybot.commands.level.SetLevel;
 import net.reflxction.impuritybot.commands.level.TopLevels;
+import net.reflxction.impuritybot.commands.minecraft.IGN;
+import net.reflxction.impuritybot.commands.minecraft.IGNOf;
+import net.reflxction.impuritybot.commands.minecraft.PlayerIGN;
 import net.reflxction.impuritybot.commands.miscs.*;
 import net.reflxction.impuritybot.commands.points.ManagePointsCmd;
 import net.reflxction.impuritybot.commands.points.PointsBalance;
@@ -50,6 +50,9 @@ import net.reflxction.impuritybot.logs.user.UserBanLogger;
 import net.reflxction.impuritybot.logs.user.UserJoinLogger;
 import net.reflxction.impuritybot.logs.user.UserLeaveLogger;
 import net.reflxction.impuritybot.logs.user.UserNickLogger;
+import net.reflxction.impuritybot.logs.user.warnings.UserGivenWarnLogger;
+import net.reflxction.impuritybot.logs.user.warnings.UserRemoveWarningLogger;
+import net.reflxction.impuritybot.logs.user.warnings.UserWarningsClearedLogger;
 
 import static net.reflxction.impuritybot.main.ImpurityBot.getBot;
 
@@ -125,8 +128,8 @@ class Register {
                 .registerCommand(new BridgeCommand())
                 .registerCommand(new BridgeInfo())
                 .registerCommand(new BetCommand())
-                //.registerCommand(new BetAmount());
                 .registerCommand(new FilterCommand());
+        //.registerCommand(new BetAmount());
     }
 
     void registerLoggers() {
@@ -141,7 +144,10 @@ class Register {
                 .registerLogger(new ServerChangeNameLogger())
                 .registerLogger(new RoleRemovedLogger())
                 .registerLogger(new RoleCreatedLogger())
-                .registerLogger(new RoleDeletedLogger());
+                .registerLogger(new RoleDeletedLogger())
+                .registerBotEvent(new UserRemoveWarningLogger())
+                .registerBotEvent(new UserGivenWarnLogger())
+                .registerBotEvent(new UserWarningsClearedLogger());
     }
 }
 

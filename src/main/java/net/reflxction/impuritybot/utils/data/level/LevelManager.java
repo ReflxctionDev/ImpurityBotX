@@ -16,17 +16,17 @@
 
 package net.reflxction.impuritybot.utils.data.level;
 
-import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.core.events.levels.UserLevelUpEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.IDataManager;
 import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.data.exp.ExpManager;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,20 +55,16 @@ public class LevelManager implements IDataManager {
         return bot.getExpFile().getInt("Exp." + u.getId() + ".Level");
     }
 
-    public void levelUp(User u, MessageChannel c) {
-        EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
-                .setAuthor(u.getName(), null, null)
-                .setRandomColor()
-                .setThumbnail(u.getAvatarUrl())
-                .addField("Level Up!", u.getName() + " has just reached level " + (getUserLevel(u) + 1), true)
-                .build();
-        c.sendMessage(embed.build()).queue();
-        setUserLevel(u, getUserLevel(u) + 1);
-        exp.setUserExp(u, exp.getRemExp(u));
-        du.saveFile(bot.getExpFile(), "exp");
-        exp.setUserNextExp(u);
-        du.saveFile(bot.getExpFile(), "exp");
-        points.givePoints(u, 5);
+    public void levelUp(User u, TextChannel c) {
+        UserLevelUpEvent event = new UserLevelUpEvent(u, getUserLevel(u), getUserLevel(u) + 1, c);
+        ImpurityBot.EVENT_BUS.post(event);
+        if (!event.isCanceled()) {
+            setUserLevel(u, getUserLevel(u) + 1);
+            exp.setUserExp(u, exp.getRemExp(u));
+            exp.setUserNextExp(u);
+            du.saveFile(bot.getExpFile(), "exp");
+            points.givePoints(u, 5);
+        }
     }
 
     private LevelAdapter revertLevel(User u) {
