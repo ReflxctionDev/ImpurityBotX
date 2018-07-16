@@ -8,8 +8,6 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
-import net.reflxction.impuritybot.core.events.commands.CommandProcessedEvent;
-import net.reflxction.impuritybot.main.ImpurityBot;
 
 public abstract class AbstractCommand extends ListenerAdapter {
 
@@ -79,6 +77,7 @@ public abstract class AbstractCommand extends ListenerAdapter {
      */
     public abstract String getUsage();
 
+    @SuppressWarnings("UnusedAssignment")
     @SubscribeEvent
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -87,7 +86,7 @@ public abstract class AbstractCommand extends ListenerAdapter {
         User u = event.getAuthor();
         MessageChannel c = event.getChannel();
         if (u.isBot()) return;
-        String[] args = new String[0];
+        String[] args;
         if (content.contains(" ")) {
             args = content.replace("-" + getCommand() + " ", "").split(" ");
         }
@@ -98,10 +97,13 @@ public abstract class AbstractCommand extends ListenerAdapter {
             if (content.startsWith("-" + getCommand() + " ")) {
                 args = content.replace("-" + getCommand() + " ", "")
                         .split(" ");
+                process(event.getJDA(), event.getGuild(), m, c, u, args);
+
             } else if (content.startsWith("-" + getCommand()) && !content.contains(" ")) {
                 args = new String[0];
+                process(event.getJDA(), event.getGuild(), m, c, u, args);
             }
-            CommandProcessedEvent cmdEvent = new CommandProcessedEvent(
+            /*CommandProcessedEvent cmdEvent = new CommandProcessedEvent(
                     event.getJDA(),
                     this,
                     event.getTextChannel(),
@@ -111,13 +113,13 @@ public abstract class AbstractCommand extends ListenerAdapter {
                     args);
             ImpurityBot.EVENT_BUS.post(cmdEvent);
             if (!cmdEvent.isCanceled()) {
-                process(event.getJDA(), event.getGuild(), m, c, u, args);
-            }
+            */
+            //}
         } else if (getAliases().length > 0) {
             for (int i = 0; i < getAliases().length; i++) {
                 if (content.startsWith("-" + getAliases()[i])) {
                     args = content.replace("-" + getAliases()[i] + " ", "").split(" ");
-                    CommandProcessedEvent cmdEvent = new CommandProcessedEvent(
+                   /* CommandProcessedEvent cmdEvent = new CommandProcessedEvent(
                             event.getJDA(),
                             this,
                             event.getTextChannel(),
@@ -127,8 +129,9 @@ public abstract class AbstractCommand extends ListenerAdapter {
                             args);
                     ImpurityBot.EVENT_BUS.post(cmdEvent);
                     if (!cmdEvent.isCanceled()) {
-                        process(event.getJDA(), event.getGuild(), m, c, u, args);
-                    }
+                    */
+                    process(event.getJDA(), event.getGuild(), m, c, u, args);
+                    //}
                 }
             }
         }

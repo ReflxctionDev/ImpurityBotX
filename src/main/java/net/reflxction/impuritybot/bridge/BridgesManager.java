@@ -115,10 +115,13 @@ public class BridgesManager {
      * @return True if the channel is in a bridge, false if not
      */
     public boolean isBridge(Channel channel) {
-        for (Bridge bridge : getBridges()) {
-            if (bridge.getChannel1().equals(channel) || bridge.getChannel2().equals(channel)) {
-                return true;
+        try {
+            for (Bridge bridge : getBridges()) {
+                if (bridge.getChannel1().equals(channel) || bridge.getChannel2().equals(channel)) {
+                    return true;
+                }
             }
+        } catch (NullPointerException ignored) {
         }
         return false;
     }
