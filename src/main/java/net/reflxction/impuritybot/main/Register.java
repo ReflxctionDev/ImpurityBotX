@@ -37,8 +37,6 @@ import net.reflxction.impuritybot.commands.points.PointsBalance;
 import net.reflxction.impuritybot.commands.user.*;
 import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.eros.Slots;
-import net.reflxction.impuritybot.core.events.levels.UserLevelUpEvent;
-import net.reflxction.impuritybot.core.listeners.bot.LevelUpListener;
 import net.reflxction.impuritybot.eros.*;
 import net.reflxction.impuritybot.eros.shop.Menu;
 import net.reflxction.impuritybot.logs.channel.ChannelCreatedLogger;
@@ -129,7 +127,8 @@ class Register {
                 .registerCommand(new Tester())
                 .registerCommand(new BridgeCommand())
                 .registerCommand(new BridgeInfo())
-                .registerCommand(new BetCommand());
+                .registerCommand(new BetCommand())
+                .registerCommand(new FilterCommand());
         //.registerCommand(new BetAmount());
     }
 

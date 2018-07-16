@@ -1,6 +1,7 @@
 package net.reflxction.impuritybot.core.listeners;
 
 import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.reflxction.impuritybot.main.ImpurityBot;
@@ -14,15 +15,12 @@ public class Filter extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (!filterOn() || !containsFilteredContent(event.getMessage())) return;
-        if (!event.getMessage().getContentRaw().startsWith("-")) {
-            event.getMessage().delete().queue();
-            event.getChannel().sendMessage("Your content is deleted because it contains inappropriate, NFSW, or offensive content(s)").queue();
-            return;
-        }
-        event.getChannel().sendMessage("Please do not send an inappropriate, NFSW, or offensive content(s)").queue();
+        PrivateChannel pm = event.getAuthor().openPrivateChannel().complete();
+        event.getMessage().delete().queue();
+        pm.sendMessage("Your content has been deleted because it contains inappropriate, NFSW, or offensive content. Please watch your language next time to avoid further punishments. Thanks").queue();
     }
 
-    public boolean containsFilteredContent(Message message) {
+    private boolean containsFilteredContent(Message message) {
         String[] args = message.getContentRaw().split("\\s+");
         boolean containsFilteredContent = false;
         for (String string : args) {
@@ -31,10 +29,6 @@ public class Filter extends ListenerAdapter {
             }
         }
         return containsFilteredContent;
-    }
-
-    public String[] getFilters() {
-        return filters;
     }
 
     public boolean filterOn() {
