@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.core.listeners.discord_events;
+package net.reflxction.impuritybot.core.listeners.discord;
 
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.main.ImpurityBot;

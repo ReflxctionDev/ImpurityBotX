@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.listeners.discord_events.Bet;
+import net.reflxction.impuritybot.core.listeners.discord.Bet;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.lang.TimeUtils;

@@ -1,11 +1,12 @@
-package net.reflxction.impuritybot.core.listeners.discord_events;
+package net.reflxction.impuritybot.core.listeners.discord;
 
 import me.brokenearth.core.scheduler.Timer;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.Role;
-import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
+
 import java.util.Random;
 
 /**
@@ -32,6 +33,7 @@ public class Steal {
     private void generate() {
         percentage = new Random().nextInt(100) + 1;
     }
+
     /**
      * Attempts to steal 20% of the user's credits
      */
@@ -45,7 +47,8 @@ public class Steal {
             channel.sendMessage("Percentage: **" + getPercentage() + "**").queue();
         }
         if (getPercentage() < 80) {
-            if (channel != null) channel.sendMessage("**Oh no!** You were unlucky and ended up with less than 80%").queue();
+            if (channel != null)
+                channel.sendMessage("**Oh no!** You were unlucky and ended up with less than 80%").queue();
             mute(executor, target);
             return;
         }
@@ -59,7 +62,7 @@ public class Steal {
                 channel.sendMessage("You can't steal less than **1** credit").queue();
             return;
         }
-        int percentage = (amount / manager.getUserCredits(target.getUser()) ) * 100;
+        int percentage = (amount / manager.getUserCredits(target.getUser())) * 100;
         if (percentage > 20) {
             if (channel != null)
                 channel.sendMessage("You are trying to steal more than 20% of **" + target.getUser().getName() + "'s** credits").queue();
@@ -68,9 +71,11 @@ public class Steal {
         isSuccessful = true;
         manager.setUserCredits(target.getUser(), manager.getUserCredits(target.getUser()) - amount);
         manager.setUserCredits(executor.getUser(), manager.getUserCredits(executor.getUser()) + amount);
-        if (channel != null) channel.sendMessage("You have stolen **" + amount + "** credits from **" + target.getUser().getName() + "**").queue();
+        if (channel != null)
+            channel.sendMessage("You have stolen **" + amount + "** credits from **" + target.getUser().getName() + "**").queue();
         mute(executor, target);
     }
+
     /**
      * Mutes the user who stole the credits for 5 minutes
      */
@@ -84,19 +89,6 @@ public class Steal {
                 GuildUtils.controller().removeRolesFromMember(target, muted).queue();
             }
         }.schedule(1000 * 60 * 5);
-    }
-    /**
-     * Defines if the user did steal or not
-     * @return it
-     */
-    public boolean isSuccessful() {
-        return isSuccessful;
-    }
-    /**
-     * @return the percentage with a percent sign on front of it
-     */
-    public String getPercentageAsString() {
-        return percentage + "%";
     }
 
     /**

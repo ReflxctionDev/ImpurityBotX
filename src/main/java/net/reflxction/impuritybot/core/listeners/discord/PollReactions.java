@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.core.listeners.discord_events;
+package net.reflxction.impuritybot.core.listeners.discord;
 
 import net.dv8tion.jda.core.entities.Emote;
 import net.dv8tion.jda.core.entities.Guild;
@@ -6,7 +6,6 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.data.PollsManager;
 
 /**

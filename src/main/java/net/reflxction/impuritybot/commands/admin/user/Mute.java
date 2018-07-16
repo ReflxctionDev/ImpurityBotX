@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.listeners.discord_events.MuteManager;
+import net.reflxction.impuritybot.core.listeners.discord.MuteManager;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.utils.lang.StringUtils;

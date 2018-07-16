@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.listeners.discord_events.Steal;
+import net.reflxction.impuritybot.core.listeners.discord.Steal;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class StealCommand extends AbstractCommand {
