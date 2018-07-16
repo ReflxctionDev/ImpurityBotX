@@ -31,14 +31,18 @@ public class FilterCommand extends AbstractCommand {
                 channel.sendMessage("The filter is currently **" + msg + "**").queue();
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("off") || args[0].equalsIgnoreCase("false")) {
-                    if (filter.filterOn())
+                    if (filter.filterOn()) {
                         filter.setFilterStatus(false);
+                        channel.sendMessage("The filter is now **off**").queue();
+                    }
                     else {
                         channel.sendMessage("The filter is already **off**").queue();
                     }
                 } else if (args[0].equalsIgnoreCase("on") || args[0].equalsIgnoreCase("true")) {
-                    if (!filter.filterOn())
+                    if (!filter.filterOn()) {
                         filter.setFilterStatus(true);
+                        channel.sendMessage("The filter is now **on**").queue();
+                    }
                     else {
                         channel.sendMessage("The filter is already **on**").queue();
                     }
