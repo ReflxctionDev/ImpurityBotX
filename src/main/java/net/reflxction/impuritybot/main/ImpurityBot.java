@@ -28,6 +28,7 @@ import net.reflxction.impuritybot.commands.fun.exclusive.Rate;
 import net.reflxction.impuritybot.commands.minecraft.SkyWarsC;
 import net.reflxction.impuritybot.core.cache.CacheHandler;
 import net.reflxction.impuritybot.core.cache.ProfileAdapterCache;
+import net.reflxction.impuritybot.core.listeners.Filter;
 import net.reflxction.impuritybot.core.listeners.discord.*;
 import net.reflxction.impuritybot.core.others.BotConfig;
 import net.reflxction.impuritybot.levels.MessageListener;

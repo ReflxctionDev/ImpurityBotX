@@ -9,7 +9,9 @@ import net.reflxction.impuritybot.utils.data.DataManager;
 
 public class Filter extends ListenerAdapter {
 
-    private String[] filters = {"fuck", "bitch", "cunt", "rape", "dick", "ass", "asshole", "dickhead", "ez", "ezy", "nub", "noob", "cancer"};
+    private String[] filters = {"fuck", "bitch", "cunt", "rape", "dick","asshole", "dickhead", "ez", "ezy", "nub", "noob", "cancer"};
+
+    private String[] completeScanFilters = {"ass"};
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -27,7 +29,10 @@ public class Filter extends ListenerAdapter {
         boolean containsFilteredContent = false;
         for (String string : args) {
             for (String filter : filters) {
-                if (string.equalsIgnoreCase(filter)) containsFilteredContent = true;
+                if (string.contains(filter)) containsFilteredContent = true;
+            }
+            for (String filter : completeScanFilters) {
+                if (string.equalsIgnoreCase("filter")) containsFilteredContent = true;
             }
         }
         return containsFilteredContent;

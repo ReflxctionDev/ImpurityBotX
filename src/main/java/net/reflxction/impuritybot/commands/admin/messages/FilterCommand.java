@@ -13,7 +13,6 @@ import net.reflxction.impuritybot.core.others.Roles;
 
 public class FilterCommand extends AbstractCommand {
 
-
     @Override
     public String getCommand() {
         return "filter";
