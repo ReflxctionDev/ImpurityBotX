@@ -44,7 +44,7 @@ public class HistoryDelete extends AbstractCommand {
                 MessageHistory history = new MessageHistory(c);
                 m.delete().queue();
                 list = history.retrievePast(Integer.parseInt(args[0]) + 1).complete();
-                c.deleteMessages(list).queue();
+                list.forEach(msg -> msg.delete().queue());
                 Message success = c.sendMessage("**Successfully cleared " + args[0] + " message(s)**").complete();
                 new Timer().schedule(new TimerTask() {
                     @Override

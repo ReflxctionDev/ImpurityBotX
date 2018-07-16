@@ -2,17 +2,14 @@ package net.reflxction.impuritybot.commands.admin.user;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.listeners.MuteManager;
+import net.reflxction.impuritybot.core.listeners.discord.MuteManager;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.others.Roles;
-import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
-import javax.naming.NamingEnumeration;
 import java.awt.*;
 
 public class Unmute extends AbstractCommand {
@@ -62,7 +59,6 @@ public class Unmute extends AbstractCommand {
             c.sendMessage("**Successfully unmuted " + target.getUser().getAsMention() + "**").queue();
         } catch (NumberFormatException e) {
             c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
-            return;
         }
     }
 

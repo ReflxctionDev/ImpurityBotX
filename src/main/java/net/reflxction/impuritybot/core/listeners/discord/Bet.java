@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.core.listeners;
+package net.reflxction.impuritybot.core.listeners.discord;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
@@ -40,10 +40,10 @@ public class Bet {
         makeEmbed(executor, target, channel, executorchance, targetchance, amount);
         if (executorchance > targetchance) {
             channel.sendMessage("**" + executor.getUser().getName() + "** wins!").queue();
-            setCredits(executor, target, channel, (int) executorchance, (int) targetchance, amount);
+            setCredits(executor, target, channel, executorchance, targetchance, amount);
         } else if (targetchance > executorchance) {
             channel.sendMessage("**" + target.getUser().getName() + "** wins!").queue();
-            setCredits(target, executor, channel, ((int) executorchance), (int) targetchance, amount);
+            setCredits(target, executor, channel, executorchance, targetchance, amount);
         } else
             channel.sendMessage("**" + executor.getUser().getName() + "** and **" + target.getUser().getName() + "** ties!").queue();
     }

@@ -37,6 +37,7 @@
 
     <!-- Maven dependencies -->
     <dependencies>
+	
         <!-- Apache components -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -84,7 +85,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.6.0_376</version>
+            <version>3.7.0_382</version>
             <scope>compile</scope>
         </dependency>
 

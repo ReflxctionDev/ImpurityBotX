@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.listeners.MuteManager;
+import net.reflxction.impuritybot.core.listeners.discord.MuteManager;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
@@ -73,7 +73,6 @@ public class Mute extends AbstractCommand {
             sendNews(target.getUser().openPrivateChannel().complete(), reason.toString(), time_seconds, executor.getUser(), target.getUser());
         } catch (NumberFormatException e) {
             c.sendMessage("**Expected a user mention (or id), but found** `" + args[0] + "`**.**").queue();
-            return;
         }
     }
 
@@ -134,9 +133,9 @@ public class Mute extends AbstractCommand {
         if (time_seconds < 60) {
             return time_seconds + " seconds";
         }
-        else if (time_seconds >= 60 && time_seconds < 3600) {
+        else if (time_seconds < 3600) {
             return time_seconds / 60 + " minutes";
-        } else if (time_seconds >= 3600 && time_seconds < 86400) {
+        } else if (time_seconds < 86400) {
             return time_seconds / 3600 + " hours";
         } else {
             return time_seconds / 86400 + " days";

@@ -20,7 +20,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.hooks.EventListener;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.reflxction.impuritybot.commands.miscs.CommandInfo;
-import net.reflxction.impuritybot.core.events.Event;
+import net.reflxction.impuritybot.core.eventsbus.Event;
 import net.reflxction.impuritybot.core.loggers.Logger;
 import net.reflxction.impuritybot.main.ImpurityBot;
 

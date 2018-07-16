@@ -7,9 +7,8 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
-
 import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -34,7 +33,7 @@ public class Warn extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager(bot);
+    private final WarningsManager wu = new WarningsManager();
 
 
     @Override
@@ -61,7 +60,7 @@ public class Warn extends AbstractCommand {
                     }
                     User warned = j.getUserById(StringUtils.mentionToId(args[0]));
                     if (member.getRoles().get(0).getPosition() >= g.getMember(warned).getRoles().get(0).getPosition()) {
-                        wu.giveWarning(u, warned, reason.toString());
+                        wu.giveWarning(u, warned, reason.toString(), ((TextChannel) c));
                         c.sendMessage("**" + warned.getName() + "** has been warned.").queue();
                         c.sendMessage("Total warnings for this user: **" + wu.getWarnings(warned) + "**.").queue();
                         PrivateChannel pm = warned.openPrivateChannel().complete();

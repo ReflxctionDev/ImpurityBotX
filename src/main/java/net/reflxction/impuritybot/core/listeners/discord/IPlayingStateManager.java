@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.core.listeners;
+package net.reflxction.impuritybot.core.listeners.discord;
 
 import net.dv8tion.jda.core.entities.Game;
 
@@ -9,6 +9,6 @@ public interface IPlayingStateManager {
 
     void setGame(Game.GameType game, String g);
 
-    public void manageGames();
+    void manageGames();
 
 }

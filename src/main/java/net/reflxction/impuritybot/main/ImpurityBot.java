@@ -28,13 +28,10 @@ import net.reflxction.impuritybot.commands.fun.exclusive.Rate;
 import net.reflxction.impuritybot.commands.minecraft.SkyWarsC;
 import net.reflxction.impuritybot.core.cache.CacheHandler;
 import net.reflxction.impuritybot.core.cache.ProfileAdapterCache;
-import net.reflxction.impuritybot.core.listeners.*;
+import net.reflxction.impuritybot.core.listeners.discord.*;
 import net.reflxction.impuritybot.core.others.BotConfig;
 import net.reflxction.impuritybot.levels.MessageListener;
-import net.reflxction.impuritybot.logs.user.UserWarnLoggers;
 import net.reflxction.impuritybot.utils.data.DataManager;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
-import net.reflxction.logger.core.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -52,7 +49,6 @@ public class ImpurityBot extends JavaPlugin {
     private static boolean enabled = false;
 
     public static final EventBus EVENT_BUS = new EventBus();
-    public static final Logger LOGGER = new Logger("ImpurityBot", false);
 
     private static CacheHandler cacheHandler = new CacheHandler();
 
@@ -78,10 +74,6 @@ public class ImpurityBot extends JavaPlugin {
 
     private File bridges = new File(getDataFolder(), "bridges.yml");
     private FileConfiguration bridgesFile = YamlConfiguration.loadConfiguration(bridges);
-
-    private File rules = new File(getDataFolder(), "rules.png");
-    private File ranks = new File(getDataFolder(), "ranks.png");
-    private File punishments = new File(getDataFolder(), "punishments.png");
 
     public static ImpurityBot getBot() {
         return bot;
@@ -126,8 +118,6 @@ public class ImpurityBot extends JavaPlugin {
     @Override
     public void onEnable() {
         bot = this;
-        UserWarnLoggers.wu = new WarningsManager(this);
-        WarningsManager.loggers = new UserWarnLoggers(this);
         enable();
         japi.getPresence().setGame(Game.listening("Loki's wise words"));
         GameManager gm = new GameManager();
@@ -182,22 +172,6 @@ public class ImpurityBot extends JavaPlugin {
         return bridgesFile;
     }
 
-    public File getBridges() {
-        return bridges;
-    }
-
-    public File getRulesP() {
-        return rules;
-    }
-
-    public File getRanksP() {
-        return ranks;
-    }
-
-    public File getPunishmentP() {
-        return punishments;
-    }
-
     public static Guild getImpurityGuild() {
         return getJDA().getGuildById("363721897743089668");
     }
@@ -211,7 +185,7 @@ public class ImpurityBot extends JavaPlugin {
                 .addEventListener(new Engine())
                 .addEventListener(new Rate())
                 .addEventListener(new TableFlip())
-                .addEventListener(new PollReactions(bot))
+                .addEventListener(new PollReactions())
                 .addEventListener(new BridgeListener())
                 .addEventListener(new Filter())
                 .buildAsync();

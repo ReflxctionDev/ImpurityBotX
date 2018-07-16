@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.listeners.Steal;
+import net.reflxction.impuritybot.core.listeners.discord.Steal;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class StealCommand extends AbstractCommand {
@@ -19,7 +19,6 @@ public class StealCommand extends AbstractCommand {
             return;
         }
         User target;
-        User executor = user;
         int count;
         try {
             String id = StringUtils.mentionToId(args[0]);
@@ -35,7 +34,7 @@ public class StealCommand extends AbstractCommand {
             return;
         }
         Steal steal = new Steal();
-        steal.steal(guild.getMember(target), guild.getMember(executor), count, channel);
+        steal.steal(guild.getMember(target), guild.getMember(user), count, channel);
     }
 
     @Override

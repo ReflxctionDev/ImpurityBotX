@@ -44,7 +44,7 @@ public class RoleGivenLogger extends Logger {
                     "\n" +
                     "Want to join one of our teams? Check out the teams section of <#452333985419493376>. You will find more information about the teams there. You are strongly recommended and encouraged to join either one of the teams. You will not only be able to help the guild, but also participate in a fun and non-toxic community. You will also get special permissions and perks from joining a team! For example, Helpers are able to -warn and -kick and Events Team members are able to make announcements and polls. GvG team members represent the guild in GvGs and you’ll be able to interact with a lot of your guildmates.\n" +
                     "\n" +
-                    "If teams aren’t really your thing, consider joining one of our events! Our events team hosts a number of events weekly. Past examples include Murder Mystery, a duels tournament, and skribbl.io. Events are announced regularly and you can usually find more information there.\n" +
+                    "If teams aren’t really your thing, consider joining one of our eventsbus! Our events team hosts a number of events weekly. Past examples include Murder Mystery, a duels tournament, and skribbl.io. Events are announced regularly and you can usually find more information there.\n" +
                     "\n" +
                     "If you have any more questions, contact **Loki#0532**. Once again, welcome to our guild. Hope you enjoy your stay!").queue();
         }

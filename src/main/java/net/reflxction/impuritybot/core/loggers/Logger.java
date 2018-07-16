@@ -11,16 +11,20 @@ import java.awt.*;
  */
 public abstract class Logger extends ListenerAdapter {
 
-    public static final Color L_RED = new Color(255, 97, 94);
+    protected static final Color L_RED = new Color(255, 97, 94);
 
-    public static final Color L_GREEN = new Color(136, 255, 131);
+    protected static final Color L_GREEN = new Color(136, 255, 131);
 
-    public static final Color L_BLUE = new Color(168, 201, 255);
+    protected static final Color L_BLUE = new Color(168, 201, 255);
 
-    public static final Color YELLOW = new Color(255, 255, 0);
+    protected static final Color YELLOW = new Color(255, 255, 0);
 
-    public final TextChannel getLogs() {
+    public TextChannel getLogs() {
         return ImpurityBot.getImpurityGuild().getTextChannelById("407256687310012447");
+    }
+
+    protected TextChannel getWarningLogs() {
+        return ImpurityBot.getImpurityGuild().getTextChannelById("407968054165635083");
     }
 
 }
