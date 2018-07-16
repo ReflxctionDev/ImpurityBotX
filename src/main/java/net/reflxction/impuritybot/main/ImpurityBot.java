@@ -213,6 +213,7 @@ public class ImpurityBot extends JavaPlugin {
                 .addEventListener(new TableFlip())
                 .addEventListener(new PollReactions(bot))
                 .addEventListener(new BridgeListener())
+                .addEventListener(new Filter())
                 .buildAsync();
     }
 
