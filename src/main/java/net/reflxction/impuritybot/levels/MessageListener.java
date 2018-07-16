@@ -16,7 +16,6 @@
 package net.reflxction.impuritybot.levels;
 
 import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -39,24 +38,24 @@ public class MessageListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         User u = event.getAuthor();
-        MessageChannel c = event.getChannel();
+        TextChannel c = event.getTextChannel();
         Guild g = event.getGuild();
+
         if (!u.isBot()) {
-            if (c instanceof TextChannel) {
-                if (g.getId().equals("363721897743089668")) {
-                    if (!eu.hasTalkedBefore(u)) {
-                        eu.addUserForFirstTime(u);
-                        lu.addUserForFirstTime(u);
-                    } else {
-                        eu.addNormalExp(u);
-                        if (points.deservesRank(u, points.getNextRank(u))) {
-                            points.upgrade(u, c);
-                        }
-                    }
-                    if (eu.canLevelUp(u)) {
-                        lu.levelUp(u, c);
+            if (g.getId().equals("363721897743089668")) {
+                if (!eu.hasTalkedBefore(u)) {
+                    eu.addUserForFirstTime(u);
+                    lu.addUserForFirstTime(u);
+                } else {
+                    eu.addNormalExp(u);
+                    if (points.deservesRank(u, points.getNextRank(u))) {
+                        points.upgrade(u, c);
                     }
                 }
+                if (eu.canLevelUp(u)) {
+                    lu.levelUp(u, c);
+                }
+
             }
         }
     }

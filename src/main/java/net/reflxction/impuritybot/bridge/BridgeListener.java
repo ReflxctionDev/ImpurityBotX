@@ -29,7 +29,6 @@ public class BridgeListener extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getChannelType() == ChannelType.TEXT) {
             Channel channel = event.getTextChannel();
-            System.out.println(channel.getName() + " > " + manager.isBridge(channel));
             if (manager.isBridge(channel)) {
                 if (!event.getAuthor().getId().equals("393791576700092416")) {
                     TextChannel bridgeChannel = (TextChannel) manager.getCorrespondingChannel(channel);

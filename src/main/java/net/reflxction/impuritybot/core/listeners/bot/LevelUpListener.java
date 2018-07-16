@@ -29,8 +29,11 @@ public class LevelUpListener {
     public void onUserLevelUp(UserLevelUpEvent event) {
         EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                 .setRandomColor()
-                //.setTitle()
+                .setAuthor(event.getUser().getName() + " - Level up!", null, event.getUser().getAvatarUrl())
+                .setThumbnail(event.getUser().getAvatarUrl())
+                .setDescription("**" + event.getUser().getName() + "** has reached level **" + event.getNewLevel() + "**")
                 .build();
+        event.getChannel().sendMessage(builder.build()).queue();
     }
 
 }
