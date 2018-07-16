@@ -13,42 +13,64 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.core.events.levels;
+package net.reflxction.impuritybot.core.events.commands;
 
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.eventsbus.Event;
 
 /**
- * Fired when a user levels up
+ * Fired when a command is being executed
  */
-public class UserLevelUpEvent extends Event {
+public class CommandProcessedEvent extends Event {
 
-    // The user who leveled up
-    private User user;
+    // Whether the event is canceled
+    private boolean canceled;
 
-    // The old level and the new level
-    private int oldLevel, newLevel;
+    // Instance of the JDA cache
+    private JDA jda;
+
+    // The command
+    private AbstractCommand command;
 
     // The channel
     private TextChannel channel;
 
-    // Whether the event is canceled or not
-    private boolean canceled;
+    // The sender
+    private User author;
+
+    // Instance of the guild
+    private Guild guild;
+
+    // The message
+    private Message message;
+
+    // Extra command arguments
+    private String[] args;
 
     /**
-     * Initializes a leveling up event
+     * Initializes a command event
      *
-     * @param user     User who leveled pu
-     * @param oldLevel The old level
-     * @param newLevel The new level
-     * @param channel  The channel that the last message for the user was sent
+     * @param jda     Instance of the JDA cache
+     * @param command Instance of the command
+     * @param channel The channel the command was sent in
+     * @param author  The command sender
+     * @param guild   The guild that the command was sent into
+     * @param message Instance of the message
+     * @param args    Extra command arguments
      */
-    public UserLevelUpEvent(User user, int oldLevel, int newLevel, TextChannel channel) {
-        this.user = user;
-        this.oldLevel = oldLevel;
-        this.newLevel = newLevel;
+    public CommandProcessedEvent(JDA jda, AbstractCommand command, TextChannel channel, User author, Guild guild, Message message, String[] args) {
+        this.jda = jda;
+        this.command = command;
         this.channel = channel;
+        this.author = author;
+        this.guild = guild;
+        this.message = message;
+        this.args = args;
     }
 
     /**
@@ -88,22 +110,15 @@ public class UserLevelUpEvent extends Event {
     /**
      * {@inheritDoc}
      */
-    public User getUser() {
-        return user;
+    public JDA getJDA() {
+        return jda;
     }
 
     /**
      * {@inheritDoc}
      */
-    public int getOldLevel() {
-        return oldLevel;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public int getNewLevel() {
-        return newLevel;
+    public AbstractCommand getCommand() {
+        return command;
     }
 
     /**
@@ -111,5 +126,33 @@ public class UserLevelUpEvent extends Event {
      */
     public TextChannel getChannel() {
         return channel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public User getAuthor() {
+        return author;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Guild getGuild() {
+        return guild;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Message getMessage() {
+        return message;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String[] getArgs() {
+        return args;
     }
 }
