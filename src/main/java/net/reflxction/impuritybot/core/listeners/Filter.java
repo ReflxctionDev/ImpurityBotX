@@ -30,7 +30,7 @@ public class Filter extends ListenerAdapter {
                 if (string.contains(filter)) containsFilteredContent = true;
             }
             for (String filter : completeScanFilters) {
-                if (string.equalsIgnoreCase("filter")) containsFilteredContent = true;
+                if (string.equalsIgnoreCase(filter)) containsFilteredContent = true;
             }
         }
         return containsFilteredContent;
