@@ -24,9 +24,6 @@ import net.reflxction.impuritybot.core.eventsbus.Event;
  */
 public class UserSwearEvent extends Event {
 
-    // Whether the event is cancelled or not
-    private boolean cancelled;
-
     // The message of the user
     private Message message;
 
@@ -46,7 +43,7 @@ public class UserSwearEvent extends Event {
      */
     @Override
     public boolean isCancelable() {
-        return true;
+        return false;
     }
 
     /**
@@ -56,7 +53,7 @@ public class UserSwearEvent extends Event {
      */
     @Override
     public boolean isCanceled() {
-        return cancelled;
+        return false;
     }
 
     /**
@@ -69,8 +66,6 @@ public class UserSwearEvent extends Event {
      */
     @Override
     public void setCanceled(boolean canceled) {
-        if (!isCancelable()) return;
-        this.cancelled = canceled;
     }
 
     /**
