@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.core.events.warnings;
+package net.reflxction.impuritybot.events.warnings;
 
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 
 /**
- * Fired when a warning has been given
+ * Fired when a warning has been removed from a user
  */
-public class WarningGivenEvent extends WarningEvent {
+public class WarningRemovedEvent extends WarningEvent {
 
     private boolean canceled;
 
-    // The warning reason
-    private String reason;
+    // The amount of warnings removed
+    private int amount;
 
     /**
      * Default constructor for all warning eventsbus
@@ -34,18 +34,18 @@ public class WarningGivenEvent extends WarningEvent {
      * @param target   Target that the event ran on
      * @param executor The one who ran the event
      */
-    public WarningGivenEvent(User target, User executor, String reason, TextChannel channel) {
+    public WarningRemovedEvent(User target, User executor, int amount, TextChannel channel) {
         super(target, executor, channel);
-        this.reason = reason;
+        this.amount = amount;
     }
 
     /**
-     * The warning reason
+     * The amount of warnings removed
      *
-     * @return The reason why the warning was given
+     * @return ^
      */
-    public String getReason() {
-        return reason;
+    public int getAmount() {
+        return amount;
     }
 
     /**
@@ -78,7 +78,7 @@ public class WarningGivenEvent extends WarningEvent {
      */
     @Override
     public void setCanceled(boolean canceled) {
-        if (!isCancelable()) return;
+        if(!isCancelable()) return;
         this.canceled = canceled;
     }
 }
