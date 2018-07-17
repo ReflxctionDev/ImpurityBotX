@@ -17,10 +17,9 @@
 package net.reflxction.impuritybot.utils.data.level;
 
 import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.core.events.levels.UserLevelUpEvent;
+import net.reflxction.impuritybot.events.levels.UserLevelUpEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.data.DataManager;
 import net.reflxction.impuritybot.utils.data.IDataManager;
