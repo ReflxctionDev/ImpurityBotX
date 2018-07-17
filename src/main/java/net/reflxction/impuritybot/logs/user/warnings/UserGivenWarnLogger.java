@@ -19,7 +19,7 @@ import com.google.common.eventbus.Subscribe;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.reflxction.impuritybot.core.loggers.Logger;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.core.events.warnings.WarningGivenEvent;
+import net.reflxction.impuritybot.events.warnings.WarningGivenEvent;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 import java.awt.*;
