@@ -128,8 +128,7 @@ class Register {
                 .registerCommand(new Tester())
                 .registerCommand(new BridgeCommand())
                 .registerCommand(new BridgeInfo())
-                .registerCommand(new BetCommand())
-                .registerCommand(new FilterCommand());
+                .registerCommand(new BetCommand());
         //.registerCommand(new BetAmount());
     }
 
