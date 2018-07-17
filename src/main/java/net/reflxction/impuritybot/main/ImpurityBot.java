@@ -28,7 +28,7 @@ import net.reflxction.impuritybot.commands.fun.exclusive.Rate;
 import net.reflxction.impuritybot.commands.minecraft.SkyWarsC;
 import net.reflxction.impuritybot.core.cache.CacheHandler;
 import net.reflxction.impuritybot.core.cache.ProfileAdapterCache;
-import net.reflxction.impuritybot.core.listeners.Filter;
+import net.reflxction.impuritybot.filter.FilterListener;
 import net.reflxction.impuritybot.core.listeners.discord.*;
 import net.reflxction.impuritybot.core.others.BotConfig;
 import net.reflxction.impuritybot.levels.MessageListener;
@@ -75,6 +75,9 @@ public class ImpurityBot extends JavaPlugin {
 
     private File bridges = new File(getDataFolder(), "bridges.yml");
     private FileConfiguration bridgesFile = YamlConfiguration.loadConfiguration(bridges);
+
+    private File swears = new File(getDataFolder(), "swears.yml");
+    private FileConfiguration swearsFile = YamlConfiguration.loadConfiguration(swears);
 
     public static ImpurityBot getBot() {
         return bot;
@@ -173,6 +176,10 @@ public class ImpurityBot extends JavaPlugin {
         return bridgesFile;
     }
 
+    public FileConfiguration getSwearsFile() {
+        return swearsFile;
+    }
+
     public static Guild getImpurityGuild() {
         return getJDA().getGuildById("363721897743089668");
     }
@@ -188,7 +195,7 @@ public class ImpurityBot extends JavaPlugin {
                 .addEventListener(new TableFlip())
                 .addEventListener(new PollReactions())
                 .addEventListener(new BridgeListener())
-                .addEventListener(new Filter())
+                .addEventListener(new FilterListener())
                 .buildAsync();
     }
 
