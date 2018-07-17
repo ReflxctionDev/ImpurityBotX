@@ -88,6 +88,7 @@ public class DataManager {
         createFile("points");
         createFile("config");
         createFile("bridges");
+        createFile("swears");
 
         loadFile("igns");
         loadFile("credits");
@@ -97,6 +98,7 @@ public class DataManager {
         loadFile("points");
         loadFile("config");
         loadFile("bridges");
+        loadFile("swears");
 
         for (EnumImages image : EnumImages.values()) {
             addFile(image.getName());
