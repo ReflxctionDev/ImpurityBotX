@@ -17,9 +17,9 @@ package net.reflxction.impuritybot.utils.data;
 
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.core.events.warnings.WarningGivenEvent;
-import net.reflxction.impuritybot.core.events.warnings.WarningRemovedEvent;
-import net.reflxction.impuritybot.core.events.warnings.WarningsClearedEvent;
+import net.reflxction.impuritybot.events.warnings.WarningGivenEvent;
+import net.reflxction.impuritybot.events.warnings.WarningRemovedEvent;
+import net.reflxction.impuritybot.events.warnings.WarningsClearedEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 
 public class WarningsManager implements IDataManager {
