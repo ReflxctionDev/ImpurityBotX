@@ -21,19 +21,21 @@ package net.reflxction.impuritybot.filter.swears;
 public enum WordType {
 
     // A regex swear word
-    REGEX("R"),
+    REGEX("R", "Regex"),
 
     // A normal swear word
-    NORMAL("N");
+    NORMAL("N", "Normal");
 
     // The starting letter for the type
-    private String starter;
+    private String starter, name;
 
     /**
      * @param starter The starting character
+     * @param name The full type name
      */
-    WordType(String starter) {
+    WordType(String starter, String name) {
         this.starter = starter;
+        this.name = name;
     }
 
     /**
@@ -43,6 +45,15 @@ public enum WordType {
      */
     public String getStarter() {
         return starter;
+    }
+
+    /**
+     * The type name
+     *
+     * @return The full name of the type
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -67,8 +78,8 @@ public enum WordType {
      * @return The string without the type
      */
     public static String getWithoutType(String text) {
-        if(text.isEmpty()) return "";
-        if(!text.startsWith("R") || !text.startsWith("N")) return text;
+        if (text.isEmpty()) return "";
+        if (!text.startsWith("R") || !text.startsWith("N")) return text;
         return text.substring(1);
     }
 
