@@ -8,6 +8,8 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public abstract class AbstractCommand extends ListenerAdapter {
 
@@ -24,14 +26,10 @@ public abstract class AbstractCommand extends ListenerAdapter {
     /**
      * Process of the command
      *
-     * @param j    Instance of the latest JDA cache
-     * @param g    Guild that the command is run in
-     * @param m    Message of the command
-     * @param c    Channel that the message was sent in
-     * @param u    User who sent the command
-     * @param args Extra arguments of the command
+     * @param event the command event instance
+     * @param args the arguments of the command
      */
-    public abstract void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args);
+    public abstract void process(CommandEvent event, String[] args);
 
     /**
      * Aliases
@@ -80,60 +78,26 @@ public abstract class AbstractCommand extends ListenerAdapter {
     @SuppressWarnings("UnusedAssignment")
     @SubscribeEvent
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        Message m = event.getMessage();
-        content = m.getContentRaw();
-        User u = event.getAuthor();
-        MessageChannel c = event.getChannel();
-        if (u.isBot()) return;
+    public final void onMessageReceived(MessageReceivedEvent event) {
+        this.content = event.getMessage().getContentRaw();
+        User user = event.getAuthor();
+        MessageChannel channel = event.getChannel();
+        if (user.isBot()) return;
         String[] args;
-        if (content.contains(" ")) {
-            args = content.replace("-" + getCommand() + " ", "").split(" ");
-        }
-        if (!content.contains(" ")) {
-            args = new String[0];
-        }
-        if (getAliases() == null || getAliases().length == 0) {
-            if (content.startsWith("-" + getCommand() + " ")) {
-                args = content.replace("-" + getCommand() + " ", "")
-                        .split(" ");
-                process(event.getJDA(), event.getGuild(), m, c, u, args);
-
-            } else if (content.startsWith("-" + getCommand()) && !content.contains(" ")) {
-                args = new String[0];
-                process(event.getJDA(), event.getGuild(), m, c, u, args);
-            }
-            /*CommandProcessedEvent cmdEvent = new CommandProcessedEvent(
-                    event.getJDA(),
-                    this,
-                    event.getTextChannel(),
-                    u,
-                    event.getGuild(),
-                    m,
-                    args);
-            ImpurityBot.EVENT_BUS.post(cmdEvent);
-            if (!cmdEvent.isCanceled()) {
-            */
-            //}
-        } else if (getAliases().length > 0) {
-            for (int i = 0; i < getAliases().length; i++) {
-                if (content.startsWith("-" + getAliases()[i])) {
-                    args = content.replace("-" + getAliases()[i] + " ", "").split(" ");
-                   /* CommandProcessedEvent cmdEvent = new CommandProcessedEvent(
-                            event.getJDA(),
-                            this,
-                            event.getTextChannel(),
-                            u,
-                            event.getGuild(),
-                            m,
-                            args);
-                    ImpurityBot.EVENT_BUS.post(cmdEvent);
-                    if (!cmdEvent.isCanceled()) {
-                    */
-                    process(event.getJDA(), event.getGuild(), m, c, u, args);
-                    //}
+        if (content.contains(" ")) args = StringUtils.toArgs(content, 1);
+        else args = new String[0];
+        if ((getAliases() == null || getAliases().length == 0) && !content.startsWith("-" + getCommand())) return;
+        else if (getAliases().length > 0){
+            boolean isFound = false;
+            for (String alias : getAliases()) {
+                if (content.startsWith("-" + alias + " ")) {
+                    isFound = true;
+                    break;
                 }
             }
-        }
+            if (!isFound) return;
+        } else return;
+        CommandEvent cmdEvent = new CommandEvent(event.getJDA(), event.getGuild(), event.getChannel(), event.getMember(), event.getMessage());
+        process(cmdEvent, args);
     }
 }

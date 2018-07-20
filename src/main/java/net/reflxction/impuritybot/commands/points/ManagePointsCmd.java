@@ -4,6 +4,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.points.mechanics.AssignRanking;
 import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
@@ -20,7 +21,12 @@ public class ManagePointsCmd extends AbstractCommand {
     private PointsManager manager = new PointsManager();
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         Role staff = g.getRolesByName("Staff", true).get(0);
         if (!g.getMember(u).getRoles().contains(staff)) {
             c.sendMessage("**You do not have permission to execute this command**").queue();

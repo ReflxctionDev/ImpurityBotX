@@ -8,12 +8,18 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.listeners.discord.Steal;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class StealCommand extends AbstractCommand {
 
     @Override
-    public void process(JDA jda, Guild guild, Message message, MessageChannel channel, User user, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel channel = event.getChannel();
+        User user = event.getMember().getUser();
+        JDA jda = event.getJda();
+        Guild guild = event.getGuild();
+        Message message = event.getMessage();
         if (args.length < 2) {
             channel.sendMessage("**Invalid usage!** Try " + getUsage()).queue();
             return;

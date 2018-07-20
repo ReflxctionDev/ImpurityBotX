@@ -7,6 +7,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 /**
  * Created by Reflxction, on 01/30/18.
@@ -18,8 +19,8 @@ public class Invite extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        c.sendMessage("https://discord.gg/B7Xruae").queue();
+    public void process(CommandEvent event, String[] args) {
+        event.getChannel().sendMessage("https://discord.gg/B7Xruae").queue();
     }
 
     @Override

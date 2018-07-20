@@ -9,6 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -34,25 +35,27 @@ public class GuildInfo extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel channel, User u, String[] args) {
-        if (u.isBot()) {
-            return;
-        } else {
-            EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
-                    .setRandomColor()
-                    .setAuthor("The Impurity Guild", "https://hypixel.net/threads/guild-impurity-discord-party-motd.1376085/", null)
-                    .setThumbnail("https://hypixel.net/attachments/screen-shot-2017-10-26-at-1-40-22-pm-png.738051/")
-                    .addField("Guild Master", "Scindra", true)
-                    .addField("Guild Tag", "[I]", true)
-                    .addBlankField()
-                    .addField("Founded in:", "8th of September, 2017", true)
-                    .addField("Texture Pack", "Coming soon!", true)
-                    .addBlankField()
-                    .addField("Founders:", "Inariiiii\nOneMcGuy\nHemajin", true)
-                    .addField("Guild Housing", "Available, by MK4", true)
-                    .build();
-            channel.sendMessage(embed.build()).queue();
-        }
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel channel = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
+        EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
+                .setRandomColor()
+                .setAuthor("The Impurity Guild", "https://hypixel.net/threads/guild-impurity-discord-party-motd.1376085/", null)
+                .setThumbnail("https://hypixel.net/attachments/screen-shot-2017-10-26-at-1-40-22-pm-png.738051/")
+                .addField("Guild Master", "Scindra", true)
+                .addField("Guild Tag", "[I]", true)
+                .addBlankField()
+                .addField("Founded in:", "8th of September, 2017", true)
+                .addField("Texture Pack", "Coming soon!", true)
+                .addBlankField()
+                .addField("Founders:", "Inariiiii\nOneMcGuy\nHemajin", true)
+                .addField("Guild Housing", "Available, by MK4", true)
+                .build();
+        channel.sendMessage(embed.build()).queue();
+
     }
 
     @Override

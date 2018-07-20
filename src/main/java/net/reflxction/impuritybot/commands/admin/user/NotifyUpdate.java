@@ -5,6 +5,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.managers.RoleManager;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 /**
  * Created by Reflxction, on 02/01/18.
@@ -17,7 +18,12 @@ public class NotifyUpdate extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         Role updates = g.getRoleById("408537798392414218");
         RoleManager rm = updates.getManager();
         if (c.getId().equals("374104070945767424")) {

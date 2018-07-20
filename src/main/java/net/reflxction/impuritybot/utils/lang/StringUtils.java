@@ -99,4 +99,27 @@ public class StringUtils {
         return ImpurityBot.getJDA().getUserById(mentionToId(mention));
     }
 
+    public static String combine(String[] args, int start) {
+        if (start > args.length) throw new IllegalArgumentException("The start point is greater than the args length");
+        StringBuilder builder = new StringBuilder();
+        for (int i = start; i < args.length; i++) {
+            builder.append(args[i]).append(" ");
+        }
+        return builder.toString().trim();
+    }
+
+    public static String combine(String... strings) {
+        return combine(strings, 0);
+    }
+
+    public static String[] toArgs(String toArgs) {
+        return toArgs.split("\\s+");
+    }
+
+    public static String[] toArgs(String toArgs, int start) {
+        String[] str = toArgs(toArgs);
+        String combined = combine(str,start);
+        return toArgs(combined);
+    }
+
 }

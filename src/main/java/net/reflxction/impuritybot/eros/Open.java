@@ -22,6 +22,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.eros.Emotes;
 import net.reflxction.impuritybot.core.listeners.discord.DelayManager;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
@@ -40,7 +41,9 @@ public class Open extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        
         if (args.length != 1) {
             c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**").queue();
         } else {

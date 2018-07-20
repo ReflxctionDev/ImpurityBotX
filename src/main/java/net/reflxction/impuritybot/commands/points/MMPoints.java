@@ -23,6 +23,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
@@ -36,7 +37,12 @@ public class MMPoints extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         if (g.getMember(u).getRoles().contains(Roles.STAFF)) {
             if (args.length < 2) {
                 c.sendMessage("**Incorrect usage. Try " + getUsage() + "**.").queue();

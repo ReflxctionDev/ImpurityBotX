@@ -22,6 +22,7 @@ import net.reflxction.impuritybot.commands.miscs.CommandInfo;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,12 @@ public class Help extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel channel, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
                 .setRandomColor()
                 .addField("Admin commands", convert(getAdminCommands()))

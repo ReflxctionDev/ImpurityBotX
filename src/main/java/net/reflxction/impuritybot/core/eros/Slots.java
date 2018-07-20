@@ -26,6 +26,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 
@@ -62,17 +63,17 @@ public class Slots extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
         if (args.length != 1) {
-            c.sendMessage("**Incorrect command usage. Try `" + getUsage() + "`**.").queue();
+            event.getChannel().sendMessage("**Incorrect command usage. Try `" + getUsage() + "`**.").queue();
         } else {
             try {
                 int amount = Integer.parseInt(args[0]);
-                if (cu.getUserCredits(u) >= amount) {
+                if (cu.getUserCredits(event.getMember().getUser()) >= amount) {
                     if (amount < 10) {
-                        c.sendMessage("**You can't bet less than 10 credits!**").queue();
+                        event.getChannel().sendMessage("**You can't bet less than 10 credits!**").queue();
                     } else {
-                        cu.setUserCredits(u, cu.getUserCredits(u) - amount);
+                        cu.setUserCredits(event.getMember().getUser(), cu.getUserCredits(event.getMember().getUser()) - amount);
                         String[] queuedEmotes = queueEmotes();
                         String first, second, third, fourth, fifth, sixth, seventh, eighth, ninth;
                         first = queuedEmotes[0];
@@ -86,7 +87,7 @@ public class Slots extends AbstractCommand {
                         ninth = queuedEmotes[8];
                         Message message = null;
                         try {
-                            message = c.sendMessage("" +
+                            message = event.getChannel().sendMessage("" +
                                     "╔════[SLOTS]════╗\n" +
                                     "║  " + first + "  ║  " + second + "  ║  " + third + "  ║\n" +
                                     ">  " + fourth + "  ║  " + fifth + "  ║  " + sixth + "  <\n" +
@@ -122,10 +123,10 @@ public class Slots extends AbstractCommand {
                                     public void run() {
                                         if (hasWon(fourth, fifth, sixth)) {
                                             int prize = nu.randomBetween(50, 100) + amount;
-                                            cu.setUserCredits(u, cu.getUserCredits(u) + prize);
-                                            c.sendMessage("Congratulations! You have bet **" + amount + "** and won **" + prize + "**").queue();
+                                            cu.setUserCredits(event.getMember().getUser(), cu.getUserCredits(event.getMember().getUser()) + prize);
+                                            event.getChannel().sendMessage("Congratulations! You have bet **" + amount + "** and won **" + prize + "**").queue();
                                         } else {
-                                            c.sendMessage("You have bet **" + amount + "** and lost everything!").queue();
+                                            event.getChannel().sendMessage("You have bet **" + amount + "** and lost everything!").queue();
                                         }
                                     }
                                 }, 750);
@@ -133,10 +134,10 @@ public class Slots extends AbstractCommand {
                         }, 1200);
                     }
                 } else {
-                    c.sendMessage("**You don't have enough credits to bet this amount!**").queue();
+                    event.getChannel().sendMessage("**You don't have enough credits to bet this amount!**").queue();
                 }
             } catch (NumberFormatException ex) {
-                c.sendMessage("**You must enter a valid number!**").queue();
+                event.getChannel().sendMessage("**You must enter a valid number!**").queue();
             }
         }
     }

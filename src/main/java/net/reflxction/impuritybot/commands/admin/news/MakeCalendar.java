@@ -20,6 +20,7 @@ import net.reflxction.impuritybot.calendar.CalendarDrawer;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 public class MakeCalendar extends AbstractCommand{
 
@@ -31,7 +32,12 @@ public class MakeCalendar extends AbstractCommand{
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         final Member member = g.getMember(u);
         if(member.getRoles().contains(Roles.EVENTS_TEAM)) {
             drawer.drawCalendar(c);

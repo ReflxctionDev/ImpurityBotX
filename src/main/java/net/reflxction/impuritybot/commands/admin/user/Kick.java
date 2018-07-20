@@ -5,6 +5,7 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
@@ -57,7 +58,12 @@ public class Kick extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel channel, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel channel = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         final Member member = g.getMember(u);
         if (args.length == 0 || args.length == 1) {
             channel.sendMessage("**Invalid arguments. Try -kick <user> <reason>**").queue();

@@ -24,6 +24,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.others.Roles;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -39,7 +40,12 @@ public class Calendar extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event1, String[] args) {
+        MessageChannel c = event1.getChannel();
+        User u = event1.getMember().getUser();
+        JDA j = event1.getJda();
+        Guild g = event1.getGuild();
+        Message m = event1.getMessage();
         List<Message> msgs = new ArrayList<>();
         final Member member = g.getMember(u);
         if (member.getRoles().contains(Roles.EVENTS_TEAM)) {

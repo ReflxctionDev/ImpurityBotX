@@ -10,6 +10,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.others.IAccess;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.data.level.LevelManager;
 
 /*
@@ -38,7 +39,12 @@ public class TopLevels extends AbstractCommand implements IAccess {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                 .addField("#1", lvl.getTopUsers().get(0).getName(), true)
                 .addField("#2", lvl.getTopUsers().get(1).getName(), true)

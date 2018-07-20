@@ -9,6 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 import java.awt.*;
 
@@ -22,7 +23,12 @@ public class Ping extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                 .setAuthor("Pong!", null, j.getSelfUser().getAvatarUrl())
                 .setDescription("\uD83D\uDC93 Took " + j.getPing() + "ms")

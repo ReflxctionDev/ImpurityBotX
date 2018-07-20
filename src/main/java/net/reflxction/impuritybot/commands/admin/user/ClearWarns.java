@@ -5,6 +5,7 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.WarningsManager;
@@ -40,7 +41,12 @@ public class ClearWarns extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         Member member = g.getMember(u);
         if (member.hasPermission(Permission.MANAGE_ROLES)) {
             if (args.length == 0) {

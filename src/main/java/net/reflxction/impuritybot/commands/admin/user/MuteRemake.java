@@ -21,6 +21,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.listeners.discord.MuteManager;
 import net.reflxction.impuritybot.core.others.Roles;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.MuteDuration;
 import net.reflxction.impuritybot.utils.MuteDuration.DurationParseException;
@@ -39,7 +40,12 @@ public class MuteRemake extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         Member sender = g.getMember(u);
         if (sender.getRoles().contains(Roles.MUTE_ACCESS)) {
             if (args.length < 3) {

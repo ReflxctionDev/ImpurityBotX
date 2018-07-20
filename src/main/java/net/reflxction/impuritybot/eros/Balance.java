@@ -7,6 +7,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 
@@ -23,7 +24,12 @@ public class Balance extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         if (args.length == 0) {
             int balance = cc.getUserCredits(u);
             c.sendMessage("Current balance for **" + u.getName() + "**: **" + balance + "**").queue();

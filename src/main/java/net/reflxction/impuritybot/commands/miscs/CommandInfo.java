@@ -24,6 +24,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,12 @@ public class CommandInfo extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         if (args.length == 0) {
             EmbedBuilder embed = new EmbedFactory(new EmbedBuilder()).setRandomColor()
                     .setTitle("Not enough arguments!")

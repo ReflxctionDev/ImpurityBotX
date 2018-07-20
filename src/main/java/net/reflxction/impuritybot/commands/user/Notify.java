@@ -4,6 +4,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 /**
  * Created by Reflxction, on 02/01/18.
@@ -16,7 +17,12 @@ public class Notify extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         Role updates = g.getRolesByName("Bot updates", true).get(0);
         if (args.length == 0) {
             addRole(u, g, c);
@@ -25,7 +31,7 @@ public class Notify extends AbstractCommand {
             if (args[0].equalsIgnoreCase("remove")) {
                 g.getController().removeSingleRoleFromMember(g.getMember(u), updates).queue();
                 c.sendMessage("**You will not be notified on bot updates**").queue();
-
+                return;
             } else if (args[0].equalsIgnoreCase("add")) {
                 addRole(u, g, c);
             } else {

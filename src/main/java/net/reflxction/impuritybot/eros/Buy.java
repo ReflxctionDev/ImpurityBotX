@@ -8,6 +8,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.eros.ErosItem;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.data.CreditsManager;
 
 /**
@@ -23,19 +24,19 @@ public class Buy extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
         if (args.length == 0) {
-            c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**").queue();
+            event.getChannel().sendMessage("**Incorrect command usage. Try " + getUsage() + "**").queue();
         }
         if (args.length == 1) {
             if (ErosItem.getById(args[0]) == null) {
-                c.sendMessage("**Invalid item. Make sure to get the ID correctly from -menu!**").queue();
+                event.getChannel().sendMessage("**Invalid item. Make sure to get the ID correctly from -menu!**").queue();
             } else {
-                if (cu.canBuyItem(u, ErosItem.getById(args[0]))) {
-                    ErosItem.give(u, ErosItem.getById(args[0]));
-                    c.sendMessage("You've successfully purchased **" + ErosItem.getById(args[0]).getItem() + "**.").queue();
+                if (cu.canBuyItem(event.getMember().getUser(), ErosItem.getById(args[0]))) {
+                    ErosItem.give(event.getMember().getUser(), ErosItem.getById(args[0]));
+                    event.getChannel().sendMessage("You've successfully purchased **" + ErosItem.getById(args[0]).getItem() + "**.").queue();
                 } else {
-                    c.sendMessage("**You don't have enough credits to buy this item!** Required: **" + ErosItem.getById(args[0]).getPrice() + "**, while you have: **" + cu.getUserCredits(u) + "**").queue();
+                    event.getChannel().sendMessage("**You don't have enough credits to buy this item!** Required: **" + ErosItem.getById(args[0]).getPrice() + "**, while you have: **" + cu.getUserCredits(event.getMember().getUser()) + "**").queue();
                 }
             }
         }

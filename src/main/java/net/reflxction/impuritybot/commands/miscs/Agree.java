@@ -23,6 +23,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 public class Agree extends AbstractCommand {
 
@@ -32,8 +33,8 @@ public class Agree extends AbstractCommand {
     }
 
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
-        c.sendMessage("**This command is no longer supported! Please use `-accept` instead. Thanks!**").queue();
+    public void process(CommandEvent event, String[] args) {
+        event.getChannel().sendMessage("**This command is no longer supported! Please use `-accept` instead. Thanks!**").queue();
     }
 
     @Override

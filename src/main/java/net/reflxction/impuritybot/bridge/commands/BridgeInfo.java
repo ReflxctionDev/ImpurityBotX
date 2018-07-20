@@ -26,6 +26,7 @@ import net.reflxction.impuritybot.bridge.BridgesManager;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 import java.awt.*;
 
@@ -54,7 +55,12 @@ public class BridgeInfo extends AbstractCommand {
      * @param args Extra arguments of the command
      */
     @Override
-    public void process(JDA j, Guild g, Message m, MessageChannel c, User u, String[] args) {
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJda();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         switch (args.length) {
             case 0:
                 c.sendMessage("**Incorrect command usage. Try " + getUsage() + "**").queue();
