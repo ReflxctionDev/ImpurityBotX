@@ -18,11 +18,15 @@ package net.reflxction.impuritybot.events.swears;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.eventsbus.Event;
+import net.reflxction.impuritybot.filter.FilterManager;
 
 /**
  * Fired when a user swears
  */
 public class UserSwearEvent extends Event {
+
+    // The filter manager
+    private FilterManager manager = new FilterManager();
 
     // The message of the user
     private Message message;
@@ -84,5 +88,14 @@ public class UserSwearEvent extends Event {
      */
     public User getUser() {
         return message.getAuthor();
+    }
+
+    /**
+     * The filter manager
+     *
+     * @return An instance of the filter manager
+     */
+    public FilterManager getManager() {
+        return manager;
     }
 }

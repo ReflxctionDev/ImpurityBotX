@@ -58,7 +58,7 @@ public class FilterManager {
         FilterStateChangedEvent event = new FilterStateChangedEvent(flag);
         ImpurityBot.EVENT_BUS.post(event);
         if (!event.isCanceled()) {
-            bot.getSwearsFile().set("Enabled", !getState());
+            bot.getSwearsFile().set("Enabled", flag);
             manager.saveFile(bot.getSwearsFile(), "swears");
         }
     }
@@ -140,6 +140,7 @@ public class FilterManager {
         List<ISwearWord> words = new ArrayList<>();
         List<String> config = bot.getSwearsFile().getStringList("Swears");
         for (String word : config) {
+            word = WordType.getWithoutType(word);
             words.add(WordType.parseType(word) == WordType.REGEX ? new RegexSwear(WordType.getWithoutType(word)) : new NormalSwear(WordType.getWithoutType(word)));
         }
         return words;

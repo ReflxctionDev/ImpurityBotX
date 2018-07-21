@@ -49,7 +49,7 @@ public class RegexSwear implements ISwearWord {
      */
     @Override
     public String getWord() {
-        return word;
+        return WordType.getWithoutType(word);
     }
 
     /**

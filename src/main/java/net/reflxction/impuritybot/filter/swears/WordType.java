@@ -79,7 +79,7 @@ public enum WordType {
      */
     public static String getWithoutType(String text) {
         if (text.isEmpty()) return "";
-        if (!text.startsWith("R") || !text.startsWith("N")) return text;
+        if (!text.startsWith("R") && !text.startsWith("N")) return text;
         return text.substring(1);
     }
 

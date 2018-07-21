@@ -15,6 +15,7 @@
  */
 package net.reflxction.impuritybot.main;
 
+import net.reflxction.impuritybot.applicants.ApplyCommand;
 import net.reflxction.impuritybot.bridge.commands.BridgeCommand;
 import net.reflxction.impuritybot.bridge.commands.BridgeInfo;
 import net.reflxction.impuritybot.commands.admin.botupdates.ReleasedCommand;
@@ -38,8 +39,7 @@ import net.reflxction.impuritybot.commands.user.*;
 import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.eros.Slots;
 import net.reflxction.impuritybot.core.listeners.bot.LevelUpListener;
-import net.reflxction.impuritybot.eros.*;
-import net.reflxction.impuritybot.eros.shop.Menu;
+import net.reflxction.impuritybot.core.listeners.bot.UserSwearListener;
 import net.reflxction.impuritybot.filter.FilterCommand;
 import net.reflxction.impuritybot.logs.channel.ChannelCreatedLogger;
 import net.reflxction.impuritybot.logs.channel.ChannelDeletedLogger;
@@ -89,7 +89,7 @@ class Register {
                 .registerCommand(new CommandInfo())
                 .registerCommand(new EightBall())
                 .registerCommand(new TopLevels())
-                .registerCommand(new Daily())
+                //.registerCommand(new Daily())
                 .registerCommand(new PunishmentRules())
                 .registerCommand(new Unpin())
                 .registerCommand(new Warn(getBot()))
@@ -106,14 +106,14 @@ class Register {
                 .registerCommand(new Poll(getBot()))
                 .registerCommand(new ToDo())
                 .registerCommand(new ReleasedCommand())
-                .registerCommand(new Balance())
+                //.registerCommand(new Balance())
                 .registerCommand(new WelcomeManager())
                 .registerCommand(new PlayerIGN())
-                .registerCommand(new Menu())
-                .registerCommand(new Buy())
-                .registerCommand(new Credits())
-                .registerCommand(new Transfer())
-                .registerCommand(new Open())
+                //.registerCommand(new Menu())
+                //.registerCommand(new Buy())
+                //.registerCommand(new Credits())
+                //.registerCommand(new Transfer())
+                //.registerCommand(new Open())
                 .registerCommand(new Agree())
                 .registerCommand(new Accept())
                 .registerCommand(new Slots())
@@ -151,7 +151,8 @@ class Register {
                 .registerBotEvent(new UserRemoveWarningLogger())
                 .registerBotEvent(new UserGivenWarnLogger())
                 .registerBotEvent(new UserWarningsClearedLogger())
-                .registerBotEvent(new LevelUpListener());
+                .registerBotEvent(new LevelUpListener())
+                .registerBotEvent(new UserSwearListener());
     }
 }
 

@@ -37,7 +37,7 @@ public class FilterListener implements EventListener {
             MessageReceivedEvent event = (MessageReceivedEvent) e;
             Message message = event.getMessage();
             for (ISwearWord swearWord : filter.getWords()) {
-                if (swearWord.containsWord(message.getContentRaw())) {
+                if (swearWord.containsWord(message.getContentRaw().toLowerCase())) {
                     UserSwearEvent swearEvent = new UserSwearEvent(message);
                     ImpurityBot.EVENT_BUS.post(swearEvent);
                 }

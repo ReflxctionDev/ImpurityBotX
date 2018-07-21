@@ -19,6 +19,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.reflxction.impuritybot.utils.data.PointsManager;
 import net.reflxction.impuritybot.utils.data.exp.ExpManager;
@@ -36,9 +37,9 @@ public class MessageListener extends ListenerAdapter {
     private PointsManager points = new PointsManager();
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         User u = event.getAuthor();
-        TextChannel c = event.getTextChannel();
+        TextChannel c = event.getChannel();
         Guild g = event.getGuild();
 
         if (!u.isBot()) {

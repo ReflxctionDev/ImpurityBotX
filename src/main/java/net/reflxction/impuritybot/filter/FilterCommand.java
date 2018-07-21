@@ -92,7 +92,7 @@ public class FilterCommand extends AbstractCommand {
                 case 3:
                     switch (args[0]) {
                         case "add":
-                            if(WordType.parseType(args[1]) != null) {
+                            if (WordType.parseType(args[1]) != null) {
                                 WordType type = WordType.parseType(args[1]);
                                 manager.addSwearWord(args[2], type);
                                 c.sendMessage("A new swear word was added with type **" + type.getName() + "**").queue();

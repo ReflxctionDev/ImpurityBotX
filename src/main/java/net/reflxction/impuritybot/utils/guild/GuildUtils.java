@@ -63,7 +63,7 @@ public class GuildUtils {
 
     private static IgnManager igns = new IgnManager();
 
-    private static final String API_KEY = "fd148cd1-5c96-43e4-8f2e-53ee385d979b";
+    public static final String API_KEY = "fd148cd1-5c96-43e4-8f2e-53ee385d979b";
 
     private static List<String> players() {
         List<String> players = new ArrayList<>();
