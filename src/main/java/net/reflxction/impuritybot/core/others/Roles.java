@@ -32,5 +32,6 @@ public class Roles {
     public static final Role MUTE_ACCESS = GuildUtils.roleById("458737084467773471");
     public static final Role TESTER = GuildUtils.roleById("462700153447514123");
     public static final Role IMPURE_BOT = GuildUtils.roleById("394214692362387456");
+    public static final Role DEVELOPER = GuildUtils.roleById("432752228143726595");
 
 }

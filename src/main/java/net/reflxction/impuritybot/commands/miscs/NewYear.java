@@ -6,10 +6,16 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.commands.admin.news.Calendar;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
+import net.reflxction.impuritybot.utils.lang.TimeUtils;
+
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.TimeZone;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -42,15 +48,14 @@ public class NewYear extends AbstractCommand {
         JDA j = event.getJda();
         Guild g = event.getGuild();
         Message m = event.getMessage();
-        //   if(channel.getId().equals("374104070945767424")) {
-        m.delete().queue();
-        EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
-                .setTitle("Happy New Year, Everyone!")
-                .setImage("https://media.giphy.com/media/l4Ep4oqonKGy1Gszm/giphy.gif")
-                .setRandomColor()
-                .setFooter("Wish you all a wonderful new year!", null)
-                .build();
-        channel.sendMessage(builder.build()).queue();
+            m.delete().queue();
+            EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
+                    .setTitle("Happy New Year, Everyone!")
+                    .setImage("https://media.giphy.com/media/l4Ep4oqonKGy1Gszm/giphy.gif")
+                    .setRandomColor()
+                    .setFooter("Wish you all a wonderful new year!", null)
+                    .build();
+            channel.sendMessage(builder.build()).queue();
         // }
     }
 

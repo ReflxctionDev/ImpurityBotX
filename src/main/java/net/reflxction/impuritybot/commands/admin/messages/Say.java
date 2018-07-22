@@ -1,5 +1,7 @@
 package net.reflxction.impuritybot.commands.admin.messages;
 
+import com.sun.javaws.jnl.EmbeddedJNLPValidation;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -7,7 +9,13 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
+
+import javax.jws.soap.SOAPBinding;
+import java.awt.*;
 
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
@@ -33,15 +41,28 @@ public class Say extends AbstractCommand {
 
     @Override
     public void process(CommandEvent event, String[] args) {
-        MessageChannel channel = event.getChannel();
-        User u = event.getMember().getUser();
-        JDA j = event.getJda();
-        Guild g = event.getGuild();
-        Message m = event.getMessage();
-        if (u.getId().equals("211459080860991488")) {
-            m.delete().queue();
-            channel.sendMessage(getMessageContent().substring(4)).queue();
+        if (!event.getMember().getRoles().contains(Roles.ADMIN)) {
+            event.getChannel().sendMessage("**You do not have permission to execute this command**").queue();
+            return;
         }
+        if (args.length < 1) {
+            event.getChannel().sendMessage("**Invalid usage!** Try " + getUsage()).queue();
+            return;
+        }
+        String toSay = StringUtils.combine(args);
+        event.getMessage().delete().queue();
+        event.getChannel().sendMessage(toSay).queue();
+        log(event.getMember().getUser(), toSay, event.getChannel());
+    }
+
+    private void log(User executor, String content, MessageChannel channel) {
+        EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
+                .setAuthor(executor.getName(), executor.getAvatarUrl(), executor.getAvatarUrl())
+                .setTitle(executor.getName() + " used -say")
+                .addField("Content", content)
+                .setColor(Color.decode("#4cd137"))
+                .build();
+        channel.sendMessage(builder.build()).queue();
     }
 
     @Override

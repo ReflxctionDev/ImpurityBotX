@@ -50,7 +50,6 @@ public class FeatureRelease extends AbstractCommand {
                 }
                 Roles.BOT_UPDATES.getManager().setMentionable(true).queue();
                 c.sendMessage("<@&" + Roles.BOT_UPDATES.getId() + "> - " + feature.toString()).queue();
-
             }
         } else {
             c.sendMessage("**You don't have permission to use this command!**").queue();
