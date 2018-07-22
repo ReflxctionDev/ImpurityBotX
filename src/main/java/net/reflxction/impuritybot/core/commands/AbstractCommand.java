@@ -11,6 +11,8 @@ import net.dv8tion.jda.core.hooks.SubscribeEvent;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
+import java.util.Arrays;
+
 public abstract class AbstractCommand extends ListenerAdapter {
 
     // Message content
@@ -81,16 +83,16 @@ public abstract class AbstractCommand extends ListenerAdapter {
     public final void onMessageReceived(MessageReceivedEvent event) {
         this.content = event.getMessage().getContentRaw();
         User user = event.getAuthor();
-        MessageChannel channel = event.getChannel();
         if (user.isBot()) return;
         String[] args;
+        if (!content.startsWith("-")) return;
         if (content.contains(" ")) args = StringUtils.toArgs(content, 1);
         else args = new String[0];
         if ((getAliases() == null || getAliases().length == 0) && !content.startsWith("-" + getCommand())) return;
         else if (getAliases().length > 0){
             boolean isFound = false;
             for (String alias : getAliases()) {
-                if (content.startsWith("-" + alias + " ")) {
+                if (content.startsWith("-" + alias)) {
                     isFound = true;
                     break;
                 }
