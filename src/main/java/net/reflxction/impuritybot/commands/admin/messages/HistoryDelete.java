@@ -1,16 +1,3 @@
-package net.reflxction.impuritybot.commands.admin.messages;
-
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.events.commands.CommandEvent;
-
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -26,6 +13,19 @@ import java.util.TimerTask;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.admin.messages;
+
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.*;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
+
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class HistoryDelete extends AbstractCommand {
 
     @Override
@@ -37,7 +37,7 @@ public class HistoryDelete extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel channel = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         if (g.getMember(u).hasPermission(Permission.MESSAGE_MANAGE)) {

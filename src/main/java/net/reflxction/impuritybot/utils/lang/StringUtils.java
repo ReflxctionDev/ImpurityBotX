@@ -1,15 +1,3 @@
-package net.reflxction.impuritybot.utils.lang;
-
-import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.main.ImpurityBot;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.function.Consumer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -25,6 +13,16 @@ import java.util.regex.Pattern;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.utils.lang;
+
+import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.main.ImpurityBot;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtils {
 
@@ -121,12 +119,6 @@ public class StringUtils {
         String[] str = toArgs(toArgs);
         String combined = combine(str,start);
         return toArgs(combined);
-    }
-
-    public static < T > void forEach(T[] array, Consumer< T > consumer) {
-        for (T t : array) {
-            consumer.accept(t);
-        }
     }
 
 }

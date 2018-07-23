@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package net.reflxction.impuritybot.commands.level;
 
 import net.dv8tion.jda.core.JDA;
@@ -40,7 +39,7 @@ public class SetLevel extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         if (!u.getId().equals("211459080860991488")) {

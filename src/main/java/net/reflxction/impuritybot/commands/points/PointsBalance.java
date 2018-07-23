@@ -44,7 +44,7 @@ public class PointsBalance extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         switch (args.length) {

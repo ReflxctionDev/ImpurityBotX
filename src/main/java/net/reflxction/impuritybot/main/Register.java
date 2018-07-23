@@ -70,7 +70,6 @@ class Register {
     void registerCommands() {
         builder
                 .registerCommand(new Announce())
-                .registerCommand(new About())
                 .registerCommand(new Delete())
                 .registerCommand(new MakeEmbed())
                 .registerCommand(new GuildInfo())
@@ -94,7 +93,7 @@ class Register {
                 .registerCommand(new Unpin())
                 .registerCommand(new Warn(getBot()))
                 .registerCommand(new UserWarnings(getBot()))
-                .registerCommand(new RemoveWarn(getBot()))
+                .registerCommand(new RemoveWarn())
                 .registerCommand(new ClearWarns(getBot()))
                 .registerCommand(new WarnInfo(getBot()))
                 .disableCommand(new UpdateRoles())

@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.utils.data.level;/*
+/*
  * * Copyright 2018 github.com/ReflxctionDev
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +13,7 @@ package net.reflxction.impuritybot.utils.data.level;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.utils.data.level;
 
 public class LevelAdapter {
 

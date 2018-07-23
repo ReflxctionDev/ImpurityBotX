@@ -1,16 +1,3 @@
-package net.reflxction.impuritybot.commands.user;
-
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.events.commands.CommandEvent;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -26,6 +13,18 @@ import net.reflxction.impuritybot.events.commands.CommandEvent;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.user;
+
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
 
 public class GuildInfo extends AbstractCommand {
 
@@ -38,14 +37,14 @@ public class GuildInfo extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel channel = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         EmbedBuilder embed = new EmbedFactory(new EmbedBuilder())
                 .setRandomColor()
                 .setAuthor("The Impurity Guild", "https://hypixel.net/threads/guild-impurity-discord-party-motd.1376085/", null)
                 .setThumbnail("https://hypixel.net/attachments/screen-shot-2017-10-26-at-1-40-22-pm-png.738051/")
-                .addField("Guild Master", "Scindra", true)
+                .addField("Guild Master", "Sindrella", true)
                 .addField("Guild Tag", "[I]", true)
                 .addBlankField()
                 .addField("Founded in:", "8th of September, 2017", true)

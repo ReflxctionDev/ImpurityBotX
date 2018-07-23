@@ -1,7 +1,5 @@
-package net.reflxction.impuritybot.utils.guild;
-
 /*
- * * Copyright 2018 github.com/ReflxctionDev
+ * * Copyright 2017-2018 github.com/ReflxctionDev
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +13,7 @@ package net.reflxction.impuritybot.utils.guild;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.utils.guild;
 
 import me.kbrewster.exceptions.APIException;
 import me.kbrewster.hypixelapi.HypixelAPI;
@@ -63,7 +62,7 @@ public class GuildUtils {
 
     private static IgnManager igns = new IgnManager();
 
-    public static final String API_KEY = "fd148cd1-5c96-43e4-8f2e-53ee385d979b";
+    private static final String API_KEY = "fd148cd1-5c96-43e4-8f2e-53ee385d979b";
 
     private static List<String> players() {
         List<String> players = new ArrayList<>();

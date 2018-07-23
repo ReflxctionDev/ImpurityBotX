@@ -1,13 +1,3 @@
-package net.reflxction.impuritybot.utils.lang;
-
-import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.DataManager;
-import net.reflxction.impuritybot.utils.data.exp.ExpManager;
-import net.reflxction.impuritybot.utils.data.level.LevelManager;
-
-import java.util.*;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -23,6 +13,9 @@ import java.util.*;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.utils.lang;
+
+import java.util.*;
 
 public class NumberUtils {
 

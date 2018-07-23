@@ -1,7 +1,3 @@
-package net.reflxction.impuritybot.utils.lang;
-
-import java.util.UUID;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -17,6 +13,9 @@ import java.util.UUID;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.utils.lang;
+
+import java.util.UUID;
 
 public class APIUtils {
 

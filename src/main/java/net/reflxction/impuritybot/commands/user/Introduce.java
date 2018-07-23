@@ -1,17 +1,3 @@
-package net.reflxction.impuritybot.commands.user;
-
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.*;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
-
-import java.awt.*;
-import java.util.Random;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -27,6 +13,19 @@ import java.util.Random;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.user;
+
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.*;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
+
+import java.awt.*;
+import java.util.Random;
 
 public class Introduce extends AbstractCommand {
 
@@ -64,7 +63,7 @@ public class Introduce extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g1 = event.getGuild();
         Message m = event.getMessage();
         if (args.length == 0) {

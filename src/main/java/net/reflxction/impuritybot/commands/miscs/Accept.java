@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package net.reflxction.impuritybot.commands.miscs;
 
 import net.dv8tion.jda.core.JDA;
@@ -40,7 +39,7 @@ public class Accept extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         final Member member = g.getMember(u);

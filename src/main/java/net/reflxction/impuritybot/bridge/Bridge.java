@@ -15,7 +15,6 @@
  */
 package net.reflxction.impuritybot.bridge;
 
-
 import net.dv8tion.jda.core.entities.Channel;
 
 /**

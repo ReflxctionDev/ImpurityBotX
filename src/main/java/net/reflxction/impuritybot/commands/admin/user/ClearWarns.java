@@ -1,15 +1,3 @@
-package net.reflxction.impuritybot.commands.admin.user;
-
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.lang.StringUtils;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -25,6 +13,18 @@ import net.reflxction.impuritybot.utils.data.WarningsManager;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.admin.user;
+
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.*;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
+import net.reflxction.impuritybot.main.ImpurityBot;
+import net.reflxction.impuritybot.utils.lang.StringUtils;
+import net.reflxction.impuritybot.utils.data.WarningsManager;
+
 public class ClearWarns extends AbstractCommand {
 
     private ImpurityBot bot;
@@ -44,7 +44,7 @@ public class ClearWarns extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         Member member = g.getMember(u);

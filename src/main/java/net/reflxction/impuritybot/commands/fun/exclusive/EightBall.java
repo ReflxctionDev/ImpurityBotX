@@ -1,17 +1,3 @@
-package net.reflxction.impuritybot.commands.fun.exclusive;
-
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.*;
-import net.reflxction.impuritybot.core.commands.AbstractCommand;
-import net.reflxction.impuritybot.core.commands.CommandCategory;
-import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.main.ImpurityBot;
-
-import java.awt.*;
-import java.util.Random;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -27,10 +13,21 @@ import java.util.Random;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.fun.exclusive;
+
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.*;
+import net.reflxction.impuritybot.core.commands.AbstractCommand;
+import net.reflxction.impuritybot.core.commands.CommandCategory;
+import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.events.commands.CommandEvent;
+import net.reflxction.impuritybot.main.ImpurityBot;
+
+import java.awt.*;
+import java.util.Random;
 
 public class EightBall extends AbstractCommand {
-
-    private String BALL_EMOJI = "\uD83C\uDFB1";
 
     private String[] answers = new String[]{
             "Maybe, but my opinion doesn't count on that matter.",
@@ -72,7 +69,7 @@ public class EightBall extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         if (!fromImpurity(u)) {
@@ -80,7 +77,7 @@ public class EightBall extends AbstractCommand {
         } else {
             if (args.length == 0) {
                 c.sendMessage("**Usage**: " + getUsage()).queue();
-            } else if (args.length > 0) {
+            } else {
                 if (!m.getContentRaw().endsWith("?")) {
                     EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                             .setColor(Color.RED)
@@ -90,6 +87,7 @@ public class EightBall extends AbstractCommand {
                 } else {
                     Random r = new Random();
                     int i = r.nextInt(answers.length);
+                    String BALL_EMOJI = "\uD83C\uDFB1";
                     EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                             .setRandomColor()
                             .setDescription(BALL_EMOJI + " " + answers[i])

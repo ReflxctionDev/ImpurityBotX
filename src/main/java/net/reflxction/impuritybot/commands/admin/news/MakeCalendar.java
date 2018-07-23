@@ -1,4 +1,4 @@
-package net.reflxction.impuritybot.commands.admin.news;/*
+/*
  * * Copyright 2018 github.com/ReflxctionDev
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +13,7 @@ package net.reflxction.impuritybot.commands.admin.news;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.commands.admin.news;
 
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
@@ -35,7 +36,7 @@ public class MakeCalendar extends AbstractCommand{
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         final Member member = g.getMember(u);

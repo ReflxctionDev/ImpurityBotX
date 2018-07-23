@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package net.reflxction.impuritybot.core.others;
 
 public class SqlConstants {
@@ -21,5 +20,5 @@ public class SqlConstants {
     public static final String HOSTNAME = "no";
     public static final String PORT = "no";
     public static final String USERNAME = "no";
-    public static final String PASSWORD = "no";
+    public static final String PASSWORD = "just no stop being so goddamn persistent";
 }

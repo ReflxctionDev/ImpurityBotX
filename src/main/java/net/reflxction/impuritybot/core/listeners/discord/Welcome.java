@@ -1,14 +1,3 @@
-package net.reflxction.impuritybot.core.listeners.discord;
-
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.reflxction.impuritybot.core.others.Roles;
-import net.reflxction.impuritybot.utils.guild.GuildUtils;
-
 /*
  * * Copyright 2017-2018 github.com/ReflxctionDev
  *
@@ -24,6 +13,16 @@ import net.reflxction.impuritybot.utils.guild.GuildUtils;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.reflxction.impuritybot.core.listeners.discord;
+
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.PrivateChannel;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.reflxction.impuritybot.core.others.Roles;
+import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 public class Welcome extends ListenerAdapter {
 

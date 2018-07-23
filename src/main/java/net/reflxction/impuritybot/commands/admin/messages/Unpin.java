@@ -25,8 +25,8 @@ import net.reflxction.impuritybot.events.commands.CommandEvent;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 public class Unpin extends AbstractCommand {
+
     @Override
     public String getCommand() {
         return "unpin";
@@ -36,7 +36,7 @@ public class Unpin extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJda();
+        JDA j = event.getJDA();
         Guild g = event.getGuild();
         Message m = event.getMessage();
         if (args.length == 1) {

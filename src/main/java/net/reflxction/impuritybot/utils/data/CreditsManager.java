@@ -18,6 +18,7 @@ package net.reflxction.impuritybot.utils.data;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.main.ImpurityBot;
 
+
 public class CreditsManager implements IDataManager {
 
     private ImpurityBot bot = ImpurityBot.getPlugin(ImpurityBot.class);

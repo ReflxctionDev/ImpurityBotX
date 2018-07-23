@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package net.reflxction.impuritybot.commands.admin.news;
 
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -40,12 +39,12 @@ public class Calendar extends AbstractCommand {
     }
 
     @Override
-    public void process(CommandEvent event1, String[] args) {
-        MessageChannel c = event1.getChannel();
-        User u = event1.getMember().getUser();
-        JDA j = event1.getJda();
-        Guild g = event1.getGuild();
-        Message m = event1.getMessage();
+    public void process(CommandEvent event, String[] args) {
+        MessageChannel c = event.getChannel();
+        User u = event.getMember().getUser();
+        JDA j = event.getJDA();
+        Guild g = event.getGuild();
+        Message m = event.getMessage();
         List<Message> msgs = new ArrayList<>();
         final Member member = g.getMember(u);
         if (member.getRoles().contains(Roles.EVENTS_TEAM)) {
@@ -58,9 +57,9 @@ public class Calendar extends AbstractCommand {
                 c.sendMessage("**Incorrect usage. Try " + getUsage() + "**").queue();
             } else {
                 try {
-                    StringBuilder event = new StringBuilder();
+                    StringBuilder eventDesc = new StringBuilder();
                     for (int i = 1; i < args.length; i++) {
-                        event.append(" ").append(args[i]);
+                        eventDesc.append(" ").append(args[i]);
                     }
                     int i = Integer.parseInt(args[0]);
                     for (Message msg : msgs) {
@@ -69,7 +68,7 @@ public class Calendar extends AbstractCommand {
                             EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                                     .setColor(new Color(73, 88, 255))
                                     .setTitle(drawer.get(i))
-                                    .addField("", event.toString())
+                                    .addField("", eventDesc.toString())
                                     .build();
                             msg.editMessage(builder.build()).queue();
                         }
