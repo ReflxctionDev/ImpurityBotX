@@ -16,9 +16,13 @@
 package net.reflxction.impuritybot.core.cache;
 
 import net.dv8tion.jda.core.entities.User;
-import net.reflxction.impuritybot.utils.data.*;
-import net.reflxction.impuritybot.utils.data.exp.ExpManager;
-import net.reflxction.impuritybot.utils.data.level.LevelManager;
+import net.reflxction.impuritybot.data.*;
+import net.reflxction.impuritybot.data.credits.CreditsManager;
+import net.reflxction.impuritybot.data.credits.PointsManager;
+import net.reflxction.impuritybot.data.warnings.WarningManagerImpl;
+import net.reflxction.impuritybot.data.level.ExpManager;
+import net.reflxction.impuritybot.data.level.LevelManager;
+import net.reflxction.impuritybot.data.minecraft.IgnManager;
 import org.apache.commons.lang.Validate;
 
 import java.util.Optional;
@@ -38,7 +42,7 @@ public class ProfileAdapterCache {
             new LevelManager(),
             new IgnManager(),
             new PointsManager(),
-            new WarningsManager(),
+            new WarningManagerImpl(),
             new CreditsManager()
     };
 
@@ -82,8 +86,8 @@ public class ProfileAdapterCache {
         return ((PointsManager) managers[3]);
     }
 
-    public WarningsManager getWarningsManager() {
-        return ((WarningsManager) managers[4]);
+    public WarningManagerImpl getWarningsManager() {
+        return ((WarningManagerImpl) managers[4]);
     }
 
     private CreditsManager getCreditsManager() {

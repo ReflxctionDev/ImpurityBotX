@@ -16,17 +16,13 @@
 package net.reflxction.impuritybot.commands.level;
 
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.core.others.IAccess;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.utils.data.level.LevelManager;
+import net.reflxction.impuritybot.data.level.LevelManager;
 
 public class TopLevels extends AbstractCommand implements IAccess {
 

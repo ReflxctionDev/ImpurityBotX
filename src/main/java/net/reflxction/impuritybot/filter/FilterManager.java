@@ -23,7 +23,7 @@ import net.reflxction.impuritybot.filter.swears.NormalSwear;
 import net.reflxction.impuritybot.filter.swears.RegexSwear;
 import net.reflxction.impuritybot.filter.swears.WordType;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.data.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;

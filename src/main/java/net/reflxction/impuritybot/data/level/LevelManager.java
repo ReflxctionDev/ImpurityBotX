@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.utils.data.level;
+package net.reflxction.impuritybot.data.level;
 
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.events.levels.UserLevelUpEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.DataManager;
-import net.reflxction.impuritybot.utils.data.IDataManager;
-import net.reflxction.impuritybot.utils.data.PointsManager;
-import net.reflxction.impuritybot.utils.data.exp.ExpManager;
+import net.reflxction.impuritybot.data.DataManager;
+import net.reflxction.impuritybot.data.IDataManager;
+import net.reflxction.impuritybot.data.credits.PointsManager;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 import java.util.ArrayList;

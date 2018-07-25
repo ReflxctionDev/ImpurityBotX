@@ -25,14 +25,13 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.bridge.BridgeListener;
 import net.reflxction.impuritybot.commands.fun.exclusive.Rate;
-import net.reflxction.impuritybot.commands.minecraft.SkyWarsC;
 import net.reflxction.impuritybot.core.cache.CacheHandler;
 import net.reflxction.impuritybot.core.cache.ProfileAdapterCache;
 import net.reflxction.impuritybot.core.listeners.discord.*;
 import net.reflxction.impuritybot.core.others.BotConfig;
 import net.reflxction.impuritybot.filter.FilterListener;
 import net.reflxction.impuritybot.levels.MessageListener;
-import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.data.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -188,7 +187,6 @@ public class ImpurityBot extends JavaPlugin {
         japi = new JDABuilder(AccountType.BOT)
                 .setToken(BotConfig.TOKEN)
                 .addEventListener(new MessageListener())
-                .addEventListener(new SkyWarsC())
                 .addEventListener(new Welcome())
                 .addEventListener(new Engine())
                 .addEventListener(new Rate())

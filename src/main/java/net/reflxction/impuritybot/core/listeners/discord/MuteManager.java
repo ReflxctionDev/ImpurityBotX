@@ -19,7 +19,7 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.data.DataManager;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 import java.util.Collections;

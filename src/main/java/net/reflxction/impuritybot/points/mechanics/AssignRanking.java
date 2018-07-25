@@ -18,7 +18,7 @@ package net.reflxction.impuritybot.points.mechanics;
 
 import net.dv8tion.jda.core.entities.Member;
 import net.reflxction.impuritybot.points.PointsRank;
-import net.reflxction.impuritybot.utils.data.IgnManager;
+import net.reflxction.impuritybot.data.minecraft.IgnManager;
 
 /**
  * Assigns the ranking to a player - Just make an instance of this class and use method assignRating()

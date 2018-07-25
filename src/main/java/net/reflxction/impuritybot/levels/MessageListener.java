@@ -18,12 +18,11 @@ package net.reflxction.impuritybot.levels;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.reflxction.impuritybot.utils.data.PointsManager;
-import net.reflxction.impuritybot.utils.data.exp.ExpManager;
-import net.reflxction.impuritybot.utils.data.level.LevelManager;
+import net.reflxction.impuritybot.data.credits.PointsManager;
+import net.reflxction.impuritybot.data.level.ExpManager;
+import net.reflxction.impuritybot.data.level.LevelManager;
 
 /**
  * Listener which listens to user messages

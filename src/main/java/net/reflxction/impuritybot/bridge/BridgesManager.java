@@ -17,7 +17,7 @@ package net.reflxction.impuritybot.bridge;
 
 import net.dv8tion.jda.core.entities.Channel;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.data.DataManager;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.ArrayList;

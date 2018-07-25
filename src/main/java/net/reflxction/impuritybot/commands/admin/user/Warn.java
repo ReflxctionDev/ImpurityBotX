@@ -23,7 +23,7 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.data.warnings.WarningManagerImpl;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class Warn extends AbstractCommand {
@@ -34,7 +34,7 @@ public class Warn extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager();
+    private final WarningManagerImpl wu = new WarningManagerImpl();
 
 
     @Override
@@ -48,7 +48,6 @@ public class Warn extends AbstractCommand {
         User u = event.getMember().getUser();
         JDA j = event.getJDA();
         Guild g = event.getGuild();
-        Message m = event.getMessage();
         Member member = g.getMember(u);
         if (member.hasPermission(Permission.MANAGE_ROLES) || member.getRoles().get(0).getPositionRaw() >= Roles.HELPER.getPositionRaw()) {
             if (args.length == 0) {
@@ -66,7 +65,7 @@ public class Warn extends AbstractCommand {
                     }
                     User warned = j.getUserById(StringUtils.mentionToId(args[0]));
                     if (member.getRoles().get(0).getPosition() >= g.getMember(warned).getRoles().get(0).getPosition()) {
-                        wu.giveWarning(u, warned, reason.toString(), ((TextChannel) c));
+                        wu.warnUser(u, warned, reason.toString(), ((TextChannel) c));
                         c.sendMessage("**" + warned.getName() + "** has been warned.").queue();
                         c.sendMessage("Total warnings for this user: **" + wu.getWarnings(warned) + "**.").queue();
                         PrivateChannel pm = warned.openPrivateChannel().complete();

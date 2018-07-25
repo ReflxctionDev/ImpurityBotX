@@ -1,5 +1,7 @@
+package net.reflxction.impuritybot.credits.enums;
+
 /*
- * * Copyright 2017-2018 github.com/ReflxctionDev
+ * * Copyright 2018 github.com/ReflxctionDev
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,46 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.core.commands;
 
-public enum CommandCategory {
+import net.reflxction.impuritybot.main.ImpurityBot;
 
-    ADMIN("Admin"),
+public enum Emotes {
 
-    MINECRAFT("Minecraft"),
-
-    LEVEL("Level"),
-
-    FUN("Fun"),
-
-    USER("User"),
-
-    HELP("Help"),
-
-    CREDITS("Credits"),
-
-    CALENDAR("Calendar"),
-
-    POINTS("Points"),
-
-    MUSIC("Music"),
-
-    BRIDGES("Bridges"),
-
-    DEV("Development"),
-
-    OTHERS("Others");
+    TREASURE("chest"),
+    CAN("can"),
+    AKINATOR("akinator"),
+    DICE("dice"),
+    CREDITS("credits"),
+    EXP("exp");
 
 
     private String name;
 
-    CommandCategory(String enumName) {
-        this.name = enumName;
+    Emotes(String name) {
+        this.name = ImpurityBot.getJDA().getGuildById("285409136995336192").getEmotesByName(name, true).get(0).getAsMention();
     }
 
-    @Override
-    public String toString() {
+    public String e() {
         return name;
     }
-
 }

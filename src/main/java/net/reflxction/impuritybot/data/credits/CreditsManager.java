@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.utils.data;
+package net.reflxction.impuritybot.data.credits;
 
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.credits.enums.ErosItem;
+import net.reflxction.impuritybot.data.DataManager;
+import net.reflxction.impuritybot.data.IDataManager;
 import net.reflxction.impuritybot.main.ImpurityBot;
 
 
@@ -91,7 +94,7 @@ public class CreditsManager implements IDataManager {
         }
     }
 
-    /*public boolean canBuyItem(User u, ErosItem items) {
+    public boolean canBuyItem(User u, ErosItem items) {
         return getUserCredits(u) >= items.getPrice();
-    }*/
+    }
 }

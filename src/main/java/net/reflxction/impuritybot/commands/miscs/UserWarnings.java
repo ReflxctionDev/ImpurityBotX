@@ -27,7 +27,7 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.data.warnings.WarningManagerImpl;
 
 import java.awt.*;
 
@@ -39,7 +39,7 @@ public class UserWarnings extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager();
+    private final WarningManagerImpl wu = new WarningManagerImpl();
 
 
 

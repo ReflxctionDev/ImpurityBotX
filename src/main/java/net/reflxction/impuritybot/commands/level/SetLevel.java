@@ -24,7 +24,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
-import net.reflxction.impuritybot.utils.data.level.LevelManager;
+import net.reflxction.impuritybot.data.level.LevelManager;
 
 public class SetLevel extends AbstractCommand {
 

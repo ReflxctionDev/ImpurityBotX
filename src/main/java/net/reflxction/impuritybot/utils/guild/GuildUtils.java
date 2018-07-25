@@ -25,7 +25,7 @@ import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.managers.GuildController;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.IgnManager;
+import net.reflxction.impuritybot.data.minecraft.IgnManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -99,4 +99,9 @@ public class GuildUtils {
     public static boolean isGuildMember(User u) {
         return players != null && players.contains(igns.getIGN(u));
     }
+
+    public static Guild devGuild() {
+        return ImpurityBot.getJDA().getGuildById("471724203247140867");
+    }
+
 }

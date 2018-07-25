@@ -21,13 +21,12 @@ import net.dv8tion.jda.core.entities.*;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.data.warnings.WarningManagerImpl;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class RemoveWarn extends AbstractCommand {
 
-    private final WarningsManager wu = new WarningsManager();
+    private final WarningManagerImpl wu = new WarningManagerImpl();
 
     @Override
     public String getCommand() {
@@ -51,7 +50,7 @@ public class RemoveWarn extends AbstractCommand {
                 try {
                     target = j.getUserById(StringUtils.mentionToId(args[0]));
                     if (wu.getWarnings(target) > 0) {
-                        wu.removeWarning(target, u, ((TextChannel) c));
+                        wu.removeWarnings(target, u, ((TextChannel) c), 1);
                         PrivateChannel pm = target.openPrivateChannel().complete();
                         pm.sendMessage("<@" + u.getId() + "> has removed a warning from your total warnings.").queue();
                         c.sendMessage("Removed **1** of **" + target.getName() + "**'s warnings. Total warnings: **" + wu.getWarnings(target) + "**").queue();

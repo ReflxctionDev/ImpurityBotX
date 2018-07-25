@@ -24,6 +24,9 @@ import net.reflxction.impuritybot.commands.admin.messages.*;
 import net.reflxction.impuritybot.commands.admin.news.*;
 import net.reflxction.impuritybot.commands.admin.roles.UpdateRoles;
 import net.reflxction.impuritybot.commands.admin.user.*;
+import net.reflxction.impuritybot.commands.dev.DevDiscordInvite;
+import net.reflxction.impuritybot.commands.dev.Notifications;
+import net.reflxction.impuritybot.commands.dev.RoleInfo;
 import net.reflxction.impuritybot.commands.fun.exclusive.EightBall;
 import net.reflxction.impuritybot.commands.level.LevelCmd;
 import net.reflxction.impuritybot.commands.level.RankCmd;
@@ -40,6 +43,7 @@ import net.reflxction.impuritybot.core.commands.RegistryBuilder;
 import net.reflxction.impuritybot.core.eros.Slots;
 import net.reflxction.impuritybot.core.listeners.bot.LevelUpListener;
 import net.reflxction.impuritybot.core.listeners.bot.UserSwearListener;
+import net.reflxction.impuritybot.credits.commands.*;
 import net.reflxction.impuritybot.filter.FilterCommand;
 import net.reflxction.impuritybot.logs.channel.ChannelCreatedLogger;
 import net.reflxction.impuritybot.logs.channel.ChannelDeletedLogger;
@@ -88,7 +92,7 @@ class Register {
                 .registerCommand(new CommandInfo())
                 .registerCommand(new EightBall())
                 .registerCommand(new TopLevels())
-                //.registerCommand(new Daily())
+                .registerCommand(new Daily())
                 .registerCommand(new PunishmentRules())
                 .registerCommand(new Unpin())
                 .registerCommand(new Warn(getBot()))
@@ -105,14 +109,14 @@ class Register {
                 .registerCommand(new Poll(getBot()))
                 .registerCommand(new ToDo())
                 .registerCommand(new ReleasedCommand())
-                //.registerCommand(new Balance())
+                .registerCommand(new Balance())
                 .registerCommand(new WelcomeManager())
                 .registerCommand(new PlayerIGN())
-                //.registerCommand(new Menu())
-                //.registerCommand(new Buy())
-                //.registerCommand(new Credits())
-                //.registerCommand(new Transfer())
-                //.registerCommand(new Open())
+                .registerCommand(new Menu())
+                .registerCommand(new Buy())
+                .registerCommand(new Credits())
+                .registerCommand(new Transfer())
+                .registerCommand(new Open())
                 .registerCommand(new Agree())
                 .registerCommand(new Accept())
                 .registerCommand(new Slots())
@@ -131,7 +135,10 @@ class Register {
                 .registerCommand(new BetCommand())
                 //.registerCommand(new BetAmount());
                 .registerCommand(new FilterCommand())
-                .registerCommand(new ApplyCommand());
+                .registerCommand(new ApplyCommand())
+                .registerCommand(new RoleInfo())
+                .registerCommand(new DevDiscordInvite())
+                .registerCommand(new Notifications());
     }
 
     void registerLoggers() {

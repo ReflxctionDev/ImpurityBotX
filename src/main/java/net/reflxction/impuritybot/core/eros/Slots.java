@@ -20,7 +20,7 @@ import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.utils.data.CreditsManager;
+import net.reflxction.impuritybot.data.credits.CreditsManager;
 import net.reflxction.impuritybot.utils.lang.NumberUtils;
 
 import java.util.Timer;

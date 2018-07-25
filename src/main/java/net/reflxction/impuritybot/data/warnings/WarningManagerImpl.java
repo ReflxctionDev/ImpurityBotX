@@ -13,49 +13,65 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.utils.data;
+package net.reflxction.impuritybot.data.warnings;
 
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
+import net.reflxction.impuritybot.data.DataManager;
+import net.reflxction.impuritybot.data.IDataManager;
 import net.reflxction.impuritybot.events.warnings.WarningGivenEvent;
 import net.reflxction.impuritybot.events.warnings.WarningRemovedEvent;
 import net.reflxction.impuritybot.events.warnings.WarningsClearedEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 
-public class WarningsManager implements IDataManager {
+public class WarningManagerImpl implements IDataManager, IWarningManager {
 
     private ImpurityBot bot = ImpurityBot.getBot();
 
     private DataManager du = new DataManager(ImpurityBot.getBot());
 
-    public void giveWarning(User warner, User u, String reason, TextChannel channel) {
-        WarningGivenEvent event = new WarningGivenEvent(u, warner, reason, channel);
+    /**
+     * Warns a user
+     *
+     * @param executor The user who warned
+     * @param target   The user who got warned
+     * @param reason   Reason of the warning
+     * @param channel  Channel that the warning was given in
+     */
+    @Override
+    public void warnUser(User executor, User target, String reason, TextChannel channel) {
+        WarningGivenEvent event = new WarningGivenEvent(executor, target, reason, channel);
         ImpurityBot.EVENT_BUS.post(event);
         if (!event.isCanceled()) {
-            bot.getWarningsFile().set("Warnings." + u.getId() + ".Name", u.getName());
-            bot.getWarningsFile().set("Warnings." + u.getId() + ".Amount", getWarnings(u) + 1);
-            du.saveFile(bot.getWarningsFile(), "warnings");
-            bot.getWarningsFile().set("Warnings." + u.getId() + "." + getWarnings(u) + ".Reason", reason);
-            bot.getWarningsFile().set("Warnings." + u.getId() + "." + getWarnings(u) + ".WarnedBy.ID", warner.getId());
-            bot.getWarningsFile().set("Warnings." + u.getId() + "." + getWarnings(u) + ".WarnedBy.Name", warner.getName());
+            bot.getWarningsFile().set("Warnings." + target.getId() + ".Name", target.getName());
+            bot.getWarningsFile().set("Warnings." + target.getId() + ".Amount", getWarnings(target) + 1);
+            bot.getWarningsFile().set("Warnings." + target.getId() + "." + getWarnings(target) + ".Reason", reason);
+            bot.getWarningsFile().set("Warnings." + target.getId() + "." + getWarnings(target) + ".WarnedBy", executor.getId());
             du.saveFile(bot.getWarningsFile(), "warnings");
         }
     }
 
+    @Override
     public int getWarnings(User u) {
-        int warnings = bot.getWarningsFile().getInt("Warnings." + u.getId() + ".Amount");
-        if (warnings == 0) {
-            return 0;
-        }
-        return warnings;
+        return bot.getWarningsFile().getInt("Warnings." + u.getId() + ".Amount");
     }
 
-    public void removeWarning(User u, User remover, TextChannel channel) {
-        WarningRemovedEvent event = new WarningRemovedEvent(u, remover, 1, channel);
+    /**
+     * Removes a warning from a user
+     *
+     * @param executor The user who removed the warning
+     * @param target   The user who lost the warning
+     * @param channel  The channel that the warning was removed in
+     * @param amount   The amount of warnings removed
+     */
+    @Override
+    public void removeWarnings(User executor, User target, TextChannel channel, int amount) {
+        WarningRemovedEvent event = new WarningRemovedEvent(executor, target, amount, channel);
         ImpurityBot.EVENT_BUS.post(event);
         if (!event.isCanceled()) {
-            bot.getWarningsFile().set("Warnings." + u.getId() + ".Name", u.getName());
-            bot.getWarningsFile().set("Warnings." + u.getId() + ".Amount", getWarnings(u) - 1);
+            bot.getWarningsFile().set("Warnings." + target.getId() + ".Name", target.getName());
+            bot.getWarningsFile().set("Warnings." + target.getId() + ".Amount", getWarnings(target) - 1);
+            bot.getWarningsFile().set("Warnings." + target.getId() + "." + getWarnings(target), null);
             du.saveFile(bot.getWarningsFile(), "warnings");
         }
     }
@@ -84,8 +100,16 @@ public class WarningsManager implements IDataManager {
         return bot.getWarningsFile().getString("Warnings." + u.getId() + "." + warning + ".Reason");
     }
 
-    public User getWarnedBy(User u, int warning) {
-        return ImpurityBot.getJDA().getUserById(bot.getWarningsFile().getString("Warnings." + u.getId() + "." + warning + ".WarnedBy.ID"));
+    /**
+     * The user who warned the user
+     *
+     * @param user      User to check for
+     * @param warningID The ID/number of the warning
+     * @return The user who warned the target
+     */
+    @Override
+    public User getWarner(User user, int warningID) {
+        return ImpurityBot.getJDA().getUserById(bot.getWarningsFile().getString("Warnings." + user.getId() + "." + warningID + ".WarnedBy.ID"));
     }
 
 }

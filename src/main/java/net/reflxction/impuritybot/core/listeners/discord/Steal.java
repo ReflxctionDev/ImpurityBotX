@@ -19,7 +19,7 @@ import me.brokenearth.core.scheduler.Timer;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.Role;
-import net.reflxction.impuritybot.utils.data.CreditsManager;
+import net.reflxction.impuritybot.data.credits.CreditsManager;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
 import java.util.Random;

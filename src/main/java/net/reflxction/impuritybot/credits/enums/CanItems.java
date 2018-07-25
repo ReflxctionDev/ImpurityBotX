@@ -1,3 +1,5 @@
+package net.reflxction.impuritybot.credits.enums;
+
 /*
  * * Copyright 2018 github.com/ReflxctionDev
  *
@@ -13,23 +15,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.utils.data.level;
 
-public class LevelAdapter {
+public enum CanItems {
 
-    private int exp;
-    private int level;
+    NORMAL_SODA("Normal Soda", 50),
 
-    public LevelAdapter(int exp, int level) {
-        this.exp = exp;
-        this.level = level;
+    EXPLODING_SODA("Exploding Soda", 20),
+
+    IMPOVERISHING_SODA("Impoverishing Soda", 10),
+
+    SILENCE_SODA("Silence Soda", 10),
+
+    GENIE_SODA("Genie Soda", 5),
+
+    PANDORA_SODA("Pandora's Soda", 5);
+
+    private String name;
+    private int chance;
+
+    CanItems(String name, int chance) {
+        this.name = name;
+        this.chance = chance;
     }
 
-    public int getExp() {
-        return exp;
+    public int getChance() {
+        return chance;
     }
 
-    public int getLevel() {
-        return level;
+    public String getName() {
+        return name;
     }
+
 }

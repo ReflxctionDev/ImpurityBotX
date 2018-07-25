@@ -13,33 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.credits.enums;
+package net.reflxction.impuritybot.data.level;
 
-/**
- * List of all the available chest items
- */
-public enum EnumChestItems {
+public class LevelAdapter {
 
-    EXP("Exp", 40),
+    private int exp;
+    private int level;
 
-    BOMB("Bomb", 20),
-
-    CAN("Impurity Can", 20);
-
-    private String name;
-
-    private int chance;
-
-    EnumChestItems(String name, int chance) {
-        this.name = name;
-        this.chance = chance;
+    public LevelAdapter(int exp, int level) {
+        this.exp = exp;
+        this.level = level;
     }
 
-    public String getName() {
-        return name;
+    public int getExp() {
+        return exp;
     }
 
-    public int getChance() {
-        return chance;
+    public int getLevel() {
+        return level;
     }
 }

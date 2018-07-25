@@ -34,8 +34,8 @@ public class WarningGivenEvent extends WarningEvent {
      * @param target   Target that the event ran on
      * @param executor The one who ran the event
      */
-    public WarningGivenEvent(User target, User executor, String reason, TextChannel channel) {
-        super(target, executor, channel);
+    public WarningGivenEvent(User executor, User target, String reason, TextChannel channel) {
+        super(executor, target, channel);
         this.reason = reason;
     }
 

@@ -23,7 +23,7 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.data.warnings.WarningManagerImpl;
 
 public class ClearWarns extends AbstractCommand {
 
@@ -33,7 +33,7 @@ public class ClearWarns extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager();
+    private final WarningManagerImpl wu = new WarningManagerImpl();
 
     @Override
     public String getCommand() {

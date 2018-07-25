@@ -21,7 +21,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.points.mechanics.AssignRanking;
-import net.reflxction.impuritybot.utils.data.PointsManager;
+import net.reflxction.impuritybot.data.credits.PointsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 
 public class ManagePointsCmd extends AbstractCommand {

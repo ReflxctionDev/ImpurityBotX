@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.utils.data;
+package net.reflxction.impuritybot.data.discord;
 
+import net.reflxction.impuritybot.data.DataManager;
+import net.reflxction.impuritybot.data.IDataManager;
 import net.reflxction.impuritybot.main.ImpurityBot;
 
 import java.util.List;

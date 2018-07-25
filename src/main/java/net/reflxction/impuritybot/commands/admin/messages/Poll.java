@@ -23,7 +23,7 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
-import net.reflxction.impuritybot.utils.data.PollsManager;
+import net.reflxction.impuritybot.data.discord.PollsManager;
 
 /**
  * Created by Reflxction, on 02/02/18.

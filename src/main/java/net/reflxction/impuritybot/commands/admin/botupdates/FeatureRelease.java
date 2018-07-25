@@ -1,4 +1,3 @@
-
 /*
  * * Copyright 2018 github.com/ReflxctionDev
  *
@@ -16,8 +15,6 @@
  */
 package net.reflxction.impuritybot.commands.admin.botupdates;
 
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
@@ -37,12 +34,10 @@ public class FeatureRelease extends AbstractCommand {
     public void process(CommandEvent event, String[] args) {
         MessageChannel c = event.getChannel();
         User u = event.getMember().getUser();
-        JDA j = event.getJDA();
-        Guild g = event.getGuild();
         Message m = event.getMessage();
         m.delete().queue();
         if (u.getId().equals("211459080860991488")) {
-            if(c.getId().equals("433614676086095890")) {
+            if (c.getId().equals("433614676086095890")) {
                 StringBuilder feature = new StringBuilder();
                 for (String argx : args) {
                     String arg = argx + " ";

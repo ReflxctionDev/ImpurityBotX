@@ -22,7 +22,7 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.guild.GuildUtils;
-import net.reflxction.impuritybot.utils.data.IgnManager;
+import net.reflxction.impuritybot.data.minecraft.IgnManager;
 
 import java.util.*;
 

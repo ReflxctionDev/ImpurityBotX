@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.utils.data;
+package net.reflxction.impuritybot.data;
 
 import net.reflxction.impuritybot.core.info.EnumImages;
 import net.reflxction.impuritybot.main.ImpurityBot;
@@ -66,7 +66,7 @@ public class DataManager {
         }
     }
 
-    void saveIgnsFile() {
+    public void saveIgnsFile() {
         saveFile(m.getIgnsFile(), "igns");
     }
 
@@ -74,7 +74,7 @@ public class DataManager {
         saveFile(m.getCreditsFile(), "credits");
     }
 
-    void savePollsFile() {
+    public void savePollsFile() {
         saveFile(m.getPollsFile(),
                 "polls");
     }

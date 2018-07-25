@@ -27,7 +27,7 @@ import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.data.warnings.WarningManagerImpl;
 
 /**
  * Created by Reflxction, on 01/29/18.
@@ -40,7 +40,7 @@ public class WarnInfo extends AbstractCommand {
         this.bot = bot;
     }
 
-    private final WarningsManager wu = new WarningsManager();
+    private final WarningManagerImpl wu = new WarningManagerImpl();
 
 
 
@@ -65,7 +65,7 @@ public class WarnInfo extends AbstractCommand {
                 EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                         .setDescription("Warning " + i + " for user " + u.getName())
                         .addField("Reason", wu.getWarningReason(u, i))
-                        .addField("Warned by", wu.getWarnedBy(u, i).getName())
+                        .addField("Warned by", wu.getWarner(u, i).getName())
                         .addField("Total warnings", wu.getWarnings(u) + "")
                         .setRandomColor()
                         .build();
@@ -83,7 +83,7 @@ public class WarnInfo extends AbstractCommand {
                 EmbedBuilder builder = new EmbedFactory(new EmbedBuilder())
                         .setDescription("Warning " + i + " for user " + warned.getName())
                         .addField("Reason", wu.getWarningReason(warned, i))
-                        .addField("Warned by", wu.getWarnedBy(warned, i).getName())
+                        .addField("Warned by", wu.getWarner(warned, i).getName())
                         .addField("Total warnings", wu.getWarnings(warned) + "")
                         .setRandomColor()
                         .build();

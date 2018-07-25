@@ -34,8 +34,8 @@ public class WarningRemovedEvent extends WarningEvent {
      * @param target   Target that the event ran on
      * @param executor The one who ran the event
      */
-    public WarningRemovedEvent(User target, User executor, int amount, TextChannel channel) {
-        super(target, executor, channel);
+    public WarningRemovedEvent(User executor, User target, int amount, TextChannel channel) {
+        super(executor, target, channel);
         this.amount = amount;
     }
 

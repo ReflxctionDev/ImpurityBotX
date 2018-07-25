@@ -26,8 +26,8 @@ import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
-import net.reflxction.impuritybot.utils.data.exp.ExpManager;
-import net.reflxction.impuritybot.utils.data.level.LevelManager;
+import net.reflxction.impuritybot.data.level.ExpManager;
+import net.reflxction.impuritybot.data.level.LevelManager;
 
 public class LevelCmd extends AbstractCommand {
 

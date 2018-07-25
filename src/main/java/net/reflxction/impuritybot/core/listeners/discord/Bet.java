@@ -19,7 +19,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
-import net.reflxction.impuritybot.utils.data.CreditsManager;
+import net.reflxction.impuritybot.data.credits.CreditsManager;
 
 import java.awt.*;
 import java.util.Random;

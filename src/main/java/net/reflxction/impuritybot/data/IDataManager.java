@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.utils.data;
+package net.reflxction.impuritybot.data;
 
 /**
  * Interface which is used to pack all the data managers

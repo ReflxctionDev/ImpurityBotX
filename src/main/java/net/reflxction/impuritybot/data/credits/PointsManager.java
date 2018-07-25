@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package net.reflxction.impuritybot.utils.data;
+package net.reflxction.impuritybot.data.credits;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.others.EmbedFactory;
+import net.reflxction.impuritybot.data.DataManager;
+import net.reflxction.impuritybot.data.IDataManager;
 import net.reflxction.impuritybot.main.ImpurityBot;
 import net.reflxction.impuritybot.points.PointsRank;
 import net.reflxction.impuritybot.points.mechanics.AssignRanking;

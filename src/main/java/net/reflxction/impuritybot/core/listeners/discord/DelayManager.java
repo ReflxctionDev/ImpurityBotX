@@ -2,7 +2,7 @@ package net.reflxction.impuritybot.core.listeners.discord;
 
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.main.ImpurityBot;
-import net.reflxction.impuritybot.utils.data.DataManager;
+import net.reflxction.impuritybot.data.DataManager;
 
 public class DelayManager implements IDelayManager {
 

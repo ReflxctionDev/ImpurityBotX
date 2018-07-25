@@ -18,7 +18,7 @@ package net.reflxction.impuritybot.events.warnings;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.eventsbus.Event;
-import net.reflxction.impuritybot.utils.data.WarningsManager;
+import net.reflxction.impuritybot.data.warnings.WarningManagerImpl;
 
 /**
  * Fired when a warning event occurs (warning given, removed, etc.). Superclass for all warning eventsbus
@@ -26,7 +26,7 @@ import net.reflxction.impuritybot.utils.data.WarningsManager;
 public abstract class WarningEvent extends Event {
 
     // Instance of the warning manager
-    private WarningsManager manager = new WarningsManager();
+    private WarningManagerImpl manager = new WarningManagerImpl();
 
     // The target and the executor
     private User target, executor;
@@ -69,7 +69,7 @@ public abstract class WarningEvent extends Event {
      *
      * @return ^
      */
-    public WarningsManager getManager() {
+    public WarningManagerImpl getManager() {
         return manager;
     }
 

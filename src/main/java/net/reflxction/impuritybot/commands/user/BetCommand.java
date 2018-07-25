@@ -21,7 +21,7 @@ import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.listeners.discord.Bet;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.utils.data.CreditsManager;
+import net.reflxction.impuritybot.data.credits.CreditsManager;
 import net.reflxction.impuritybot.utils.lang.StringUtils;
 import net.reflxction.impuritybot.utils.lang.TimeUtils;
 

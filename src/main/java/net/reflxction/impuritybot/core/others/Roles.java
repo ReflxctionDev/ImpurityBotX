@@ -30,7 +30,8 @@ public class Roles {
     public static final Role MUTED = GuildUtils.roleById("430697317537153034");
     public static final Role ADMIN = GuildUtils.roleById("367318849978105857");
     public static final Role MUTE_ACCESS = GuildUtils.roleById("458737084467773471");
-    public static final Role TESTER = GuildUtils.roleById("462700153447514123");
+    public static final Role TESTER = GuildUtils.devGuild().getRoleById("471711106289631232");
+    public static final Role NOTIFICATIONS = GuildUtils.devGuild().getRoleById("471729835136516126");
     public static final Role IMPURE_BOT = GuildUtils.roleById("394214692362387456");
     public static final Role DEVELOPER = GuildUtils.roleById("432752228143726595");
 

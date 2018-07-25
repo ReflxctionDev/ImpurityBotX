@@ -1,5 +1,5 @@
 /*
- * * Copyright 2018 github.com/ReflxctionDev
+ * * Copyright 2017-2018 github.com/ReflxctionDev
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,79 +13,102 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.impuritybot.commands.user;
+package net.reflxction.impuritybot.commands.dev;
 
 import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
 import net.reflxction.impuritybot.core.commands.AbstractCommand;
 import net.reflxction.impuritybot.core.commands.CommandCategory;
 import net.reflxction.impuritybot.core.others.Roles;
 import net.reflxction.impuritybot.events.commands.CommandEvent;
-import net.reflxction.impuritybot.utils.guild.GuildUtils;
 
-/**
- * Gives the user the tester role
- */
-public class Tester extends AbstractCommand {
+public class Notifications extends AbstractCommand {
 
+    /**
+     * Name of the command, prefixed with "-"
+     *
+     * @return ^
+     */
     @Override
     public String getCommand() {
-        return "tester";
+        return "notifications";
     }
 
+    /**
+     * Process of the command
+     *
+     * @param event the command event instance
+     * @param args  the arguments of the command
+     */
     @Override
     public void process(CommandEvent event, String[] args) {
-        User u = event.getMember().getUser();
         Guild g = event.getGuild();
-        Message m = event.getMessage();
-        TextChannel c = ((TextChannel) event.getChannel());
         switch (g.getId()) {
-            // Main discord
-            case "363721897743089668":
-                c.sendMessage("**This command can only be used in the development Discord!**").queue();
-                break;
-            // Development discord
             case "471703262492360725":
                 switch (args.length) {
                     case 0:
-                        m.addReaction("\uD83D\uDC4C").queue();
-                        g.getController().addSingleRoleToMember(g.getMember(u), Roles.TESTER).queue();
+                        g.getController().addSingleRoleToMember(event.getMember(), Roles.NOTIFICATIONS).queue();
+                        event.getMessage().addReaction("\uD83D\uDC4C").queue();
                         break;
                     case 1:
                         if (args[0].equalsIgnoreCase("remove")) {
-                            g.getController().removeSingleRoleFromMember(g.getMember(u), Roles.TESTER).queue();
-                            m.addReaction("\uD83D\uDC4C").queue();
+                            g.getController().removeSingleRoleFromMember(event.getMember(), Roles.NOTIFICATIONS).queue();
+                            event.getMessage().addReaction("\uD83D\uDC4C").queue();
                         }
-                        break;
                 }
+                break;
+            default:
+                event.getChannel().sendMessage("**This command can only be used in the development discord!**").queue();
                 break;
         }
     }
 
+    /**
+     * Aliases
+     *
+     * @return A string array that consists of other strings which should do the same process
+     */
     @Override
     public String[] getAliases() {
         return new String[0];
     }
 
+    /**
+     * Category
+     *
+     * @return Command category
+     */
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.USER;
+        return CommandCategory.DEV;
     }
 
+    /**
+     * Delay
+     *
+     * @return Delay of the command
+     */
     @Override
     public long getDelay() {
         return 0;
     }
 
+    /**
+     * Description
+     *
+     * @return A brief command description
+     */
     @Override
     public String getDescription() {
-        return "Receive the Tester role";
+        return "Receive the Notifications role";
     }
 
+    /**
+     * Usage
+     *
+     * @return Command usage
+     */
     @Override
     public String getUsage() {
-        return "-tester / -tester remove";
+        return "-notifications / -notifications remove";
     }
 }
