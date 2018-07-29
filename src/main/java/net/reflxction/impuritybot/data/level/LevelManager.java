@@ -101,4 +101,27 @@ public class LevelManager implements IDataManager {
         return topusers;
     }
 
+    public int getPosition(User user) {
+        int position = -1;
+        List<Integer> lvls = new ArrayList<>();
+        List<User> topUsers  = new ArrayList<>();
+        GuildUtils.members().forEach(m -> {
+            lvls.add(revertLevel(m.getUser()).getExp());
+            Collections.sort(lvls);
+            Collections.reverse(lvls);
+        });
+        for (int i = 0; i < lvls.size(); i++) {
+            topUsers.add(getUserByExp(lvls.get(i)).get(0));
+        }
+        for (int i = 0; i < topUsers.size(); i++) {
+            if (topUsers.get(i).equals(user)) {
+                position = i;
+                break;
+            }
+        }
+        lvls.clear();
+        topUsers.clear();
+        return position;
+    }
+
 }
