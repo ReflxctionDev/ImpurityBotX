@@ -138,7 +138,8 @@ class Register {
                 .registerCommand(new ApplyCommand())
                 .registerCommand(new RoleInfo())
                 .registerCommand(new DevDiscordInvite())
-                .registerCommand(new Notifications());
+                .registerCommand(new Notifications())
+                .registerCommand(new Ban());
     }
 
     void registerLoggers() {
