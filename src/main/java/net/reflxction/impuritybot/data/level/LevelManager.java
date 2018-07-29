@@ -98,6 +98,8 @@ public class LevelManager implements IDataManager {
         topusers.add(getUserByExp(lvls.get(0)).get(0));
         topusers.add(getUserByExp(lvls.get(1)).get(0));
         topusers.add(getUserByExp(lvls.get(2)).get(0));
+        topusers.add(getUserByExp(lvls.get(3)).get(0));
+        topusers.add(getUserByExp(lvls.get(4)).get(0));
         return topusers;
     }
 

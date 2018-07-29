@@ -40,6 +40,8 @@ public class TopLevels extends AbstractCommand implements IAccess {
                 .addField("#1", lvl.getTopUsers().get(0).getName(), true)
                 .addField("#2", lvl.getTopUsers().get(1).getName(), true)
                 .addField("#3", lvl.getTopUsers().get(2).getName(), true)
+                .addField("#4", lvl.getTopUsers().get(3).getName(), true)
+                .addField("#5", lvl.getTopUsers().get(4).getName(), true)
                 .addField((lvl.getPosition(event.getMember().getUser()) != -1) ? "#" + lvl.getPosition(event.getMember().getUser()) : "NA", event.getMember().getUser().getName())
                 .setRandomColor()
                 .build();
